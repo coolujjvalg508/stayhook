@@ -1,5 +1,7 @@
 ActiveAdmin.register AdminUser do
+  menu false
   permit_params :email, :password, :password_confirmation
+  actions :all, except: [:destroy, :new, :create]
 
   index do
     selectable_column
