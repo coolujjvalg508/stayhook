@@ -15,7 +15,7 @@ ActiveAdmin.register Amenity do
 
 	index do
 	    selectable_column
-	    id_column
+	   
 	    column :name
 	    column :created_at
 	    column "Status" do |ee|
@@ -27,7 +27,6 @@ ActiveAdmin.register Amenity do
   	show do
 		attributes_table do
 
-			row :id
 			row :name
 			row "Status" do |ee|
 				(ee.status == true) ? "Active" : "Inactive"
