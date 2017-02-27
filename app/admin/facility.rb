@@ -13,7 +13,35 @@ permit_params :name, :status
 #   permitted
 # end
 
-  filter :name
-  filter :status
-  filter :created_at
+	index do
+	    selectable_column
+	    id_column
+	    column :name
+	    column :created_at
+	    column "Status" do |ee|
+			(ee.status == true) ? "Active" : "Inactive"
+		end
+	    actions
+  	end
+
+  	show do
+		attributes_table do
+
+			row :id
+			row :name
+			row "Status" do |ee|
+				(ee.status == true) ? "Active" : "Inactive"
+			end
+			row :created_at
+			row :updated_at
+
+
+		end
+	end
+
+	filter :name
+	filter :status
+	filter :created_at
 end
+
+
