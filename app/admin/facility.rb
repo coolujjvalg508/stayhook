@@ -13,6 +13,10 @@ permit_params :name, :status
 #   permitted
 # end
 
+	filter :name
+	filter :status, as: :select, collection: [['Active',1], ['Inactive', 0]], label: 'Status'
+	filter :created_at
+
 	index do
 	    selectable_column
 	    
@@ -27,20 +31,25 @@ permit_params :name, :status
   	show do
 		attributes_table do
 
-			row :name
-			row "Status" do |ee|
-				(ee.status == true) ? "Active" : "Inactive"
-			end
-			row :created_at
-			row :updated_at
-
-
+		row :name
+		row "Status" do |ee|
+			(ee.status == true) ? "Active" : "Inactive"
+		end
+		row :created_at
+		row :updated_atq	
 		end
 	end
 
-	filter :name
-	filter :status
-	filter :created_at
+	form do |f|
+
+	    f.inputs "Facility Details" do
+	      f.input :name
+	      f.input :status, label: 'Is Active'
+	    end
+
+	    f.actions
+	end
+
 end
 
 

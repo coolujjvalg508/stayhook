@@ -1,3 +1,3 @@
 class Amenity < ActiveRecord::Base
-	validates	:name, presence: {message: "Name can't be blank"}
+	validates	:name, presence: {message: "Amenity name can't be blank"}
 end

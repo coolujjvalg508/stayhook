@@ -52,3 +52,25 @@ gem 'active_admin_theme'
 gem 'active_admin-awesome_nested_set'
 
 gem 'active_admin_flat_skin'
+
+
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'rmagick', :require => 'rmagick'
+# Awesome Nested Set is an implementation of the nested set pattern for ActiveRecord models.
+gem 'awesome_nested_set'
+
+gem 'kaminari-bootstrap', '~> 3.0.1'
+
+# Nested forms
+gem "nested_form"
+
+
+#Aes encryption for devise instead of bcrypt to make the password accessible
+gem "devise-encryptable"
+gem 'aes', '~> 0.5.0'
+
+#active admin datetime picker
+#see equipment model available_for in activeadmin for use
+gem "just-datetime-picker"
+

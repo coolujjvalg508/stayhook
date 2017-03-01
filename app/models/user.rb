@@ -2,10 +2,17 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable
+
+
+   mount_uploader :image, ImageUploader
 
    validates :first_name, presence: true
+   validates :phone_number, presence: true
    validates :email, presence: {message: "Email can't be blank"}
    validates :email, confirmation: true
+   validates :password, confirmation: true
+   validates :password, presence: {message: "Password can't be blank"}, on: :create
+   validates :password_confirmation, presence: {message: "Password confirmation can't be blank"}, on: :create
    
 end
