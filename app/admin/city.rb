@@ -1,6 +1,6 @@
 ActiveAdmin.register City do
-    menu false
-	menu label: 'City Management'
+
+	menu label: 'Manage City'
 	permit_params :name, :status
 
 # See permitted parameters documentation:

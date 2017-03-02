@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
 	
-   menu label: 'Users Management'
+   menu label: 'Manage Users'
    permit_params :first_name, :last_name, :image, :email, :phone_number, :password, :password_confirmation
   
 
@@ -16,9 +16,10 @@ ActiveAdmin.register User do
           image_tag(cat.try(:image).try(:url, :event_small), width: '50')
         end
       end
-    column :email
+    
     column :first_name
     column :last_name
+    column :email
     column :phone_number
     column :created_at
     actions

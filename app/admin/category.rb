@@ -1,6 +1,6 @@
 ActiveAdmin.register Category do
-
-
+menu false
+menu label: 'Manage Category'
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -13,8 +13,8 @@ ActiveAdmin.register Category do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-menu false
-menu label: 'Category Management'
+
+
   permit_params :name, :parent_id, :status
 
   filter :name
@@ -24,7 +24,7 @@ menu label: 'Category Management'
 
   
   
-  index do
+    index do
 		selectable_column
 		
 		column :name
@@ -36,7 +36,7 @@ menu label: 'Category Management'
 		end
 		column :created_at
 		actions
-	  end
+	end
 
 	
   
