@@ -3,11 +3,6 @@ Rails.application.routes.draw do
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-   #begin
-    #ActiveAdmin.routes(self)
-  #rescue Exception => e
-   # puts "ActiveAdmin: #{e.class}: #{e}"
-  #end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -62,4 +57,11 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+
+  namespace :admin do
+    get 'accept_vendor_request' => 'vendor_requests#accept_vendor_request'
+    get 'reject_vendor_request' => 'vendor_requests#reject_vendor_request'
+  end
+
 end

@@ -38,4 +38,27 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+
+  # Raises error for missing translations
+  # config.action_view.raise_on_missing_translations = true
+
+  config.action_mailer.default_url_options ={ host: ENV["SMTP_HOST"] }
+
+  config.action_mailer.asset_host = ENV["SMTP_HOST"]
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    #Enter the smtp provider here ex: smtp.mandrillapp.com
+    address: ENV["SMTP_ADDRESS"],
+    port: 587,
+    #Enter the smtp domain here ex: localhost:3000
+    domain: ENV["SMTP_DOMAIN"],
+    #Enter the user name for smtp provider here
+    user_name: ENV["SMTP_USERNAME"],
+    #Enter the password for smtp provider here
+    password: ENV["SMTP_PASSWORD"],
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
+
 end
