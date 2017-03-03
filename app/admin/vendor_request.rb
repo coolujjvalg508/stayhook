@@ -2,7 +2,7 @@ ActiveAdmin.register VendorRequest do
 
 	
 	menu label: 'Vendor Requests', parent: 'Manage Vendor'
-	actions :all, except: [:new, :create, :edit, :update]
+	#actions :all, except: [:new, :create, :edit, :update]
 	permit_params :first_name, :last_name, :email, :phone_number, :address, :city_id, :status
 
 # See permitted parameters documentation:
