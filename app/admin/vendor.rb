@@ -1,5 +1,5 @@
 ActiveAdmin.register Vendor do
-  #menu false
+
   menu label: 'Vendor', parent: 'Manage Vendor'
   permit_params :first_name, :last_name, :image, :email, :phone_number, :address, :city_id, :status, :password, :password_confirmation
 

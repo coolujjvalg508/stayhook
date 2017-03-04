@@ -1,22 +1,20 @@
 class UserMailer < ApplicationMailer
-	  default :from => "StayHook  <#{ ENV['DEFAULT_FROM_EMAIL'] }>"
-
+	  default :from => "Stayhook  <#{ ENV['DEFAULT_FROM_EMAIL'] }>"
 
 	  # send a signup email to the user, pass in the user object that   contains the user's email address
 	  def send_signup_email(vendor, password)
-	  	#abort(ENV['DEFAULT_FROM_EMAIL'].to_json)
+
 	    @vendor = vendor
 	    @password = password
-	    #abort(@vendor.email.to_json)
 	    mail( :to => @vendor.email,
-	    :subject => 'Vendor request acceptance' )
+	    :subject => 'Thanks for signing up for our amazing app' )
 	  end
 
-	  def send_reject_email(vendor)
+	   def send_reject_email(vendor_request)
 	  	#abort(ENV['DEFAULT_FROM_EMAIL'].to_json)
-	    @vendor = vendor
-	    #abort(@vendor.email.to_json)
-	    mail( :to => @vendor.email,
+	    @vendor_request = vendor_request
+	    #abort(@vendor_request.email.to_json)
+	    mail( :to => @vendor_request.email,
 	    :subject => 'Vendor request rejection' )
 	  end
 

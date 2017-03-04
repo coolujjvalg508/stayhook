@@ -1,8 +1,8 @@
 ActiveAdmin.register VendorRequest do
 
-	#menu false
+	
 	menu label: 'Vendor Requests', parent: 'Manage Vendor'
-	#actions :all, except: [:new, :create, :edit, :update]
+	actions :all, except: [:new, :create, :edit, :update]
 	permit_params :first_name, :last_name, :email, :phone_number, :address, :city_id, :status
 
 # See permitted parameters documentation:
@@ -60,7 +60,7 @@ ActiveAdmin.register VendorRequest do
 		if vendor.save
 		    vendor_request.status = "Accepted"
         vendor_request.save(:validate => false)
-          
+        #  abort(vendor.to_json)
           UserMailer.send_signup_email(vendor, random_password).deliver_later
 
         	redirect_to admin_vendor_requests_path, notice: 'Vendor request approved'
@@ -85,6 +85,7 @@ ActiveAdmin.register VendorRequest do
         vendor_request = VendorRequest.find_by(id: params[:id])
         vendor_request.status = "Rejected"
         vendor_request.save(:validate => false)
+        
         UserMailer.send_reject_email(vendor_request).deliver_later
         redirect_to admin_vendor_requests_path, notice: 'Vendor request rejected'
   	end
