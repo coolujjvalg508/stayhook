@@ -4,7 +4,13 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>You are successfully registered , <%= @vendor.first_name %>!</h1>
-    <p>Thanks for joining and have a great day! Now you can sign in your user-id is <%= @vendor.email %> and Password is <%= @vendor.password %></p>
+    <h1>Hello <%= @vendor.first_name %>, </h1>
+    <p>Your request has been accepted by administrator</p>
+    <p>Below are the login credentials:</p>
+    <p>Email: <%= @vendor.email %> </p>
+    <p>Password: <%= @password %></p>
+    <p>Regards,</p>
+    <p>Stayhook team</p>
+
   </body>
 </html>

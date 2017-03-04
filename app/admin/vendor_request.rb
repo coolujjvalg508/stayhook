@@ -61,7 +61,7 @@ ActiveAdmin.register VendorRequest do
 		    vendor_request.status = "Accepted"
         vendor_request.save(:validate => false)
           
-          UserMailer.send_signup_email(vendor).deliver_later
+          UserMailer.send_signup_email(vendor, random_password).deliver_later
 
         	redirect_to admin_vendor_requests_path, notice: 'Vendor request approved'
 		else
