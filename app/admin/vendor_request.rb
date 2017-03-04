@@ -85,7 +85,7 @@ ActiveAdmin.register VendorRequest do
         vendor_request = VendorRequest.find_by(id: params[:id])
         vendor_request.status = "Rejected"
         vendor_request.save(:validate => false)
-        UserMailer.send_reject_email(vendor).deliver_later
+        UserMailer.send_reject_email(vendor_request).deliver_later
         redirect_to admin_vendor_requests_path, notice: 'Vendor request rejected'
   	end
     
