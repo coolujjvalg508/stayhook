@@ -74,3 +74,4 @@ gem 'aes', '~> 0.5.0'
 #see equipment model available_for in activeadmin for use
 gem "just-datetime-picker"
 
+gem 'figaro',github: 'laserlemon/figaro'

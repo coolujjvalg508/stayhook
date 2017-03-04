@@ -12,7 +12,7 @@
 
 SMTP_HOST: "stayhookapp.herokuapp.com"
 SMTP_ADDRESS: 'smtp.sendgrid.net'
-SMTP_DOMAIN: 'http://stayhookapp.herokuapp.com'
+SMTP_DOMAIN: 'stayhookapp.herokuapp.com'
 SMTP_USERNAME: 'NitinBr'
 SMTP_PASSWORD: 'Champ@123'
 DEFAULT_FROM_EMAIL: 'info@stayhook.com'

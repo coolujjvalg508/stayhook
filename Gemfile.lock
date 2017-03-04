@@ -17,6 +17,13 @@ GIT
       sass-rails
       sprockets (< 4.1)
 
+GIT
+  remote: git://github.com/laserlemon/figaro.git
+  revision: 8dd678f5075272138acf4b56682b8b1cbcd6ce10
+  specs:
+    figaro (1.1.1)
+      thor (~> 0.14)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -249,6 +256,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise (~> 3.5.3)
   devise-encryptable
+  figaro!
   font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
