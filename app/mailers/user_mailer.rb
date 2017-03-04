@@ -9,7 +9,15 @@ class UserMailer < ApplicationMailer
 	    @password = password
 	    #abort(@vendor.email.to_json)
 	    mail( :to => @vendor.email,
-	    :subject => 'Thanks for signing up for our amazing app' )
+	    :subject => 'Vendor request acceptance' )
+	  end
+
+	  def send_reject_email(vendor)
+	  	#abort(ENV['DEFAULT_FROM_EMAIL'].to_json)
+	    @vendor = vendor
+	    #abort(@vendor.email.to_json)
+	    mail( :to => @vendor.email,
+	    :subject => 'Vendor request rejection' )
 	  end
 
 end
