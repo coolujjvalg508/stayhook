@@ -1,6 +1,5 @@
 ActiveAdmin.register VendorRequest do
 
-	menu false
 	menu label: 'Vendor Requests', parent: 'Manage Vendor'
 	actions :all, except: [:new, :create, :edit, :update]
 	permit_params :first_name, :last_name, :email, :phone_number, :address, :city_id, :status
