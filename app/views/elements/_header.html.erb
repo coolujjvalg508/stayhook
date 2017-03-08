@@ -1,0 +1,149 @@
+<!--Login page start-->
+<div class="modal fade login" id="login" role="dialog">
+    <div class="modal-dialog">
+        <div class="login-secton">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h5 class="box-titl">Sign In</h5>
+            <form>
+                <div class="form-group">
+                    <label>Your MOBILE NUMBER/Email ID</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control">
+                </div>
+                <div class="form-group"> 
+                    <span class="remb">
+                        <input type="checkbox">
+                        <b>Keep me signed in <a href="#" class="pull-right">Forgot Password</a></b> 
+                    </span> 
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="submit-button">Sign IN</button>
+                </div>
+                <div class="or-section"> 
+                    <b>OR</b> 
+                </div>
+                <a href="#" class="otp">Login with OTP</a>
+            </form>
+        </div>
+        <div class="sibn-up"> 
+            Not Registered? 
+            <a href="#" onClick="return false" data-toggle="modal" data-target="#register" data-dismiss="modal">Sign Up</a> 
+        </div>
+    </div>
+</div>
+<!--Login page end--> 
+
+<!--Register page start-->
+<div class="modal fade" id="register" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="login-secton">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h5 class="box-titl">Create Account</h5>
+            <form>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>FULLname</label>
+                            <input type="text" class="form-control" placeholder="Shinendra Kumar">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Your E-mail</label>
+                            <input type="text" class="form-control" placeholder="name@mail.com">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>MOBILE NUMBER</label>
+                            <input type="text" class="form-control" placeholder="9871234560">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Create Password</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <p class="terms-cond">By signing up you agree our <a href="#">Terms</a> and <a href="#">Privacy Policy</a></p>
+                <div class="form-group fix-width-button">
+                    <button type="submit" class="submit-button">Sign up</button>
+                </div>
+                <div class="or-section">
+                    <b>OR</b> 
+                </div>
+                <div class="back-to-login">
+                    <i>Already have a StayHook account?</i>
+                    <a href="#" onClick="return false" data-toggle="modal" data-target="#login" data-dismiss="modal" class="otp">Log In</a> 
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--Register page end--> 
+
+<header class="cp_header">
+    <div id="cp-slide-menu" class="cp_side-navigation">
+        <div class="inner-over-div">
+            <ul class="sldi-lgoo">
+                <li class="nav-bdr" id="close">
+                    <img src="/assets/close-mark.png" width="30" alt="">
+                </li>
+                <li class="nav-logo">
+                    <center>
+                      <img src="/assets/nav-logo.png" class="img-responsive" alt="StayHook">
+                    </center>
+                </li>
+                <li class="search-product">
+                    <img src="/assets/search-icon.png" width="30" alt="">
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li><a href="" class="homebdr">
+                    Home</a>
+                </li>
+                <li>
+                    <%= link_to "Work With US", create_vendor_request_path %>
+                </li>
+                <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Explore StayHook <i class="fa fa-angle-down fa-lg" aria-hidden="true"></i></a> 
+                    <ul class="dropdown-menu">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="booking-gurantee.html">Booking Gurantee</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" onClick="return false" data-toggle="modal" data-target="#login">Sign In</a></li>
+                <li><a href="#" onClick="return false" data-toggle="modal" data-target="#register">Sign Up</a></li>
+                <li><a href="help.html" class="helpbdr">Help</a></li>
+            </ul>
+            <div class="social-icons"> 
+                <a href="#"><img src="/assets/soicla-1.png" width="30" height="29" alt=""></a> <a href="#"><img src="/assets/soicla-2.png" width="30" height="29" alt=""></a> <a href="#"><img src="/assets/soicla-3.png" width="30" height="29" alt=""></a> 
+            </div>
+        </div>
+    </div>
+    <div class="cp-navigation-row">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2 col-sm-2 col-xs-2">
+                    <div class="cp-nav-holder">
+                        <div id="push" class="cp-sidemenu">
+                            <a onClick="return false" href="#"><i class="fa fa-fw" aria-hidden="true" title="Copy to use bars"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 col-sm-6 col-xs-8 text-center">
+                    <div class="logo">
+                        <a href="index.html"></a>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-2 text-right loginwrap"> 
+                    <a href="#" onClick="return false" data-toggle="modal" class="signin  hidden-xs" data-target="#login">Sign In</a> <a class="signup" href="#" onClick="return false" data-toggle="modal" data-target="#register">Sign Up</a> <em class="sarch-top-meu  hidden-lg  hidden-md  hidden-sm"></em> 
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,13 @@
+/*
+*= require backend/bootstrap
+*= require backend/font-awesome.min
+*= require backend/slick
+*= require backend/fullcalendar.min
+*= require backend/fullcalendar.print.min
+*= require backend/styles
+*= require backend/responsive
+*= require backend/morris
+*= require backend/bootstrap-datetimepicker
+
+*= require_self
+*/

@@ -58,6 +58,7 @@ gem 'figaro',github: 'laserlemon/figaro'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'rmagick', :require => 'rmagick'
+
 # Awesome Nested Set is an implementation of the nested set pattern for ActiveRecord models.
 gem 'awesome_nested_set'
 
@@ -74,4 +75,8 @@ gem 'aes', '~> 0.5.0'
 #active admin datetime picker
 #see equipment model available_for in activeadmin for use
 gem "just-datetime-picker"
+
+gem 'tinymce-rails'
+
+gem 'chosen-rails'
 

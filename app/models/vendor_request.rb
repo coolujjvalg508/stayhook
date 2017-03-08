@@ -4,12 +4,12 @@ class VendorRequest < ActiveRecord::Base
 
 	STATUS = ['Pending', 'Accepted', 'Rejected']
 
-	validates :first_name, presence: true
-	validates :city_id, presence: true
-	validates :address, presence: true
+	validates :first_name, presence: {message: "First name can't be blank"}
+	validates :city_id, presence: {message: "Please select city"}
+	validates :address, presence: {message: "Address can't be blank"}
 	validates :email, presence: {message: "Email can't be blank"}
 	validates :email, confirmation: true
-	validates :phone_number, presence: true
+	validates :phone_number, presence: {message: "Phone number can't be blank"}
 	validate :validate_email
 	validate :validate_phone_number
  

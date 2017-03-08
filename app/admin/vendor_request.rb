@@ -1,5 +1,6 @@
 ActiveAdmin.register VendorRequest do
 
+	
 	menu label: 'Vendor Requests', parent: 'Manage Vendor'
 	actions :all, except: [:new, :create, :edit, :update]
 	permit_params :first_name, :last_name, :email, :phone_number, :address, :city_id, :status
@@ -28,12 +29,12 @@ ActiveAdmin.register VendorRequest do
   action_item :back, only: :show do
 	links = ""
    	links = link_to "Back", collection_path, method: :get
-	  	#if vendor_request.status == 'Pending'
+	  	if vendor_request.status == 'Pending'
 	  		links += link_to "Accept Request", admin_accept_vendor_request_path(id: vendor_request.id), method: :get, :style => "float:left; margin-right:5px; margin-left:25%;", data: { confirm: 'Are you sure you want to accept this?' }
 
 	  		links += link_to "Reject Request", admin_reject_vendor_request_path(id: vendor_request.id), method: :get, :style => "float:left; margin-right:5px;", data: { confirm: 'Are you sure you want to reject this?' }
 	  		
-	  	#end
+	    end
    	links
   end
 
@@ -103,11 +104,13 @@ ActiveAdmin.register VendorRequest do
     actions
   end
 
-  show do
+  show title: proc{ |e|
+      e.first_name } do
+
     attributes_table do
-      row :email
       row :first_name
       row :last_name
+      row :email
       row :phone_number
       row :city_id
       row :address

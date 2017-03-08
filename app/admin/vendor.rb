@@ -1,7 +1,7 @@
 ActiveAdmin.register Vendor do
- 
+
   menu label: 'Vendor', parent: 'Manage Vendor'
-  permit_params :first_name, :last_name, :image, :email, :phone_number, :address, :city_id, :status, :password, :password_confirmation
+  permit_params :first_name, :last_name, :image, :email, :phone_number, :address, :city_id, :status, :password, :password_confirmation, :images_attributes => [:id,:image,:caption,:imageable_id,:imageable_type, :_destroy,:tmp_image,:image_cache]
 
   filter :email
   filter :first_name
@@ -33,10 +33,23 @@ ActiveAdmin.register Vendor do
       row :city_id
       row :address
       row "Status" do |ee|
-		(ee.status == true) ? "Active" : "Inactive"
-	  end
+  		  (ee.status == true) ? "Active" : "Inactive"
+  	  end
       row :created_at
       row :updated_at
+
+      row 'Images' do
+        ul class: "image-blk" do
+          if vendor.images.present?
+            vendor.images.each do |img|
+            span do
+              image_tag(img.try(:image).try(:thumb).try(:url), class: "show-img")
+            end
+            end
+          end
+        end
+      end
+      
     end
   end
 
@@ -68,22 +81,52 @@ ActiveAdmin.register Vendor do
       f.input :password_confirmation
     end
 
+    f.inputs 'Images' do
+      f.has_many :images, allow_destroy: true, new_record: true do |ff|
+        ff.input :image, label: "Image", hint: ff.template.image_tag(ff.object.image.try(:url,:thumb))
+        ff.input :image_cache, :as => :hidden
+        ff.input :caption
+      end 
+    end
+
     f.actions
   end
   
+  controller do
+    def create
+     
+      if (params[:vendor].present? && params[:vendor][:images_attributes].present?)
+          params[:vendor][:images_attributes].each do |index,img|
+              unless params[:vendor][:images_attributes][index][:image].present?
+              params[:vendor][:images_attributes][index][:image] = params[:vendor][:images_attributes][index][:image_cache]
+              params[:vendor][:images_attributes][index][:caption] = params[:vendor][:images_attributes][index][:caption]
+              end
+          end
+        super
+      
+      else
+        super
+      end
+    end
 
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+    def update
+
+      if (params[:vendor].present? && params[:vendor][:images_attributes].present?)
+          params[:vendor][:images_attributes].each do |index,img|
+              unless params[:vendor][:images_attributes][index][:image].present?
+              params[:vendor][:images_attributes][index][:image]  = params[:vendor][:images_attributes][index][:image_cache]
+              end
+          params[:vendor][:images_attributes][index][:caption]  = params[:vendor][:images_attributes][index][:caption]
+        end
+      super
+    
+     else
+        super
+      end
+      
+    end
+      
+  end
 
 
 end

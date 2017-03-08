@@ -1,0 +1,68 @@
+<div class="sibn-up-host" id="top-scroll-head">
+    <div class="banner-image-host text-center">
+        <h5 class="box-titl">Sign Up</h5>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
+    </div>
+
+    <div class="container">
+        <div class="login-secton">     
+            <%= form_for(@vendor_request, url: save_vendor_request_path(@vendor_request), html: { method: :post, :id => "vendor_request" }) do |f| %>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <%= f.text_field :first_name, autocomplete: "off", class: 'form-control', id: 'first_name', placeholder: '' %>
+                                <span class="error"><%= @vendor_request.errors[:first_name].first if @vendor_request.errors.any? %></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <%= f.text_field :last_name, autocomplete: "off", class: 'form-control', id: 'last_name', placeholder: '' %>
+                                <span class="error"><%= @vendor_request.errors[:last_name].first if @vendor_request.errors.any? %></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>CITY</label>
+                                <%= f.select :city_id, options_for_select(City.active.order('name ASC').pluck(:name, :id)), {prompt: 'Select City Name'} %>
+                                <span class="error"><%= @vendor_request.errors[:city_id].first if @vendor_request.errors.any? %></span>
+                            </div>
+                        </div>
+                    
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>E-MAIL</label>
+                                <%= f.email_field :email, autocomplete: "off", class: 'form-control', id: 'email', placeholder: '' %>
+                                <span class="error"><%= @vendor_request.errors[:email].first if @vendor_request.errors.any? %></span>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Phone</label>
+                                <%= f.text_field :phone_number, autocomplete: "off", class: 'form-control', id: 'phone_number', placeholder: '' %>
+                                <span class="error"><%= @vendor_request.errors[:phone_number].first if @vendor_request.errors.any? %></span>
+                            </div>
+                        </div>
+                    
+                        <div class="col-sm-4">
+                            <div class="form-group address-tex">
+                                <label>Address</label>
+                                <%= f.text_area :address, autocomplete: "off", class: 'form-control', id: 'address', placeholder: '' %>
+                                <span class="error"><%= @vendor_request.errors[:address].first if @vendor_request.errors.any? %></span>
+                            </div>
+                        </div>
+                      
+                    </div>
+                    <hr class="mid-lin">
+                    <div class="form-group fix-width-button">
+                        <button type="submit" class="submit-button" value="Save" name="commit">Get started</button>
+                    </div>
+                </div>
+            <% end %>   
+        </div>
+    </div>
+ 
+</div>

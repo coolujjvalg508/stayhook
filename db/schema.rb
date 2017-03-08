@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170302090149) do
+ActiveRecord::Schema.define(version: 20170307110750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,39 @@ ActiveRecord::Schema.define(version: 20170302090149) do
 
   create_table "facilities", force: :cascade do |t|
     t.string   "name"
+    t.boolean  "status",     default: true, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "image"
+    t.integer  "imageable_id",   null: false
+    t.string   "imageable_type", null: false
+    t.string   "caption"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "images", ["imageable_id"], name: "index_images_on_imageable_id", using: :btree
+  add_index "images", ["imageable_type"], name: "index_images_on_imageable_type", using: :btree
+
+  create_table "rooms", force: :cascade do |t|
+    t.string   "room_number"
+    t.integer  "vendor_id"
+    t.string   "room_for"
+    t.integer  "no_of_bed"
+    t.integer  "category_id"
+    t.integer  "sub_category_id"
+    t.json     "amenities"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "static_pages", force: :cascade do |t|
+    t.string   "title",                     null: false
+    t.string   "url",                       null: false
+    t.text     "content"
     t.boolean  "status",     default: true, null: false
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false

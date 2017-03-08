@@ -41,7 +41,7 @@ filter :name
 			(ee.status == true) ? "Active" : "Inactive"
 		end
 		row :created_at
-		row :updated_atq	
+		row :updated_at	
 		end
 	end
 

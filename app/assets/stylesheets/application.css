@@ -10,6 +10,17 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
+ *
+ *= require bootstrap
+ *= require font-awesome.min
+ *= require bootstrap-datetimepicker
+ *= require slick
+ *= require select
+ *= require addSlider
+ *= require layout
+ *= require lightbox
+ *= require styles
+ *= require responsive
+ * require_tree
  *= require_self
  */

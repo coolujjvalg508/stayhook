@@ -10,7 +10,32 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery.min
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+//= require bootstrap
+//= require bootstrap-datetimepicker
+//= require addSlider
+//= require tinymce
+//= require lightbox.min
+//= require Obj.min
+//= require slick
+//= require jquery.nice-select.min
+//= require classie
+//= require jquery.mixitup.min
+//= require custom
+// require turbolinks
+// require_tree .
+
+
+$(document).ready(function(){
+  $(".alert").fadeIn();
+  $(".alert").fadeOut(30000);
+
+  $('.numericOnly').keyup(function () {
+      this.value = this.value.replace(/[^0-9]/g,'');
+  });
+  $('.floatOnly').keyup(function () {
+      this.value = this.value.replace(/[^0-9\.]/g,'');
+  });
+  
+});
