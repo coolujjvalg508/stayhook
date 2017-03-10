@@ -32,6 +32,8 @@
                             </div>
                         </div>
                     
+                          <div class="clearfix"></div>
+
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label>E-MAIL</label>
@@ -39,9 +41,9 @@
                                 <span class="error"><%= @vendor_request.errors[:email].first if @vendor_request.errors.any? %></span>
                             </div>
                         </div>
-                        
-                        <div class="col-sm-4">
-                            <div class="form-group">
+
+                         <div class="col-sm-4">
+                           <div class="form-group">
                                 <label>Phone</label>
                                 <%= f.text_field :phone_number, autocomplete: "off", class: 'form-control', id: 'phone_number', placeholder: '' %>
                                 <span class="error"><%= @vendor_request.errors[:phone_number].first if @vendor_request.errors.any? %></span>
