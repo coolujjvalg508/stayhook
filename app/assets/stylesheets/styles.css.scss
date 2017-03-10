@@ -382,6 +382,12 @@ color: #ebebeb;
 .searchcheckwrap .form-control::-webkit-input-placeholder {
 color: #ebebeb;
 }
+.err-msg{
+	color:#FF0000 !important;
+}
+.succ-msg{
+	color:#00FF00 !important;
+}
 .searchcheckwrap .form-control { font-size: 15px; font-weight: 500; }
 .sear-hot-radio .magic-radio + label::after { background-color: rgba(0, 0, 0, 0); border: 0px solid rgb(100, 117, 126); height: 18px; left: 0; top: 0; width: 18px; }
 .sear-hot-radio .magic-radio:checked + label::before { background-color: #38a6a6; border-color: #38a6a6; color: #fff; }

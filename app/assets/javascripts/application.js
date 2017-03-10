@@ -22,6 +22,7 @@
 //= require jquery.nice-select.min
 //= require classie
 //= require jquery.mixitup.min
+//= require jquery.validate
 //= require custom
 // require turbolinks
 // require_tree .
