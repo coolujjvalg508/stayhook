@@ -1,6 +1,6 @@
 ActiveAdmin.register Amenity do
 	menu label: 'Manage Amenity'
-	permit_params :name, :status
+	permit_params :name, :status, :image
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -20,6 +20,11 @@ ActiveAdmin.register Amenity do
 
 	index do
 	    selectable_column
+	    column :image do |cat|
+	      unless !cat.image.present?
+	        image_tag(cat.try(:image).try(:url, :icon))
+	      end
+	    end
 	    column :name
 	    column :created_at
 	    column "Status" do |ee|
@@ -37,6 +42,12 @@ ActiveAdmin.register Amenity do
 			end
 			row :created_at
 			row :updated_at
+			row :image do |cat|
+		        unless !cat.image.present?
+		          image_tag(cat.try(:image).try(:url, :icon))
+		        end
+	        end	
+			
 		end
 	end
 
@@ -46,6 +57,9 @@ ActiveAdmin.register Amenity do
 	      f.input :name
 	      f.input :status, label: 'Is Active'
 	    end
+	    f.inputs "Facility Image" do
+      		f.input :image, :hint => image_tag(f.object.try(:image).try(:url, :icon))
+    	end
 
 	    f.actions
 	end

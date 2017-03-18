@@ -1,0 +1,260 @@
+ 
+ <!-- Content Css -->
+<section class="search-content clearfix">
+    <div class="mobile-show-filter"> 
+        <a class="map-" href="#" onClick="return false">Filters</a> <a class="flit-" href="#" onClick="return false">Map <em class="backtoresult">Back to Results</em> </a> 
+    </div>
+    <div class="search-map clearfix">
+      <div id="map" style="width:100%;height:100vh; "></div>
+    </div>
+    <div class="searchresult clearfix" id="filet-se">
+        <div class="show-filter">
+            <a href="#filet-se" class="scroll" onClick="return false">Show filter <img src="/assets/shared-arrow.png" alt=""></a>
+        </div>
+        <div class="over-scroll-div" id="flux">
+            <div class="searchfilter clearfix" >
+                <div class="filter-conts">
+                    <div class="searchfilterindent clearfix">
+                        <div class="searchcheckwrap clearfix">
+                            <div class="chekd-dtals">
+                                <label>Check -in</label>
+                                <input class="form-control" type="text" placeholder="25/11/2016">
+                            </div>
+                            <div class="chekd-dtals">
+                                <label>Check -out</label>
+                                <input class="form-control" type="text" placeholder="16/12/2016">
+                            </div>
+                            <div class="chekd-dtals chekc">
+                                <label>&nbsp;</label>
+                                <div class="pri-sha">
+                                    <div class="perbox sear-hot-radio clearfix">
+                                        <input class="magic-radio" type="radio" name="radio" id="3" value="option1" >
+                                        <label for="3"> Private </label>
+                                    </div>
+                                    <div class="shaved-dp">
+                                        <div class="shared-btn">SHARED</div>
+                                        <ul class="show-ulcont">
+                                            <li>
+                                                <div class="perbox sear-hot-radio clearfix">
+                                                    <input class="magic-radio" type="radio" name="radio-1" id="2set" value="option1" checked>
+                                                    <label for="2set"> 2 Seater </label>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="perbox sear-hot-radio clearfix">
+                                                    <input class="magic-radio" type="radio" name="radio-1" id="3set" value="option1" checked>
+                                                    <label for="3set"> 3 Seater </label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="searchcheckwrap clearfix border-bottom padding40 no-margin">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-8 col-sm-12 col-md-offset-2">
+                                    <label>Price</label>
+                                    <input data-addui='slider' data-min='<%= @filter_detail.minimum("price") %>' data-max='<%= @filter_detail.maximum("price") %>' data-range='true' value='<%= @filter_detail.minimum("price") %>,<%= @filter_detail.maximum("price") %>'/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="more-filder-option" style="display:none;">
+                        
+                        <div class="faciliets">
+                            <label>AMENITIES</label>
+                            <ul>
+                               <% if @amenity_detail.present? %>
+                                    <% @amenity_detail.each do |val| %>
+                                        <li>
+                                            <input type="checkbox" id="<%= val.name %>" name="AMENITIES">
+                                            <label for="<%= val.name %>"><%= val.name %></label>
+                                        </li>
+                                    <% end %>
+                                <% end %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-cancel"> 
+                    <a href="#" class="cancel-button">CANCEL</a> <a class="sear-" href=""><img src="/assets/white-search.png" width="20" alt=""></a> 
+                </div>
+                <div class="searchfiltermore">
+                    <a href="#">More filter <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="port-filio-flid"> 
+                <span class="total-search"> <b><%= @filter_detail.count %></b> <i>Results Found</i> </span>
+                <ul id="filters" class="ul-section">
+                    <li><span class="filter active" data-filter=".recent, .popular, .highest, .lowest">All</span></li>
+                    <li><span class="filter" data-filter=".recent">Recent</span></li>
+                    <li><span class="filter" data-filter=".popular">Popular</span></li>
+                    <li><span class="filter" data-filter=".highest">Highest price</span></li>
+                    <li><span class="filter" data-filter=".lowest">Lowest price</span></li>
+                </ul>
+                <div class="clearfix"></div>
+                <% if @filter_detail.present? %>
+                <div id="portfoliolist">
+                  <% @filter_detail.each do |val| %>
+
+                    <div class="portfolio recent" data-cat="recent">
+                        <div class="product-with-slider">
+                            <% if val.images.present? %>
+                                <div class="search-list slider">
+                                <% val.images.each do |img| %>
+                                    <div class="fir-prod-img">
+                                      <a href="hotel-detail/<%= val.id %>">
+                                        <%= image_tag img.image.list.url, class: 'img-responsive' %>
+                                        </a>
+                                    </div>
+                                <% end %>
+                                </div>
+                            <% end %>
+                            <div class="product-detail-spec">
+                                <div class="pull-left price-fast"> 
+                                  <% if val.price? %>
+                                    <b><i class="fa fa-fw" aria-hidden="true" title="Copy to use rupee"></i> <%= val.price %> <%= val.price_charge_type %></b> 
+                                  <% end %>
+                                    <span class="feeling-fast"> <i class="fa fa-fw" aria-hidden="true" title="Copy to use clock-o"></i> <em>Filling Fast</em> <b>2 Rooms Left</b> </span> 
+                                </div>
+                                <div class="pull-right revi-rat-loc">
+                                    <div class="review-ratongs"> 
+                                        <em>2 Reviews</em> <span> <i class="fa fa-fw" aria-hidden="true" title="Copy to use star"></i> <i class="fa fa-fw" aria-hidden="true" title="Copy to use star"></i> <i class="fa fa-fw" aria-hidden="true" title="Copy to use star"></i> <i class="fa fa-fw" aria-hidden="true" title="Copy to use star-half-o"></i> <i class="fa fa-fw" aria-hidden="true" title="Copy to use star-o"></i> </span> 
+                                    </div>
+                                    <div class="prid-name-"> 
+                                        <b>StayHook <%= val.room_for %></b> <em><%= val.vendor.address %>, <%= val.vendor.try(:city).try(:name) %></em> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 <% end %>
+                    
+                </div>
+                <% end %>
+               
+            </div>
+            <div class="pagenations">
+                <%= paginate @filter_detail %>
+            </div>
+            <div class="right-footer-sec">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="footer-logo">
+                            <%= link_to ('<img src="/assets/inner-logo.png" class="img-responsive" alt="">').html_safe, root_path %>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="cent-footer">
+                            <p>STAYHOOK ® is a registered Trademark of StayHook Pvt Ltd (ACN 698 425 354)</p>
+                            <ul>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms and Conditions</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="footer-social"> 
+                            <a href="#"><i class="fa fa-fw" aria-hidden="true" title="Copy to use twitter"></i></a> <a href="#"><i class="fa fa-fw" aria-hidden="true" title="Copy to use facebook-f"></i></a> <a href="#"><i class="fa fa-fw" aria-hidden="true" title="Copy to use google-plus"></i></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+    </div>
+
+</section>
+
+
+
+<script type="text/javascript">
+function myMap() {
+  var mapCanvas = document.getElementById("map");
+  var mapOptions = {
+    center: new google.maps.LatLng(51.5, -0.2),
+    zoom: 3
+  }
+  var map = new google.maps.Map(mapCanvas, mapOptions);
+}
+
+//SHARED
+
+$(".shared-btn").click(function (e) {
+$('.show-ulcont').toggleClass('open');
+e.stopPropagation()
+});
+
+$(document).click(function (e) {
+if (! $(e.target).hasClass('show-ulcont')) $(".show-ulcont").removeClass('open');
+});
+
+//filter -button
+$('.search-list').slick();
+$(".searchfiltermore").click(function(){
+$('.search-cancel,.searchfiltermore').addClass('show-btn');
+});
+$(".searchfiltermore").click(function(){
+$('.more-filder-option').slideToggle();
+});
+$(".cancel-button").click(function(){
+$('.search-cancel.show-btn,.searchfiltermore.show-btn').removeClass('show-btn');
+});
+$(".cancel-button").click(function(){
+$('.more-filder-option').slideUp();
+});
+
+
+
+
+</script> 
+
+
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?callback=myMap" %>
+<script type="text/javascript">
+    $(function () {
+        var filterList = {
+            init: function () {
+                // MixItUp plugin
+                // http://mixitup.io
+                $('#portfoliolist').mixItUp({
+                selectors: {
+                  target: '.portfolio',
+                  filter: '.filter'	
+              },
+              load: {
+              filter: '.recent, .popular, .highest, .lowest'  
+            }     
+                });								
+            }
+        };
+        // Run the show!
+        filterList.init();
+		
+		$('.show-filter').on('click',function(){
+		$('#flux').scrollTop(0);
+		})
+    });	
+	
+	
+//Onscroll add class
+jQuery(
+function($)
+{
+$('#flux').bind('scroll', function()
+  {
+	if($(this).scrollTop() + $(this).innerHeight()>= ($(this)[0].scrollHeight-2300))
+	{
+	   $(".show-filter").addClass("darkHeader");
+    } else {
+        $(".show-filter").removeClass("darkHeader");
+    }
+  })
+	
+});
+</script>

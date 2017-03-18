@@ -4,6 +4,7 @@
 <!--Moblie searching start-->
 <div class="mobile-searching text-center">
     <div class="cont-search"> <b class="close-search"><img src="/assets/search-close.png" width="35" alt=""></b>
+
         <div class="search-fields">
             <div class="select-city">
                 <select>
@@ -14,6 +15,7 @@
                     <option value="5">Bikaner</option>
                     <option value="6">Jodhpur</option>
                 </select>
+
             </div>
             <p class="or-s">OR</p>
             <div class="searchhome">
@@ -60,7 +62,8 @@
             <div class="search-box">
                 <button class="search-btn" type="submit">Search</button>
             </div>
-        </div>
+        </div>  
+
     </div>
 </div>
 <!--Moblie searching start-->
@@ -70,31 +73,25 @@
 
     <!-- Banner Start -->
     <section class="banner clearfix">
+
+<%= form_tag search_listing_path, method: :get do %>
         <div class="container hidden-xs">
             <h1>Search Through Best Hostels &amp; Hotels</h1>
             <ul>
                 <li class="clearfix">
-                    <div class="citybox clearfix">
-                        <select>
-                            <option value="1">Select City</option>
-                            <option value="2">Jaipur</option>
-                            <option value="3">Ajmer</option>
-                            <option value="4">Kota</option>
-                            <option value="5">Bikaner</option>
-                            <option value="6">Jodhpur</option>
-                        </select>
+
+                    <div class="citybox clearfix">                        
+                        <%= select_tag "filter[city]", options_for_select(City.active.order('name ASC').pluck(:name, :id)), {include_blank: "Select City"} %>
                     </div>
+
                     <div class="searchhome">
-                        <input class="form-control" placeholder="Search by locality, address..." type="text">
+                        <%= text_field_tag "filter[address]", "", placeholder: "Search by locality, address...", class: "form-control" %>
                     </div>
+
                     <div class="couple-box">
-                        <select>
-                            <option value="1">King / Queen / Family</option>
-                            <option class="sdfdsf" value="2">King </option>
-                            <option value="3">Queen </option>
-                            <option value="4">Family </option>
-                        </select>
+                        <%= select_tag "filter[room_for]", options_for_select(Room::ROOM_FOR), {include_blank: "King / Queen / Family"} %>
                     </div>
+
                     <div class="duration-box">
                         <select>
                             <option value="1">Duration</option>
@@ -104,14 +101,16 @@
                             <option value="4">2 Semesters (10 Months)</option>
                         </select>
                     </div>
+
                     <div class="search-box">
-                        <button class="search-btn" type="submit" onclick="window.location.href='search-listing.html'">
+                        <button class="search-btn" type="submit" >
                             <i class="fa fa-search hidden-sm hidden-xs" aria-hidden="true">
                             </i>
                             <span class="hidden-md hidden-lg">Search
                             </span>
                         </button>
                     </div>
+
                 </li>
             </ul>
             <div class="text-center start-txt text-uppercase">
@@ -123,6 +122,7 @@
                 </a> 
             </div>
         </div>
+
         <div class="container hidden-lg hidden-md hidden-sm">
             <div class="mobile-searchin-sec text-center">
                 <h5>Welcome <Br>
@@ -146,6 +146,7 @@
                 </div>
             </div>
         </div>
+<% end %>
     </section>
 
     <!-- Where to Start -->

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170307110750) do
+ActiveRecord::Schema.define(version: 20170318050940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20170307110750) do
     t.boolean  "status",     default: true, null: false
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "image"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -76,6 +77,7 @@ ActiveRecord::Schema.define(version: 20170307110750) do
     t.boolean  "status",     default: true, null: false
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "image"
   end
 
   create_table "images", force: :cascade do |t|
@@ -98,8 +100,10 @@ ActiveRecord::Schema.define(version: 20170307110750) do
     t.integer  "category_id"
     t.integer  "sub_category_id"
     t.json     "amenities"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "price"
+    t.string   "price_charge_type"
   end
 
   create_table "static_pages", force: :cascade do |t|

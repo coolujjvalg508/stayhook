@@ -1,0 +1,78 @@
+<div id="cp-slide-menu" class="cp_side-navigation">
+    <div class="inner-over-div">
+        <ul class="sldi-lgoo">
+            <li class="nav-bdr" id="close"><img src="/assets/close-mark.png" width="30" alt=""></li>
+            <li class="nav-logo">
+                <center>
+                  <img src="/assets/nav-logo.png" class="img-responsive" alt="StayHook">
+                </center>
+            </li>
+            <li class="search-product"><img src="/assets/search-icon.png" width="30" alt=""></li>
+        </ul>
+        <ul class="navbar-nav">
+            <li><a href="index.html" class="homebdr">Home</a></li>
+            <li><a href="signup-host.html">Work With US</a></li>
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Explore StayHook <i class="fa fa-angle-down fa-lg" aria-hidden="true"></i></a>
+            <ul class="dropdown-menu">
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="booking-gurantee.html">Booking Gurantee</a></li>
+            </ul>
+        </ul>
+            <li><a href="#" onClick="return false" data-toggle="modal" data-target="#login">Sign In</a></li>
+            <li><a href="#" onClick="return false" data-toggle="modal" data-target="#register">Sign Up</a></li>
+            <li><a href="help.html" class="helpbdr">Help</a></li>
+    
+        <div class="social-icons"> 
+            <a href="#"><img src="/assets/soicla-1.png" width="30" height="29" alt=""></a> <a href="#"><img src="/assets/soicla-2.png" width="30" height="29" alt=""></a> <a href="#"><img src="/assets/soicla-3.png" width="30" height="29" alt=""></a> 
+        </div>
+    </div>
+</div>
+ 
+    <!-- Search Header -->
+    <section class="SearchHeader clearfix hidden-xs">
+        <div class="Searchlogo"> 
+            <a class="in-menus" onclick="return false" href="#"><i class="fa fa-fw" aria-hidden="true" title="Copy to use bars"></i></a>
+                <%= link_to ('<center>
+                    <img src="/assets/nav-logo.png" class="img-responsive" alt="StayHook">
+                </center>').html_safe, root_path %>
+        </div>
+        <div class="SearchHeaderRight">
+            <div class="pull-left TopSearch">
+                <input class="form-control" placeholder="Search" type="text">
+            </div>
+            <div class="pull-right SearchProfile dropdown"> <span class="hidden-xs">Lorem ipsum </span>
+                <div class="profile-search"> 
+                    <span class="notificationbox">4</span> <img src="/assets/profile.jpg" class="img-responsive img-circle" alt="Profile">
+                </div>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-angle-down fa-lg" aria-hidden="true"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="profile.html">Account Settings</a></li>
+                    <li><a href="booking-history.html">Booking History</a></li>
+                    <li><a href="#">Refer A Friend</a></li>
+                    <li><a href="#">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <header class="cp_header mobile-scertn hidden-sm hidden-md hidden-lg">
+        <div id="cp-slide-menu" class="cp_side-navigation"> </div>
+        <div class="cp-navigation-row">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-xs-2">
+                        <div class="cp-nav-holder">
+                            <div id="push" class="cp-sidemenu">
+                                <a onclick="return false" href="#"><i class="fa fa-fw" aria-hidden="true" title="Copy to use bars"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-sm-6 col-xs-8 text-center">
+                        <div class="logo"><a href="index.html"></a></div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-2 text-right loginwrap"> 
+                        <a href="#" onclick="return false" data-toggle="modal" class="signin  hidden-xs" data-target="#login">Sign In</a> <a class="signup" href="#" onclick="return false" data-toggle="modal" data-target="#register">Sign Up</a> <em class="sarch-top-meu search-product  hidden-lg  hidden-md  hidden-sm"></em> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>

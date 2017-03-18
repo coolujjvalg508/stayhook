@@ -10,7 +10,7 @@ table { border-collapse: collapse; border-spacing: 0 }
 fieldset, img { border: 0 }
 ol, ul { list-style: none }
 sub, sup { position: relative; font-size: 75%; line-height: 0; vertical-align: baseline }
-sup { top: -0.5em }
+sup { top: -0.5em }	
 sub { bottom: -0.25em }
 a img { border: 0; display: block }
 a:active, a:focus, a:hover, input[type="image"], select:focus, input, input[type="button"]:focus, :focus { outline: 0; text-decoration: none; }
@@ -181,7 +181,7 @@ footer .foot-privacy a { color: #656668; font-family: 'Montserrat', sans-serif; 
 .scoll-slide .slick-prev.slick-arrow:hover { background: image-url("prev-arrow-h.png") left top no-repeat; }
 /* Location Map Css */
 .locationwrap { padding: 50px 0; position: relative; }
-.locationwrap .panel-heading .accordion-toggle:after { font-family: 'Glyphicons Halflings'; content: "\e252"; float: right; color: grey; }
+.locationwrap .panel-heading .accordion-toggle:after { font-family: 'fonts/Glyphicons Halflings'; content: "\e252"; float: right; color: grey; }
 .locationwrap .panel-heading .accordion-toggle.collapsed:after { content: "\e250"; }
 .locationwrap .panel-default > .panel-heading { box-shadow: none; background: #fff; padding: 0px; }
 .locationwrap .panel-default > .panel-heading .panel-title { font-size: 20px; font-family: 'Montserrat', sans-serif; color: #484848; }
@@ -741,7 +741,7 @@ top: 5px;
 .pagenations li { display: inline-block; vertical-align: middle; }
 .pagenations li a:hover { color: #38a6a6; }
 .pagenations li a { color: rgb(102, 125, 138); font-size: 20px; margin: 0 10px; }
-.arrow::before { background-image: image-url("pagenation-arrow.png"); background-repeat: no-repeat; content: ""; height: 20px; left: 0; position: absolute; width: 13px; }
+.arrow::before { /*background-image: image-url("pagenation-arrow.png");*/ background-repeat: no-repeat; content: ""; height: 20px; left: 0; position: absolute; width: 13px; }
 .pagenations li.arrow.preve { padding: 0 10px 0 20px; }
 .pagenations li.arrow.next { padding: 0 20px 0 10px; }
 .pagenations li.arrow { padding: 0; position: relative; }
@@ -1030,4 +1030,8 @@ h5.ref-ti { color: rgb(43, 43, 43); font-size: 23px; font-weight: 300; margin: 0
 
 .login-secton .form-group span {
 	margin: 0 0 5px 20px;
+}
+
+.facility-txt .icon-img{
+	width: 23px;
 }

@@ -1,6 +1,7 @@
 ActiveAdmin.register Facility do
+	menu false
 	menu label: 'Manage Facility'
-permit_params :name, :status
+permit_params :name, :status, :image
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
@@ -20,7 +21,11 @@ permit_params :name, :status
 
 	index do
 	    selectable_column
-	    
+	    column :image do |cat|
+	      unless !cat.image.present?
+	        image_tag(cat.try(:image).try(:url, :thumb), width: '20')
+	      end
+	    end
 	    column :name
 	    column :created_at
 	    column "Status" do |ee|
@@ -32,12 +37,17 @@ permit_params :name, :status
   	show do
 		attributes_table do
 
-		row :name
-		row "Status" do |ee|
-			(ee.status == true) ? "Active" : "Inactive"
-		end
-		row :created_at
-		row :updated_at	
+			row :name
+			row "Status" do |ee|
+				(ee.status == true) ? "Active" : "Inactive"
+			end
+			row :created_at
+			row :updated_at
+			row :image do |cat|
+		        unless !cat.image.present?
+		          image_tag(cat.try(:image).try(:url, :thumb))
+		        end
+	        end	
 		end
 	end
 
@@ -46,7 +56,11 @@ permit_params :name, :status
 	    f.inputs "Facility Details" do
 	      f.input :name
 	      f.input :status, label: 'Is Active'
+
 	    end
+	    f.inputs "Facility Image" do
+      		f.input :image, :hint => image_tag(f.object.try(:image).try(:url, :thumb))
+    	end
 
 	    f.actions
 	end

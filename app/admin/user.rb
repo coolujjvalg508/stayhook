@@ -12,10 +12,10 @@ ActiveAdmin.register User do
     selectable_column
     
     column :image do |cat|
-        unless !cat.image.present?
-          image_tag(cat.try(:image).try(:url, :event_small), width: '50')
-        end
+      unless !cat.image.present?
+        image_tag(cat.try(:image).try(:url, :thumb), width: '50')
       end
+    end
     
     column :first_name
     column :last_name
@@ -35,7 +35,7 @@ ActiveAdmin.register User do
       row :updated_at
       row :image do |cat|
         unless !cat.image.present?
-          image_tag(cat.try(:image).try(:url, :event_small), width: '100')
+          image_tag(cat.try(:image).try(:url, :thumb))
         end
       end
     end

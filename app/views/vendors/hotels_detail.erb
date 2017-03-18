@@ -1,0 +1,482 @@
+
+
+<div class="main-section" id="top-scroll-head"> 
+    <!-- Banner Start -->
+    <section class="hotels-banner detil-slider">
+        <div class="main-top-detail-slider">
+            <div class="slider top-main-slider">
+            
+                <div class="fir-main-slider">
+                
+                    <h5 class="caption-first">StayHook <%= @hotels_detail.room_for %></h5>
+                
+                    <img src="/assets/main-top-slider.jpg" alt=""> 
+                </div>
+            
+            </div>
+
+            <% if @hotels_detail.images.present? %>
+                <div class="slider top-thumb-slider">
+                    <% @hotels_detail.images.each do |img| %>
+                        <div class="fir-tyumb">
+                            <%= image_tag img.image.list_small.url, class: 'img-responsive' %>
+                        </div>
+                    <% end %>       
+                </div>
+            <% end %>      
+        </div>
+        <div class="share-paage-option">
+            <div class="viewwrap clearfix">
+                <div class="pull-left">
+                    <i class="fa fa-eye fa-lg" aria-hidden="true"></i> 10 234
+                </div>
+                <div class="pull-left">
+                    <i class="fa fa-heart-o fa-lg" aria-hidden="true"></i> 320
+                </div>
+            </div>
+            <div class="sharewrap">
+                <div class="dropdown">
+                    <button type="button" data-toggle="dropdown"><i class="fa fa-share-alt" aria-hidden="true"></i></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Container Start -->
+    <section class="detail-page-contents hotelswrap clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-sm-6 col-xs-12">
+                    <div class="clearfix leftPanel">
+                        <div class="detail-mor-menus">
+                            <ul>
+                                <li><a href="#">Features</a></li>
+                                <li><a href="#">Photos</a></li>
+                                <li><a href="#">Reviews</a></li>
+                                <li><a href="#">Map</a></li>
+                            </ul>
+                        </div>
+                        <div class="StayTitle">
+                            <span class="titleicon"><img src="/assets/title-icon.png" alt="img"></span>
+                            <h2>StayHook <%= @hotels_detail.room_for %> - Furnished Home</h2>
+                            <p><i class="fa fa-map-marker" aria-hidden="true"></i> <%= @hotels_detail.vendor.address %>, <%= @hotels_detail.vendor.try(:city).try(:name) %>, India <a class="save-leter" href="#"><img src="/assets/red-home.png" alt="img"> Save For Later</a> </p>
+                        </div>
+                        <div class="type-room text-center">
+                            <ul>
+                                <li>
+                                    <center>
+                                        <img src="/assets/single-icon.png" alt="Single Bed">
+                                    </center>
+                                    <div class="marginT10">Single Bed</div>
+                                </li>
+                                <li>
+                                    <center>
+                                        <img src="/assets/private-icon1.png" alt="Private Room">
+                                    </center>
+                                    <div class="marginT10">Private Room</div>
+                                </li>`
+                                <li>
+                                    <center>
+                                        <img src="/assets/tworoom-icon.png" alt="Two Guests">
+                                    </center>
+                                    <div class="marginT10">Two Guests</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="amenitieswrap clearfix">
+                            <div class="col-md-3 col-sm-4 col-xs-5 ame-txt">Amenities</div>
+                            <div class="col-md-9 col-sm-8 col-xs-7">
+                                <div class="row">
+                                    <% if @hotels_detail.present? %>
+                                    <ul>
+                                        <%  @amenities_data.each_with_index do |e, i| %>
+                                                <li class="facility-txt">
+                                                    <%= image_tag e.image.icon.url, alt: e.name, class: 'icon-img' %>
+                                                    <%= e.name %>   
+                                                </li>
+                                        <%  end %>
+
+                                    </ul>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="amenitieswrap clearfix">
+                            <div class="col-md-3 col-sm-12 col-xs-12 ame-txt">Description</div>
+                            <div class="col-md-9 col-sm-12 col-xs-12 descriptionwrap">
+                                <div class="row">
+                                    <p>Lorem ipsum dolor sit amet, illud eligendi perfecto eos ut, ut vim harum detracto vulputate. Ad vel virtute quaeque deleniti, nam quem nonumy ut. Et vis unum expetendis incorrupte. Quo idque postea mandamus te, labores indoctum eum at.</p>
+                                    <a href="#" onClick="return false">+ view more</a> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="amenitieswrap clearfix">
+                            <div class="col-md-3 col-sm-12 col-xs-12 ame-txt">Space Type</div>
+                            <div class="col-md-9 col-sm-12 col-xs-12 descriptionwrap">
+                                <div class="row">
+                                    <ul class="space-tup">
+                                        <li>Accomadate: <b>2</b></li>
+                                        <li>Bedroom: <b>1</b></li>
+                                        <li>Beds: <b>2</b></li>
+                                        <li>Bathroom: <b>1</b></li>
+                                        <li><em>Couples:</em> <b>Allowed</b></li>
+                                        <li><em>Family:</em> <b>Allowed</b></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="amenitieswrap clearfix">
+                            <div class="col-md-3 col-sm-12 col-xs-12 ame-txt">House Rules</div>
+                            <div class="col-md-9 col-sm-12 col-xs-12 descriptionwrap">
+                                <div class="row">
+                                    <div class="hous-rols">
+                                        <p>Check-Out Before: <b>11:00 am</b></p>
+                                        <p>Check-In After: <b>8:00 am</b></p>
+                                        <b>Identity Card needed to Check -In <br>
+                                        i.e Aadhar,VoterID Card,Passport (any one)</b> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix reviewwrap">
+                            <h2>Review</h2>
+                            <div class="reivewpost clearfix">
+                                <div class="reviewleft">
+                                    <img src="/assets/profile.jpg" class="img-responsive img-circle" alt="Profile">
+                                </div>
+                                <div class="reviewright clearfix">
+                                    <div class="comment-txt"><i>5</i> Comments
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Name" class="form-control reviewinput">
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea class="form-control comment-area" placeholder="Write your comment..."></textarea>
+                                        <div class="reviewpost clearfix">
+                                            <div class="pull-left reivew-txt">
+                                                Rating <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-half-o" aria-hidden="true"></i>
+                                            </div>
+                                            <div class="pull-right">
+                                                <button type="submit" class="blue-btn">Submit <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="reivewpost clearfix">
+                                <div class="reviewleft">
+                                    <img src="/assets/profile.jpg" class="img-responsive img-circle" alt="Profile">
+                                </div>
+                                <div class="reviewright clearfix">
+                                    <div class="comment-txt">
+                                        12.10.15
+                                    </div>
+                                    <div class="comment-title">
+                                        <span>Greg Byrov</span> <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-half-o" aria-hidden="true"></i> 
+                                    </div>
+                                    <div class="comment-indent">
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                                        natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                                    </div>
+                                    <div class="comment-help"> 
+                                        <a href="#" class="report"><i class="fa fa-mail-reply-all" aria-hidden="true"></i> Report</a> <a href="#" class="help"><i class="fa fa-file-image-o" aria-hidden="true"></i> Helpful</a> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="reivewpost clearfix">
+                                <div class="reviewleft">
+                                    <img src="/assets/profile.jpg" class="img-responsive img-circle" alt="Profile">
+                                </div>
+                                <div class="reviewright clearfix">
+                                    <div class="comment-txt">12.10.15</div>
+                                    <div class="comment-title"><span>Greg Byrov</span></div>
+                                    <div class="comment-indent">
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                                        natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                                    </div>
+                                    <div class="comment-help"> 
+                                        <a href="#" class="report"><i class="fa fa-mail-reply-all" aria-hidden="true"></i> Report</a> <a href="#" class="help"><i class="fa fa-file-image-o" aria-hidden="true"></i> Helpful</a> 
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="load-btn" type="button">Load more <i class="fa fa-plus" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-6 col-xs-12 pernight detail-pernight">
+                    <div class="panel panel-default">
+                        <div class="panel-heading text-center final-price">Rs <%= @hotels_detail.price %>* /  <%= @hotels_detail.price_charge_type %></div>
+                        <div class="panel-body">
+                            <div class="clearfix check-wrap">
+                                <div class="row">
+                                    <div class=" clearcheck-in bor-righ">
+                                        <label>Check -in</label>
+                                        <div class="date-pic-cal input-group date datetimepicker1" data-date="d M yyyy" data-date-format="d M yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                            <input type='text' class="form-control" />
+                                            <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> 
+                                        </div>
+                                    </div>
+                                <div class=" clearcheck-in bor-righ">
+                                    <label>Check -out</label>
+                                    <div class="date-pic-cal input-group date datetimepicker1" data-date="d M yyyy" data-date-format="d M yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        <input type='text' class="form-control" />
+                                        <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> 
+                                    </div>
+                                </div>
+                                <div class=" clearcheck-in guest-">
+                                    <label>Guests</label>
+                                    <select>
+                                      <option value="1">01</option>
+                                      <option value="2">02</option>
+                                      <option value="3">03</option>
+                                      <option value="4">04</option>
+                                      <option value="5">05</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="choose-booking clearfix">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-6 bor-righ">
+                                    <center>
+                                      <img src="/assets/bed-icon.png" class="img-responsive" alt="Private">
+                                    </center>
+                                    <div class="perbox clearfix">
+                                        <input class="magic-radio" type="radio" name="radio" id="3" value="option1" checked>
+                                        <label for="3"> Private </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <center>
+                                      <img src="/assets/bed-icon-1.png" class="img-responsive" alt="Private">
+                                    </center>
+                                    <div class="perbox clearfix">
+                                        <input class="magic-radio" type="radio" name="radio" id="4" value="option2">
+                                        <label for="4"> Shared </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="choose-booking clearfix text-center">
+                            <h3>Room Occupancy</h3>
+                            <div class="centalight">
+                                <div class="TwoBeds clearfix">
+                                    <center>
+                                      <img src="/assets/beds-icon.png" alt="Beds" class="img-responsive">
+                                    </center>
+                                    <div class="bed-txt text-center">2 Beds</div>
+                                </div>
+                                <div class="close-icon">X</div>
+                                <div class="TwoBeds clearfix">
+                                    <div class="CountFour change-able">
+                                        <select>
+                                            <option value="1">01</option>
+                                            <option value="2">02</option>
+                                            <option value="3">03</option>
+                                            <option value="4">04</option>
+                                            <option value="5">05</option>
+                                        </select>
+                                    </div>
+                                    <div class="bed-txt text-center">Guests</div>
+                                </div>
+                                <div class="eques">=</div>
+                                <div class="TwoBeds clearfix">
+                                <div class="TwoTxt">2</div>
+                                <div class="bed-txt text-center">Rooms</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix total-payment">
+                        <h3>Apply Discount/Ref Code</h3>
+                        <div class="row">
+                            <div class="col-md-7 col-sm-6 col-xs-6">
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="col-md-5 col-sm-6 col-xs-6">
+                                <button class="apply-btn" type="button">Apply</button>
+                            </div>
+                            <span class="success-msg">Coupon Code successfully Applied.</span> 
+                        </div>
+                    </div>
+                    <div class="clearfix payment-hotels">
+                        <div class="row">
+                            <div class="marginB20 clearfix">
+                                <div class="col-md-7 col-sm-6 col-xs-6">Rs 399 x 60 Days</div>
+                                <div class="col-md-5 col-sm-6 col-xs-6">Rs 23940</div>
+                            </div>
+                            <div class="marginB10 clearfix">
+                                <div class="col-md-7 col-sm-6 col-xs-6">Service Fee</div>
+                                <div class="col-md-5 col-sm-6 col-xs-6">Rs 2394</div>
+                            </div>
+                            <div class="totle-proci">
+                                <div class="col-md-7 col-sm-6 col-xs-6">Total</div>
+                                <div class="col-md-5 col-sm-6 col-xs-6">Rs 26334</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center book-wrap">
+                        <button class="blue-btn text-uppercase" type="submit" onclick="window.location.href='hostels-hotels-inventory.html'">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Map Start -->
+    <section class="clearfix locationwrap detail-map">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4 col-sm-5 col-xs-12 over-lap-map">
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Restaurant and Bars </a> </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse">
+                                    <div class="panel-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"> Health Care </a> </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                <div class="panel-body"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"> Shopping </a> </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body"> 
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title"> <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour"> Education </a> </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse">
+                            <div class="panel-body"> 
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title"><a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Personal Care</a></h4>
+                        </div>
+                        <div id="collapseFive" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul>
+                                    <li>Universal Gym</li>
+                                    <li>Universal Gym</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img src="/assets/map-detail.png" class="img-responsive img-thumbnail" alt="Google Map"></div>
+        </div>
+    </section>
+
+    <!-- Similler Stays -->
+    <section class="similer-stays">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h5 class="maint-ti">Similiar Stays</h5>
+                </div>
+                <div class="col-sm-4">
+                    <center>
+                        <img src="/assets/tour-1.jpg" class="img-responsive" alt="">
+                    </center>
+                    <div class="trip-det">
+                        <div class="prod-dec-t"> 
+                            <em><img src="/assets/loc-1.png" img alt=""></em>
+                            <p>StayHook Family</p>
+                            <i>Rs 720/day</i> <b>Rs 599/day</b> 
+                        </div>
+                        <div class="dest-pla"> 
+                            <em><img src="/assets/time.png" class="img-responsive" alt=""> Filling Fast</em> <i><img src="/assets/time-1.png" class="img-responsive" alt=""> Alpha II, Greater Noida</i> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <center>
+                        <img src="/assets/tour-2.jpg" class="img-responsive" alt="">
+                    </center>
+                    <div class="trip-det">
+                        <div class="prod-dec-t"> 
+                            <em><img src="/assets/loc-2.png" img alt=""></em>
+                            <p>StayHook Family</p>
+                            <b>Rs 599/day</b> 
+                        </div>
+                        <div class="dest-pla"> 
+                            <em><img src="/assets/time.png" class="img-responsive" alt=""> 2 Rooms<br>
+                            Left</em> <i><img src="/assets/time-1.png" class="img-responsive" alt=""> Alpha II, Greater Noida</i> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <center>
+                        <img src="/assets/tour-3.jpg" class="img-responsive" alt="">
+                    </center>
+                    <div class="trip-det">
+                        <div class="prod-dec-t"> <em><img src="/assets/loc-1.png" img alt=""></em>
+                            <p>StayHook Family</p>
+                            <i>Rs 720/day</i> <b>Rs 599/day</b> 
+                        </div>
+                        <div class="dest-pla"> 
+                            <em><img src="/assets/time.png" class="img-responsive" alt=""> Filling Fast</em> <i><img src="/assets/time-1.png" class="img-responsive" alt=""> Alpha II, Greater Noida</i> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+//Date picker
+
+$(function () {
+    $('.top-main-slider').slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: true,
+      fade: true,
+      asNavFor: '.top-thumb-slider'
+    });
+    $('.top-thumb-slider').slick({
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      asNavFor: '.top-main-slider',
+      dots: false,
+      arrows: false,
+      centerMode: true,
+      focusOnSelect: true
+    });
+    $('.datetimepicker1').datetimepicker({
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+});
+</script>
+

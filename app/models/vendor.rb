@@ -8,6 +8,7 @@ class Vendor < ActiveRecord::Base
 
     has_many :images, as: :imageable, dependent: :destroy
  	has_many :caption
+ 	has_many :room
 
     scope :active, -> { where(status: true) }
 	

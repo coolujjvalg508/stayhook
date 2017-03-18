@@ -1,7 +1,7 @@
 class Backend::DashboardController < Backend::BaseController
-	
+	layout 'backend'
 	def index
-		abort('here')
+		
 				
 	end
 	

@@ -36,45 +36,30 @@ class ImageUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [100, 100]
   end
 
+  version :small do
+    process :resize_to_fill => [219, 219]
+  end
+
   version :medium do
     process :resize_to_fill => [300, 300]
   end
 
-  version :carousel do
-    process :resize_to_fill => [372, 372]
-  end
-  
-  version :event_small do
-    process :resize_to_fill => [219, 219]
+  version :list_small do
+    process :resize_to_fill => [180, 145]
   end
 
-  version :recent_photo do
-    process :resize_to_fill => [234, 234]
+  version :list do
+    process :resize_to_fill => [330, 220]
   end
 
-  version :home_blog do
-    process :resize_to_fill => [270, 183]
-  end
- 
-  version :profile do
-    process :resize_to_fill => [128, 128]
+  version :list_similar do
+    process :resize_to_fill => [365, 270]
   end
 
-  version :ad_horizontal do
-    process :resize_to_fill => [1140, 98]
+  version :detail do
+    process :resize_to_fill => [760, 430]
   end
-
-  version :ad_square do
-    process :resize_to_fill => [360, 382]
-  end
-
-  version :card_image do
-    process :resize_to_fill => [180, 180]
-  end
-
-  version :equipment_image do
-    process :resize_to_fill => [730, 370]
-  end
+    
   
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

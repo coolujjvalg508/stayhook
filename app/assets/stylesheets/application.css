@@ -13,9 +13,9 @@
  *
  *= require bootstrap
  *= require font-awesome.min
- *= require bootstrap-datetimepicker
  *= require slick
  *= require select
+ *= require bootstrap-datetimepicker
  *= require addSlider
  *= require layout
  *= require lightbox

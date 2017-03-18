@@ -2,7 +2,6 @@
 <% #if !user_signed_in? %>
 <div class="modal fade login" id="login" role="dialog">
     <div class="modal-dialog">
-
         <div class="login-secton">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h5 class="box-titl">Sign In</h5>
@@ -33,7 +32,6 @@
                     <b>OR</b> 
                 </div>
                 <a href="#" class="otp">Login with OTP</a>
-            
         </div>
         <div class="sibn-up"> 
             Not Registered? 
@@ -52,7 +50,9 @@
         <div class="login-secton">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h5 class="box-titl">Create Account</h5>
-            <%= form_for(resource, :as => resource_name, :html => {:id => 'signup_form_popup'}, :url => user_registration_path, :remote => :true, :format => :json) do |f| %>
+            <%= form_for(resource, :as => resource_name, :html => {:id => 'signup_form_popup'}, :url => user_registration_path(resource_name), :remote => :true, :format => :json) do |f| %>
+
+
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -156,7 +156,7 @@
                 </div>
                 <div class="col-md-8 col-sm-6 col-xs-8 text-center">
                     <div class="logo">
-                        <a href="index.html"></a>
+                        <%= link_to"", root_path %>
                     </div>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-2 text-right loginwrap"> 
@@ -203,26 +203,23 @@
 
 
     $(document).on('submit', '#signup_form_popup', function(e) {
-        
+        alert(1);
         //do stuff here
     }).on('ajax:success', '#signup_form_popup', function(e, data, status, xhr) {
+        alert(2);
+
+        console.log(e);
+        console.log(data);
+        console.log(status);
+
         
-        if(status == 'success'){
-            window.location.href = '<%= root_path %>';
-        }else{
-            
-            $('.signin-alert').html('Invalid email or password.');
-            $('.signin-alert').show();
-            
-        }
     
     }).on('ajax:error', '#signup_form_popup', function(e, data, status, xhr) {
+        alert(3);
         
-        
-        $('.signin-alert').html('Invalid email or password.');
-        $('.signin-alert').show();
         
     });
+
     
     $(document).ready(function(){
         
