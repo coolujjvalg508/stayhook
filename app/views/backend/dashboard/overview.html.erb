@@ -1,0 +1,234 @@
+<div class="container-fluid">
+    <div class="top-over-title">
+        <h5>Overview</h5>
+        <div class="pull-right calend">
+            <div class="pull-left">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" placeholder="01/01/2017"/>
+                    <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> 
+                </div>
+            </div>
+            <i class="to-tex">To</i>
+            <div class="pull-left">
+                <div class='input-group date' id='datetimepicker2'>
+                    <input type='text' class="form-control" placeholder="01/01/2017"/>
+                    <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> 
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="long-ter-pri">
+        <div class="logn-title">
+            <select>
+                <option> Long term private</option>
+                <option> Long term shared</option>
+                <option>Regular private</option>
+                <option>Regular shared</option>
+            </select>
+        </div>
+        <div class="long-conts">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="graph-sec">
+                        <div id="chartContainer" style="height: 250px; width: 100%;"></div>
+                        <div id="chartContainer1" style="height: 300px; width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="cal-boking-sec">
+                        <div class="first-cancl">
+                            <div class="can-titl"> 
+                                <b>Cancelled Bookings </b> <i>Jan 01, 2017 - Jan 30,2017</i> 
+                            </div>
+                            <div class="count-cancl"> 
+                                <i><img width="100" src="/assets/backend/can-icon.png" alt=""></i>
+                                <div class="can-t"> <b>12</b>
+                                    <p>Cancelled Bookings</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="first-cancl sec-ca">
+                            <div class="can-titl"> <b>Room Vacancy </b>
+                                <div class='input-group date' id='datetimepicker3'>
+                                    <input type='text' class="form-control" placeholder="01/01/2017"/>
+                                    <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> 
+                                </div>
+                            </div>
+                            <div class="tooms-sect">
+                                <ul>
+                                  <li> <b>10</b>
+                                    <p>TOTAL<br>
+                                      ROOMS</p>
+                                  </li>
+                                  <li> <b>7</b>
+                                    <p>ROOMS<br>
+                                      BOOKED</p>
+                                  </li>
+                                  <li> <b>3</b>
+                                    <p>ROOMS<br>
+                                      EMPTY</p>
+                                  </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="upcoming-events">
+        <h5>Upcoming Bookings</h5>
+        <div class="wek-work"> <b>WEEK OVERVIEW</b>
+            <div class='input-group date' id='datetimepicker4'>
+                <input type='text' class="form-control" placeholder="October 2017, Mon 01 - Sun 07"/>
+                <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> 
+            </div>
+        </div>
+        <div class="clearfix book-table">
+            <div class="table upcom-bokin">
+                <ul class="firstbg">
+                  <li class="td-pad"> <i>Monday</i> <b>01-01-2016</b> </li>
+                  <li class="td-pad"> <i>Monday</i> <b>01-01-2016</b> </li>
+                  <li class="td-pad"> <i>Monday</i> <b>01-01-2016</b> </li>
+                  <li class="td-pad"> <i>Monday</i> <b>01-01-2016</b> </li>
+                  <li class="td-pad"> <i>Monday</i> <b>01-01-2016</b> </li>
+                  <li class="td-pad"> <i>Monday</i> <b>01-01-2016</b> </li>
+                  <li class="td-pad"> <i>Monday</i> <b>01-01-2016</b> </li>
+                </ul>
+                <ul class="boking-state">
+                  <li class="td-pad1 bok-count"> <b>01</b> <i>New <br>
+                    Bookings</i> </li>
+                  <li class="td-pad1">
+                    <p>No Bookings <Br>
+                      on <br>
+                      Friday</p>
+                  </li>
+                  <li class="td-pad1 bok-count"> <b>08</b> <i>New <br>
+                    Bookings</i> </li>
+                  <li class="td-pad1 bok-count"> <b>02</b> <i>New <br>
+                    Bookings</i> </li>
+                  <li class="td-pad1">
+                    <p>No Bookings <Br>
+                      on <br>
+                      Friday</p>
+                  </li>
+                  <li class="td-pad1 bok-count"> <b>03</b> <i>New <br>
+                    Bookings</i> </li>
+                  <li class="td-pad1">
+                    <p>No Bookings <Br>
+                      on <br>
+                      Friday</p>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+    $(function () {
+        alert();
+    	var options = {
+    		exportEnabled: true,
+                    animationEnabled: true,
+    		title: {
+    			text: "Exporting Chart as Image"
+    		},
+    		data: [
+    		{
+    			type: "splineArea", //change it to line, area, bar, pie, etc
+    			dataPoints: [
+    				{ y: 10 },
+    				{ y: 6 },
+    				{ y: 14 },
+    				{ y: 12 },
+    				{ y: 19 },
+    				{ y: 14 },
+    				{ y: 26 },
+    				{ y: 10 },
+    				{ y: 22 }
+    			]
+    		}
+    		]
+    	};
+    	$("#chartContainer").CanvasJSChart(options);
+    });
+    window.onload = function () {
+		var chart = new CanvasJS.Chart("chartContainer1", {
+			title: {
+				text: "Top Categories of New Year's Resolution"
+			},
+			exportFileName: "CanvasJS Chart",
+			exportEnabled: true,
+			animationEnabled: true,
+			legend: {
+				verticalAlign: "bottom",
+				horizontalAlign: "center"
+			},
+			data: [
+			{
+				type: "pie",
+				showInLegend: true,
+				toolTipContent: "{legendText}: <strong>{y}%</strong>",
+				indexLabel: "{label} {y}%",
+				dataPoints: [
+					{ y: 35, legendText: "Health", exploded: true, label: "Health" },
+					{ y: 20, legendText: "Finance", label: "Finance" },
+					{ y: 18, legendText: "Career", label: "Career" },
+					{ y: 15, legendText: "Education", label: "Education" },
+					{ y: 5, legendText: "Family", label: "Family" },
+					{ y: 7, legendText: "Real Estate", label: "Real Estate" }
+				]
+			}
+			]
+		});
+		chart.render();
+    }
+
+    $(function () {
+        $('#datetimepicker1').datetimepicker(
+        {
+          weekStart: 1,
+          todayBtn:  1,
+          autoclose: 1,
+          todayHighlight: 1,
+          startView: 2,
+          minView: 2,
+          forceParse: 0
+        });
+        $('#datetimepicker2').datetimepicker(
+        	 {
+          weekStart: 1,
+          todayBtn:  1,
+          autoclose: 1,
+          todayHighlight: 1,
+          startView: 2,
+          minView: 2,
+          forceParse: 0
+        });
+        $('#datetimepicker3').datetimepicker(
+        	 {
+          weekStart: 1,
+          todayBtn:  1,
+          autoclose: 1,
+          todayHighlight: 1,
+          startView: 2,
+          minView: 2,
+          forceParse: 0
+        });
+        $('#datetimepicker4').datetimepicker(
+        	 {
+          weekStart: 1,
+          todayBtn:  1,
+          autoclose: 1,
+          todayHighlight: 1,
+          startView: 2,
+          minView: 2,
+          forceParse: 0
+        });
+    });
+});
+
+</script>
+

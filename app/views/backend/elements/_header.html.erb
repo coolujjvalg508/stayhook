@@ -1,90 +1,93 @@
- <header class="fix-header">
-  <div class="hidden-xs">
-    <div class="logo-sect"> <a href="dashboard.html"><img src="/assets/backend/logo.png" alt=""></a> </div>
-    <div class="slide-arrow">&nbsp;</div>
-    <div class="pull-right right-options">
-      <div class="dropdown user-dp">
-        <button class="" type="button" data-toggle="dropdown"><img src="/assets/backend/user-image.png" width="21" height="21" alt=""> <em>Hi, Owner</em> <i class="fa fa-fw" aria-hidden="true" title="Copy to use angle-down"></i></button>
-        <ul class="dropdown-menu">
-          <li><a href="#">Menu-1</a></li>
-          <li><a href="#">Menu-2</a></li>
-          <li><a href="#">Menu-3</a></li>
-        </ul>
-      </div>
-      <div class="user-pogin-icon">
-        <ul>
-          <li><a class="top-icon-user user-1" href="#">&nbsp;</a></li>
-          <li><a class="top-icon-user user-2" href="#">&nbsp;</a></li>
-        </ul>
-      </div>
-    </div>
+<header class="fix-header">
+    <div class="hidden-xs">
+        <div class="logo-sect"> <a href="<%= backend_dashboard_path %>"><img src="/assets/backend/logo.png" alt=""></a> </div>
+        <div class="slide-arrow">&nbsp;</div>
+        <div class="pull-right right-options">
+        <% if vendor_signed_in? %>
+            <div class="dropdown user-dp">
+                <button class="" type="button" data-toggle="dropdown"><img src="/assets/backend/user-image.png" width="21" height="21" alt=""> <em>Hi, <%= current_vendor.first_name %></em> <i class="fa fa-fw" aria-hidden="true" title="Copy to use angle-down"></i></button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Menu-1</a></li>
+                    <li><a href="#">Menu-2</a></li>
+
+                    <li><a href="#">Menu-2</a></li>
+                </ul>
+            </div>
+            <div class="user-pogin-icon">
+                <ul>
+                    <li><a class="top-icon-user user-1" href="#">&nbsp;</a></li>
+                    <li><%= link_to('<i class="top-icon-user user-2"></i>'.html_safe, destroy_vendor_session_path, :method => :get) %></li>
+                </ul>
+            </div>
+        <% end %>
+        </div>
     </div>
     <div class="hidden-sm hidden-md hidden-lg">
-    <div class="slide-arrow mob-">&nbsp;</div>
-    <div class="logo-sect"> <a href="dashboard.html"><img src="/assets/backend/logo.png" alt=""></a> </div>
-    <div class="build-arrow"><img src="/assets/backend/build-icon.png" alt="" width="40"></div>
+        <div class="slide-arrow mob-">&nbsp;</div>
+        <div class="logo-sect"> <a href="dashboard.html"><img src="/assets/backend/logo.png" alt=""></a> </div>
+        <div class="build-arrow"><img src="/assets/backend/build-icon.png" alt="" width="40"></div>
     
-    <!--mobile-men-->
-    <div class="main-mobile-menu">
-    <ul>
-    <li><a href="overview.html">OVERVIEW</a></li>
+        <!--mobile-men-->
+        <div class="main-mobile-menu">
+            <ul>
+                <li><a href="overview.html">OVERVIEW</a></li>
     
-    <li>
-    <div class="chekc-in">
-    <span>
-     <a href="#"><img src="/assets/backend/check-in.png" width="25px" alt=""> CHECK - IN</a>
-    </span>
-    <span>
-    <a href="#">CHECK - OUT <img src="/assets/backend/check-out.png" alt=""></a> 
-    </span>
+                <li>
+                    <div class="chekc-in">
+                        <span>
+                         <a href="#"><img src="/assets/backend/check-in.png" width="25px" alt=""> CHECK - IN</a>
+                        </span>
+                        <span>
+                        <a href="#">CHECK - OUT <img src="/assets/backend/check-out.png" alt=""></a> 
+                        </span>
+                    </div>
+                </li>
+    
+                <li>
+                    <div class="biicosn">
+                        <img src="/assets/backend/long-team.png" alt="">
+                        <i>long-term</i>
+                    </div>
+    
+                    <div class="sub-meus">
+                        <a href="roomslt.html">PRIVATE</a>
+                        <a href="#">SHARED</a>
+                    </div>
+    
+                </li>
+    
+                <li class="reg-li">    
+                    <div class="sub-meus">
+                        <a href="#">PRIVATE</a>
+                        <a href="#">SHARED</a>
+                    </div>
+    
+                    <div class="biicosn">
+                        <img src="/assets/backend/regurlar.png" alt="">
+                        <i>REGULAR</i>
+                    </div>
+                </li>
+    
+                <li class="sign-out"><a href="#">SIGN OUT</a></li>
+    
+            </ul>
+        </div>
+        <!--mobile-men-->
+    
+        <!--mobile-building-->
+        <div class="main-hotel-sec">
+            <ul>
+                <li>SELECT HOTEL CHAIN</li>
+                <li class="drop-dwon">
+                    <select>
+                        <option>GREATER NOIDA</option>
+                        <option>GREATER NOIDA</option>
+                        <option>GREATER NOIDA</option>
+                        <option>GREATER NOIDA</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+        <!--mobile-building-->
     </div>
-    </li>
-    
-    <li>
-    <div class="biicosn">
-    <img src="/assets/backend/long-team.png" alt="">
-    <i>long-term</i>
-    </div>
-    
-    <div class="sub-meus">
-    <a href="roomslt.html">PRIVATE</a>
-    <a href="#">SHARED</a>
-    </div>
-    
-    </li>
-    
-    <li class="reg-li">    
-    <div class="sub-meus">
-    <a href="#">PRIVATE</a>
-    <a href="#">SHARED</a>
-    </div>
-    
-    <div class="biicosn">
-    <img src="/assets/backend/regurlar.png" alt="">
-    <i>REGULAR</i>
-    </div>
-    </li>
-    
-    <li class="sign-out"><a href="#">SIGN OUT</a></li>
-    
-    </ul>
-    </div>
-    <!--mobile-men-->
-    
-    <!--mobile-building-->
-    <div class="main-hotel-sec">
-    <ul>
-    <li>SELECT HOTEL CHAIN</li>
-    <li class="drop-dwon">
-    <select>
-    <option>GREATER NOIDA</option>
-    <option>GREATER NOIDA</option>
-    <option>GREATER NOIDA</option>
-    <option>GREATER NOIDA</option>
-    </select>
-    </li>
-    </ul>
-    </div>
-    <!--mobile-building-->
-    </div>
-  </header>
+</header>

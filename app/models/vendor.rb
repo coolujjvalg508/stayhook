@@ -6,8 +6,7 @@ class Vendor < ActiveRecord::Base
     
     belongs_to :city
 
-    has_many :images, as: :imageable, dependent: :destroy
- 	has_many :caption
+    mount_uploader :image, ImageUploader
  	has_many :room
 
     scope :active, -> { where(status: true) }
@@ -24,13 +23,18 @@ class Vendor < ActiveRecord::Base
 	validates :password, presence: {message: "Password can't be blank"}, on: :create
 	validates :password_confirmation, presence: {message: "Password confirmation can't be blank"}, on: :create
 
-	accepts_nested_attributes_for :images, reject_if: proc { |attributes| attributes['image'].blank? || attributes['image'].nil? }, allow_destroy: true 
+	
 
-	/def active_for_authentication?
-        # Uncomment the below debug statement to view the properties of the returned self model values.
-        # logger.debug self.to_yaml
+	def active_for_authentication?
+	    super && special_condition_is_valid?
+	end
+	   
+	def inactive_message
+	    "Sorry, this account is deactivated!"
+	end
 
-        super && account_active?
-    end/
+	def special_condition_is_valid?
+	    return self.status
+	end 
 
 end

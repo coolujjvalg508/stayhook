@@ -1,0 +1,370 @@
+
+
+
+  <div class="container-fluid">
+    <div class="breadcrumb-wrap">
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        <li><a href="#">Bookings</a></li>
+        <li class="active">Check-Out</li>
+      </ol>
+    </div>
+    <div class="clearfix">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12 book-title"> Check-Out <span>Checked-Out Listing</span> </div>
+        <div class="col-md-6 col-sm-6 col-xs-12  hidden-xs">
+          <div class="hotelchainwrap clearfix text-center">
+            <form>
+              <label for="hotel">HOTEL CHAIN</label>
+              <select id="hotel" class="form-control">
+                <option>Property Name</option>
+              </select>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default viewbookinglist search-secn">
+        <div class="panel-heading"> <i class="fa fa-fw" aria-hidden="true" title="Copy to use globe"></i> Check-Out </div>
+        <div class="panel-body">
+          <div class="clearfix recordsbox hidden-xs">
+            <div class="recomd-dp">
+              <span><select class="selectbox">
+                <option>5</option>
+              </select></span>
+              <i>records</i></div>
+             
+          </div>
+          <div class="clearfix book-table roomslt check-out">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+              <tr class="firstbg">
+                <td class="td-pad">Booking#</td>
+                <td class="td-pad">Mobile No.</td>
+                <td class="td-pad">email</td>
+                <td class="td-pad">Booked Date</td>
+                <td class="td-pad">Actions</td>
+              </tr>
+              <tr>
+                <td class="td-pad1" data-th="Booking#"><input type="text" placeholder="#booking id"></td>
+                <td class="td-pad1" data-th="Mobile No."><input type="text" placeholder="9871234567"></td>
+                <td class="td-pad1" data-th="email"><input type="text" placeholder="email@exampe.com"></td>
+                <td class="td-pad1" data-th="Booked Date"><div class="form-group pull-left">
+                    <div class='input-group date' id='datetimepicker1'>
+                      <input type='text' class="form-control" placeholder="01/01/2017"/>
+                      <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> </div>
+                  </div>
+                  <div class="pull-left to-txt">TO </div>
+                  <div class="form-group pull-left">
+                    <div class='input-group date' id='datetimepicker2'>
+                      <input type='text' class="form-control" placeholder="01/01/2017"/>
+                      <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> </div>
+                  </div></td>
+                <td class="td-pad1" data-th=""><button id="top-go" type="button" class="btn btn-info mobil-sear">Search</button>
+                  <button type="button" class="btn btn-danger hidden-xs">Reset</button></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mobile-payment">
+      <ul class="check-list">
+      <li><i>Name</i><b>Shinedra Kumar</b></li>
+      <li><i>Mobile</i><b>+91 9871234567</b></li>
+      <li><i>Email</i><b>abc@example.com</b></li>
+      <li><i>#BookID</i><b>1234</b></li>
+      </ul>
+      
+      <div class="bkin-text">
+      <label>Booking</label>
+      <div class="bok-date">
+      <span>01/01/2017</span>
+      <span>05/01/2017</span>
+      </div>
+      </div>
+      
+      <div class="chk-text">
+      <label>Check OUT Date</label>
+      <div class="bok-date">
+      <div class='input-group date datetimepicker3'>
+                      <input type='text' class="form-control" placeholder="01/01/2017"/>
+                      <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> </div>
+      </div>
+      </div>
+      <div class="chk-text">
+      <label>Check OUT Time</label>
+      <div class="bok-date">
+      <div class='input-group date datetimepicker3'>
+                      <input type='text' class="form-control" placeholder="01/01/2017"/>
+                      <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> </div>
+      </div>
+      </div>
+      
+      <div class="paument-stat">
+      <b class="pay-">Payment Status</b>
+      <div class="paumen-amo">
+      <i>Amount Due</i><strong>Rs 800</strong>
+      </div>
+      <div class="pay-one">
+      <h5>Pay Online</h5>
+      
+      <div class="mob-no">
+      <label>Mob No.</label>
+      <input type="text" class="form-control">
+      </div>
+      
+      <div class="mob-no">
+      <label>Email ID</label>
+      <input type="text" class="form-control">
+      </div>
+      
+      <button type="button">PAY</button>
+      
+      </div>
+      <div class=" text-center"><button type="submit" class="cash-bu">CASH</button></div>
+      
+      </div>
+      
+      </div>
+      
+      <div class="panel panel-default viewbookinglist hidden-xs">
+        <div class="panel-heading">Records</div>
+        <div class="panel-body">
+          <div class="clearfix recordsbox">
+            <div class="recomd-dp">
+              <span><select class="selectbox">
+                <option>5</option>
+              </select></span>
+              <i>records</i></div>
+            <div class="pull-right search-dp">
+              <div class="ser-text"> <b>Search:</b>
+                <input type="text">
+              </div>
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Export <i class="fa fa-angle-down" aria-hidden="true"></i></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Menu-1</a></li>
+                  <li><a href="#">Menu-2</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix book-table roomslt recor-tab">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table">
+              <tr class="firstbg">
+                <td class="td-pad">Booking ID</td>
+                <td class="td-pad">Username</td>
+                <td class="td-pad">Phone</td>
+                <td class="td-pad">Email</td>
+                <td class="td-pad">Check-In  (DATE)</td>
+                <td class="td-pad">Check-In  (Time)</td>
+                <td class="td-pad">Check-Out  (DATE)</td>
+                <td class="td-pad">Chout  (Time)</td>
+                <td class="td-pad">Amount Due</td>
+                <td class="td-pad">Min. Stay</td>
+                <td class="td-pad">PAY</td>
+                <td class="td-pad">PAY ONLINE</td>
+              </tr>
+              <tr>
+                <td class="td-pad1" data-th="Booking ID"><i>#712</i></td>
+                <td class="td-pad1" data-th="Username">shuxer</td>
+                <td class="td-pad1" data-th="Phone"><i>+919871234567</i></td>
+                <td class="td-pad1" data-th="Email">shuxer@gmail.com</td>
+                <td class="td-pad1" data-th="Check-In  (DATE)">01/01/2017</td>
+                <td class="td-pad1" data-th="Check-In  (Time)">18:53</td>
+                <td class="td-pad1" data-th="Check-Out  (DATE)"><div class="form-group pull-left" style="width:140px;">
+                    <div class='input-group date datetimepicker3'>
+                      <input type='text' class="form-control" placeholder="01/01/2017"/>
+                      <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> </div>
+                  </div></td>
+                <td class="td-pad1" data-th="Chout  (Time)"><div class="selec-timzon">
+                    <select>
+                      <option>18:53</option>
+                      <option>18:53</option>
+                      <option>18:53</option>
+                    </select>
+                  </div></td>
+                <td class="td-pad1" data-th="Amount Due">Rs 0.00</td>
+                <td class="td-pad1" data-th="Min. Stay"><button type="button" class="paid-btn">2 Days</button></td>
+                <td class="td-pad1" data-th="PAY"><button type="button" class="edit-btn">CASH</button></td>
+                <td class="td-pad1" data-th="PAY ONLINE"><button type="button" class="update-btn">ONLINE</button></td>
+              </tr>              
+              <tr>
+                <td class="td-pad1" data-th="Booking ID"><i>#712</i></td>
+                <td class="td-pad1" data-th="Username">shuxer</td>
+                <td class="td-pad1" data-th="Phone"><i>+919871234567</i></td>
+                <td class="td-pad1" data-th="Email">shuxer@gmail.com</td>
+                <td class="td-pad1" data-th="Check-In  (DATE)">01/01/2017</td>
+                <td class="td-pad1" data-th="Check-In  (Time)">18:53</td>
+                <td class="td-pad1" data-th="Check-Out  (DATE)"><div class="form-group pull-left" style="width:140px;">
+                    <div class='input-group date datetimepicker3'>
+                      <input type='text' class="form-control" placeholder="01/01/2017"/>
+                      <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> </div>
+                  </div></td>
+                <td class="td-pad1" data-th="Chout  (Time)"><div class="selec-timzon">
+                    <select>
+                      <option>18:53</option>
+                      <option>18:53</option>
+                      <option>18:53</option>
+                    </select>
+                  </div></td>
+                <td class="td-pad1" data-th="Amount Due">Rs 0.00</td>
+                <td class="td-pad1" data-th="Min. Stay"><button type="button" class="paid-btn">2 Days</button></td>
+                <td class="td-pad1" data-th="PAY"><button type="button" class="edit-btn">CASH</button></td>
+                <td class="td-pad1" data-th="PAY ONLINE"><button type="button" class="update-btn">ONLINE</button></td>
+              </tr>
+              <tr>
+                <td class="td-pad1" data-th="Booking ID"><i>#712</i></td>
+                <td class="td-pad1" data-th="Username">shuxer</td>
+                <td class="td-pad1" data-th="Phone"><i>+919871234567</i></td>
+                <td class="td-pad1" data-th="Email">shuxer@gmail.com</td>
+                <td class="td-pad1" data-th="Check-In  (DATE)">01/01/2017</td>
+                <td class="td-pad1" data-th="Check-In  (Time)">18:53</td>
+                <td class="td-pad1" data-th="Check-Out  (DATE)"><div class="form-group pull-left" style="width:140px;">
+                    <div class='input-group date datetimepicker3'>
+                      <input type='text' class="form-control" placeholder="01/01/2017"/>
+                      <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> </div>
+                  </div></td>
+                <td class="td-pad1" data-th="Chout  (Time)"><div class="selec-timzon">
+                    <select>
+                      <option>18:53</option>
+                      <option>18:53</option>
+                      <option>18:53</option>
+                    </select>
+                  </div></td>
+                <td class="td-pad1" data-th="Amount Due">Rs 0.00</td>
+                <td class="td-pad1" data-th="Min. Stay"><button type="button" class="paid-btn">2 Days</button></td>
+                <td class="td-pad1" data-th="PAY"><button type="button" class="edit-btn">CASH</button></td>
+                <td class="td-pad1" data-th="PAY ONLINE"><button type="button" class="update-btn">ONLINE</button></td>
+              </tr>
+              <tr>
+                <td class="td-pad1" data-th="Booking ID"><i>#712</i></td>
+                <td class="td-pad1" data-th="Username">shuxer</td>
+                <td class="td-pad1" data-th="Phone"><i>+919871234567</i></td>
+                <td class="td-pad1" data-th="Email">shuxer@gmail.com</td>
+                <td class="td-pad1" data-th="Check-In  (DATE)">01/01/2017</td>
+                <td class="td-pad1" data-th="Check-In  (Time)">18:53</td>
+                <td class="td-pad1" data-th="Check-Out  (DATE)"><div class="form-group pull-left" style="width:140px;">
+                    <div class='input-group date datetimepicker3'>
+                      <input type='text' class="form-control" placeholder="01/01/2017"/>
+                      <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> </div>
+                  </div></td>
+                <td class="td-pad1" data-th="Chout  (Time)"><div class="selec-timzon">
+                    <select>
+                      <option>18:53</option>
+                      <option>18:53</option>
+                      <option>18:53</option>
+                    </select>
+                  </div></td>
+                <td class="td-pad1" data-th="Amount Due">Rs 0.00</td>
+                <td class="td-pad1" data-th="Min. Stay"><button type="button" class="paid-btn">2 Days</button></td>
+                <td class="td-pad1" data-th="PAY"><button type="button" class="edit-btn">CASH</button></td>
+                <td class="td-pad1" data-th="PAY ONLINE"><button type="button" class="update-btn">ONLINE</button></td>
+              </tr>
+              <tr>
+                <td class="td-pad1" data-th="Booking ID"><i>#712</i></td>
+                <td class="td-pad1" data-th="Username">shuxer</td>
+                <td class="td-pad1" data-th="Phone"><i>+919871234567</i></td>
+                <td class="td-pad1" data-th="Email">shuxer@gmail.com</td>
+                <td class="td-pad1" data-th="Check-In  (DATE)">01/01/2017</td>
+                <td class="td-pad1" data-th="Check-In  (Time)">18:53</td>
+                <td class="td-pad1" data-th="Check-Out  (DATE)"><div class="form-group pull-left" style="width:140px;">
+                    <div class='input-group date datetimepicker3'>
+                      <input type='text' class="form-control" placeholder="01/01/2017"/>
+                      <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> </div>
+                  </div></td>
+                <td class="td-pad1" data-th="Chout  (Time)"><div class="selec-timzon">
+                    <select>
+                      <option>18:53</option>
+                      <option>18:53</option>
+                      <option>18:53</option>
+                    </select>
+                  </div></td>
+                <td class="td-pad1" data-th="Amount Due">Rs 0.00</td>
+                <td class="td-pad1" data-th="Min. Stay"><button type="button" class="paid-btn">2 Days</button></td>
+                <td class="td-pad1" data-th="PAY"><button type="button" class="edit-btn">CASH</button></td>
+                <td class="td-pad1" data-th="PAY ONLINE"><button type="button" class="update-btn">ONLINE</button></td>
+              </tr>
+              <tr>
+                <td class="td-pad1" data-th="Booking ID"><i>#712</i></td>
+                <td class="td-pad1" data-th="Username">shuxer</td>
+                <td class="td-pad1" data-th="Phone"><i>+919871234567</i></td>
+                <td class="td-pad1" data-th="Email">shuxer@gmail.com</td>
+                <td class="td-pad1" data-th="Check-In  (DATE)">01/01/2017</td>
+                <td class="td-pad1" data-th="Check-In  (Time)">18:53</td>
+                <td class="td-pad1" data-th="Check-Out  (DATE)"><div class="form-group pull-left" style="width:140px;">
+                    <div class='input-group date datetimepicker3'>
+                      <input type='text' class="form-control" placeholder="01/01/2017"/>
+                      <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> </div>
+                  </div></td>
+                <td class="td-pad1" data-th="Chout  (Time)"><div class="selec-timzon">
+                    <select>
+                      <option>18:53</option>
+                      <option>18:53</option>
+                      <option>18:53</option>
+                    </select>
+                  </div></td>
+                <td class="td-pad1" data-th="Amount Due">Rs 0.00</td>
+                <td class="td-pad1" data-th="Min. Stay"><button type="button" class="paid-btn">2 Days</button></td>
+                <td class="td-pad1" data-th="PAY"><button type="button" class="edit-btn">CASH</button></td>
+                <td class="td-pad1" data-th="PAY ONLINE"><button type="button" class="update-btn">ONLINE</button></td>
+              </tr>
+              <tr>
+                <td class="td-pad1" data-th="Booking ID"><i>#712</i></td>
+                <td class="td-pad1" data-th="Username">shuxer</td>
+                <td class="td-pad1" data-th="Phone"><i>+919871234567</i></td>
+                <td class="td-pad1" data-th="Email">shuxer@gmail.com</td>
+                <td class="td-pad1" data-th="Check-In  (DATE)">01/01/2017</td>
+                <td class="td-pad1" data-th="Check-In  (Time)">18:53</td>
+                <td class="td-pad1" data-th="Check-Out  (DATE)"><div class="form-group pull-left" style="width:140px;">
+                    <div class='input-group date datetimepicker3'>
+                      <input type='text' class="form-control" placeholder="01/01/2017"/>
+                      <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> </div>
+                  </div></td>
+                <td class="td-pad1" data-th="Chout  (Time)"><div class="selec-timzon">
+                    <select>
+                      <option>18:53</option>
+                      <option>18:53</option>
+                      <option>18:53</option>
+                    </select>
+                  </div></td>
+                <td class="td-pad1" data-th="Amount Due">Rs 0.00</td>
+                <td class="td-pad1" data-th="Min. Stay"><button type="button" class="paid-btn">2 Days</button></td>
+                <td class="td-pad1" data-th="PAY"><button type="button" class="edit-btn">CASH</button></td>
+                <td class="td-pad1" data-th="PAY ONLINE"><button type="button" class="update-btn">ONLINE</button></td>
+              </tr>  
+            </table>
+            <div class="clearfix">
+               
+                <div class="col-md-6 col-sm-6 col-xs-12 showing-txt"> Showing 1 to 5 of 25 entries </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <ul class="pagination pull-right">
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                  </ul>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+<script type="text/javascript">
+$(function () {
+  $('#datetimepicker1, #datetimepicker2, .datetimepicker3').datetimepicker(
+   {
+weekStart: 1,
+todayBtn:  1,
+autoclose: 1,
+todayHighlight: 1,
+startView: 2,
+minView: 2,
+forceParse: 0
+});
+});
+</script>
+

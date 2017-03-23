@@ -22,12 +22,20 @@ class Users::SessionsController < DeviseController
     return invalid_login_attempt unless resource
 
     if resource.valid_password?(params[:user][:password])
-      set_flash_message(:notice, :signed_in)
-      sign_in :user, resource
-      return render nothing: true
+
+      if resource.special_condition_is_valid?
+        set_flash_message(:notice, :signed_in)
+        sign_in :user, resource
+        return render nothing: true
+
+      else
+        render json: 'UserInactive', status: 401
+      end
+
+    else
+      invalid_login_attempt
     end
 
-    invalid_login_attempt
  end
 
   # DELETE /resource/sign_out

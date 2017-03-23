@@ -1,7 +1,7 @@
 ActiveAdmin.register Room do
 
 	menu label: 'Manage Rooms'
-	permit_params :room_number, :vendor_id, :room_for, :no_of_bed, :category_id, :sub_category_id, {:amenities => []} , :price, :price_charge_type, :images_attributes => [:id,:image,:caption,:imageable_id,:imageable_type, :_destroy,:tmp_image,:image_cache]
+	permit_params :room_number, :vendor_id, :room_for, :no_of_bed, :house_rules, :cancellation_policy, :accommodate, :no_of_bedroom, :no_of_bathroom, :couples_allowed, :family_allowed, :description, :category_id, :sub_category_id, {:amenities => []} , :price, :price_charge_type, :images_attributes => [:id,:image,:caption,:imageable_id,:imageable_type, :_destroy,:tmp_image,:image_cache]
 
 
 
@@ -70,6 +70,14 @@ ActiveAdmin.register Room do
             row :price_charge_type
 			row :created_at
 			row :updated_at
+			row :description
+			row :house_rules
+			row :cancellation_policy
+			row :accommodate
+			row :no_of_bedroom
+			row :no_of_bathroom
+			row :couples_allowed
+			row :family_allowed
 
 			row 'Images' do
 		        ul class: "image-blk" do
@@ -82,7 +90,6 @@ ActiveAdmin.register Room do
 		          end
 		        end
 		    end	
-
 		end
 	end
 
@@ -108,6 +115,14 @@ ActiveAdmin.register Room do
             f.input :price_charge_type, as: :select, collection: Room::PRICE_CHARGE_TYPE, include_blank: 'Select Price Charge Type'
       		f.input :amenities, as: :select, collection: Amenity.where("id IS NOT NULL").pluck(:name, :id), :input_html => { :class => "chosen-input" }, include_blank: false, multiple: true
 
+            f.input :accommodate
+            f.input :no_of_bedroom
+            f.input :no_of_bathroom
+            f.input :description
+            f.input :house_rules
+            f.input :cancellation_policy
+            f.input :couples_allowed, label: 'Couples Allowed'
+            f.input :family_allowed, label: 'Family Allowed'
 	    end
 	    f.inputs 'Images' do
 		    f.has_many :images, allow_destroy: true, new_record: true do |ff|
@@ -122,40 +137,32 @@ ActiveAdmin.register Room do
 
 
 	controller do
-    def create
-     
-      if (params[:room].present? && params[:room][:images_attributes].present?)
-          params[:room][:images_attributes].each do |index,img|
-              unless params[:room][:images_attributes][index][:image].present?
-              params[:room][:images_attributes][index][:image] = params[:room][:images_attributes][index][:image_cache]
-              params[:room][:images_attributes][index][:caption] = params[:room][:images_attributes][index][:caption]
-              end
-          end
-        super
-      
-      else
-        super
-      end
+	    def create
+	        if (params[:room].present? && params[:room][:images_attributes].present?)
+		        params[:room][:images_attributes].each do |index,img|
+		            unless params[:room][:images_attributes][index][:image].present?
+		            params[:room][:images_attributes][index][:image] = params[:room][:images_attributes][index][:image_cache]
+		            params[:room][:images_attributes][index][:caption] = params[:room][:images_attributes][index][:caption]
+		            end
+		        end
+	        super
+		    else
+		        super
+		    end
+	    end
+
+	    def update
+		    if (params[:room].present? && params[:room][:images_attributes].present?)
+		        params[:room][:images_attributes].each do |index,img|
+		            unless params[:room][:images_attributes][index][:image].present?
+		              params[:room][:images_attributes][index][:image]  = params[:room][:images_attributes][index][:image_cache]
+		            end
+		            params[:room][:images_attributes][index][:caption]  = params[:room][:images_attributes][index][:caption]
+		        end
+		        super
+		    else
+		        super
+		    end
+	    end
     end
-
-    def update
-
-      if (params[:room].present? && params[:room][:images_attributes].present?)
-          params[:room][:images_attributes].each do |index,img|
-              unless params[:room][:images_attributes][index][:image].present?
-              params[:room][:images_attributes][index][:image]  = params[:room][:images_attributes][index][:image_cache]
-              end
-          params[:room][:images_attributes][index][:caption]  = params[:room][:images_attributes][index][:caption]
-        end
-      super
-    
-     else
-        super
-      end
-      
-    end
-      
-  end
-
-	
 end

@@ -2,16 +2,16 @@
 	<div class="botm-menus">
 		<div class="home-section"> <b>HOME</b>
 			<ul>
-				<li class="side-menu-1"><a href="overview.html">Overview</a></li>
+				<li class="side-menu-1"><%= link_to "Overview", backend_overview_path %></li>
 				<li class="side-menu-2"><a href="#">Notifications</a></li>
 				<li class="side-menu-3"><a href="#">Messages</a></li>
 			</ul>
 		</div>
 		<div class="home-section"> <b>BOOKINGS</b>
 			<ul>
-				<li class="side-menu-4"><a href="booking.html">Booked</a></li>
-				<li class="side-menu-5"><a href="check-in.html">Check-In</a></li>
-				<li class="side-menu-6"><a href="check-out.html">Check-Out</a></li>
+				<li class="side-menu-4"><%= link_to "Booked", backend_booking_path %></li>
+				<li class="side-menu-5"><%= link_to "Check-In", backend_check_in_path %></li>
+				<li class="side-menu-6"><%= link_to "Check-Out", backend_check_out_path %></li>
 			</ul>
 		</div>
 

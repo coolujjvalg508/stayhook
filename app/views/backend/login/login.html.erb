@@ -1,0 +1,65 @@
+
+
+<br></br>    
+<br></br>    
+<div class="col-md-12 signin-alert err-msg padding text-center"></div>
+    <%= form_for(resource, :as => 'vendor', :html => {:id => 'vendor_log_in_form'}, :url => vendor_session_path, :remote => :true, :format => :json) do |f| %>
+        <div class="form-group">
+            <label>Your Email ID</label>
+            <%= f.email_field :email, :autofocus => true, :placeholder => "email", :id => 'login_email', class:"form-control", :type => 'email' %>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+          
+            <%= f.password_field :password, :placeholder => "password", :id => 'login_password', class:"form-control" %>
+        </div>
+        <div class="form-group"> 
+            <span class="remb">
+            <%= f.check_box :remember_me %>
+       
+                <b>Keep me signed in <a href="#" class="pull-right">Forgot Password</a></b> 
+            </span> 
+        </div>
+        <div class="form-group">
+        <%= f.submit "Sign In", class: "submit-button" %>
+           
+        </div>
+    <% end %>
+</div>
+
+
+<script type="text/javascript">
+                
+    $(document).on('submit', '#vendor_log_in_form', function(e) {
+        
+        //do stuff here
+    }).on('ajax:success', '#vendor_log_in_form', function(e, data, status, xhr) {
+        if(status == 'success'){
+            window.location.href = '<%= backend_dashboard_path %>';
+        }else{
+            $('.signin-alert').html('Invalid email or password!');
+            $('.signin-alert').show();
+        }
+    
+    }).on('ajax:error', '#vendor_log_in_form', function(e, data, status, xhr) {
+       
+        msg = 'Invalid email or password!';
+
+        if (data['responseText'] == 'UserInactive'){
+            msg = 'Sorry, this account is deactivated!';
+        }
+
+        $('.signin-alert').html(msg);
+        $('.signin-alert').show();
+        
+    });
+    
+    $(document).ready(function(){
+        
+        $('#login-popup-link').click(function(){
+            $('.signin-alert').html('');
+            $('.signin-alert').hide();
+        });
+    });
+    
+</script>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318050940) do
+ActiveRecord::Schema.define(version: 20170322121217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,10 +100,18 @@ ActiveRecord::Schema.define(version: 20170318050940) do
     t.integer  "category_id"
     t.integer  "sub_category_id"
     t.json     "amenities"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "price"
     t.string   "price_charge_type"
+    t.text     "description"
+    t.text     "house_rules"
+    t.text     "cancellation_policy"
+    t.integer  "accommodate"
+    t.integer  "no_of_bedroom"
+    t.integer  "no_of_bathroom"
+    t.boolean  "couples_allowed",     default: true, null: false
+    t.boolean  "family_allowed",      default: true, null: false
   end
 
   create_table "static_pages", force: :cascade do |t|
@@ -116,22 +124,24 @@ ActiveRecord::Schema.define(version: 20170318050940) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "phone_number",           default: "", null: false
-    t.string   "first_name",             default: "", null: false
-    t.string   "last_name",              default: "", null: false
-    t.string   "image",                  default: "", null: false
+    t.string   "email",                             default: "",    null: false
+    t.string   "encrypted_password",                default: "",    null: false
+    t.string   "phone_number",                      default: "",    null: false
+    t.string   "first_name",                        default: "",    null: false
+    t.string   "last_name",                         default: "",    null: false
+    t.string   "image",                             default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                     default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+    t.boolean  "status",                            default: false, null: false
+    t.string   "otp",                    limit: 20
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

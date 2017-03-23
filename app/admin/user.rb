@@ -1,12 +1,13 @@
 ActiveAdmin.register User do
 	
    menu label: 'Manage Users'
-   permit_params :first_name, :last_name, :image, :email, :phone_number, :password, :password_confirmation
+   permit_params :first_name, :last_name, :image, :email, :phone_number, :password, :password_confirmation, :status
   
 
   filter :email
   filter :first_name
   filter :phone_number
+  filter :status, as: :select, collection: [['Active',1], ['Inactive', 0]], label: 'Status'
 
   index do
     selectable_column
@@ -21,6 +22,9 @@ ActiveAdmin.register User do
     column :last_name
     column :email
     column :phone_number
+    column "Status" do |ee|
+      (ee.status == true) ? "Active" : "Inactive"
+    end
     column :created_at
     actions
   end
@@ -31,6 +35,9 @@ ActiveAdmin.register User do
       row :first_name
       row :last_name
       row :phone_number
+      row "Status" do |ee|
+        (ee.status == true) ? "Active" : "Inactive"
+      end
       row :created_at
       row :updated_at
       row :image do |cat|
@@ -56,6 +63,7 @@ ActiveAdmin.register User do
       f.input :first_name
       f.input :last_name
       f.input :phone_number
+      f.input :status, label: 'Is Active'
     end
 
     f.inputs "User Password" do

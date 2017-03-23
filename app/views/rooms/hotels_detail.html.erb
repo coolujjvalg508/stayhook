@@ -1,0 +1,486 @@
+
+<div class="pos-rel"> 
+    <div class="main-section" id="top-scroll-head"> 
+
+        <!-- Banner Start -->
+        <section class="hotels-banner detil-slider">
+            <% if @hotels_detail.images.present? %>
+                <div class="main-top-detail-slider">
+                    <div class="slider top-main-slider">
+                        <% @hotels_detail.images.each do |img| %>
+                            <div class="fir-main-slider"> 
+                                <%= image_tag img.image.background_image.url, class: 'hidden-xs' %>
+                            </div>
+                        <% end %> 
+                    </div>
+                    <div class="slider top-thumb-slider">
+                        <% @hotels_detail.images.each do |img| %>
+                            <div class="fir-tyumb">
+                                <%= image_tag img.image.list_small.url, class: 'img-responsive' %>        
+                            </div>
+                        <% end %> 
+                    </div>
+                </div>
+            <% end %> 
+            <div class="clearfix booking-head-star">
+                <h5>StayHook <%= @hotels_detail.room_for %> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></h5>
+                <p><img src="/assets/locationicon.png" width="26" height="25" alt="Location"> <%= @hotels_detail.vendor.address %>, <%= @hotels_detail.vendor.try(:city).try(:name) %>, India</p>
+            </div>
+            <div class="booking-price"> 
+                <i class="fa fa-inr" aria-hidden="true"></i><%= @hotels_detail.price %> <span>From / <%= @hotels_detail.price_charge_type %></span>
+            </div>
+        </section>
+
+        <!-- Container Start -->
+        <section class="detail-page-contents hotelswrap clearfix pos-rel">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7 col-sm-12 col-xs-12">
+                        <div class="clearfix leftPanel">
+                            <div class="detail-mor-menus nobbackground nomargin">
+                                <ul>
+                                  <li><a href="#Features1">Features</a></li>
+                                  <li><a href="#photos">Photos</a></li>
+                                  <li><a href="#Reviews">Reviews</a></li>
+                                  <li><a href="#map">Map</a></li>
+                                </ul>
+                            </div>
+                            <div class="clearfix booking-head-star-mobile hidden-lg hidden-md">
+                                <h5>StayHook Family <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></h5>
+                                <p><img src="/assets/locationicon.png" width="26" height="25" alt="Location"> Alpha I, Greater Noida, India</p>
+                                <div class="sharewrap">
+                                    <div class="dropdown">
+                                        <button data-toggle="dropdown" type="button" aria-expanded="false"><i aria-hidden="true" class="fa fa-share-alt"></i></button>
+                                        <ul class="dropdown-menu">
+                                          <li><a href="#"><i aria-hidden="true" class="fa fa-facebook"></i></a></li>
+                                          <li><a href="#"><i aria-hidden="true" class="fa fa-twitter"></i></a></li>
+                                          <li><a href="#"><i aria-hidden="true" class="fa fa-linkedin"></i></a></li>
+                                          <li><a href="#"><i aria-hidden="true" class="fa fa-pinterest-p"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="type-room text-center" id="Features1">
+                                <ul>
+                                    <li>
+                                        <center>
+                                          <img src="/assets/single-icon.png" alt="Single Bed">
+                                        </center>
+                                        <div class="marginT10">Single Bed</div>
+                                    </li>
+                                    <li>
+                                        <center>
+                                          <img src="/assets/private-icon1.png" alt="Private Room">
+                                        </center>
+                                        <div class="marginT10">Private Room</div>
+                                    </li>
+                                    <li>
+                                        <center>
+                                          <img src="/assets/tworoom-icon.png" alt="Two Guests">
+                                        </center>
+                                        <div class="marginT10">Two Guests</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="amenitieswrap clearfix">
+                                <div class="col-md-3 col-sm-4 col-xs-12 ame-txt">Amenities</div>
+                                <div class="col-md-9 col-sm-8 col-xs-12">
+                                    <div class="row">
+                                        <% if @hotels_detail.present? %>
+                                        <ul>
+                                            <%  @amenities_data.each_with_index do |e, i| %>
+                                                    <li class="facility-txt">
+                                                        <%= image_tag e.image.icon.url, alt: e.name, class: 'icon-img' %>
+                                                        <%= e.name %>   
+                                                    </li>
+                                            <%  end %>
+
+                                        </ul>
+                                        <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                            <% if @hotels_detail.description.present? %>
+                            <div class="amenitieswrap clearfix">
+                                <div class="col-md-3 col-sm-12 col-xs-12 ame-txt">Description</div>
+                                <div class="col-md-9 col-sm-12 col-xs-12 descriptionwrap">
+                                    <div class="row">
+                                        <p><%= @hotels_detail.description %></p>
+                                       
+                                    </div>
+                                    <button type="button" class="book-mobile">BOOK NOW</button>
+                                </div>
+                            </div>
+                            <% end %>
+                            <div class="amenitieswrap clearfix">
+                                <div class="col-md-3 col-sm-12 col-xs-12 ame-txt">Space Type</div>
+                                <div class="col-md-9 col-sm-12 col-xs-12 descriptionwrap">
+                                    <div class="row">
+                                        <ul class="space-tup">
+                                          <li>Accomadate: <b><%= @hotels_detail.accommodate %></b></li>
+                                          <li>Bedroom: <b><%= @hotels_detail.no_of_bedroom %></b></li>
+                                          <li>Beds: <b><%= @hotels_detail.no_of_bed %></b></li>
+                                          <li>Bathroom: <b><%= @hotels_detail.no_of_bathroom %></b></li>
+                                          
+                                            <li><em>Couples:</em> 
+                                                <% if @hotels_detail.couples_allowed == true %>
+                                                    <b>Allowed</b>
+                                                <% else %>
+                                                    <b>Not Allowed</b>
+                                                <% end %>
+                                            </li>
+                                          
+                                            <li><em>Family:</em>
+                                                <% if @hotels_detail.family_allowed == true %>
+                                                    <b>Allowed</b>
+                                                <% else %>
+                                                    <b>Not Allowed</b>
+                                                <% end %>
+                                            </li> 
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <% if @hotels_detail.house_rules.present? %>
+                            <div class="amenitieswrap clearfix">
+                                <div class="col-md-3 col-sm-12 col-xs-12 ame-txt">House Rules</div>
+                                <div class="col-md-9 col-sm-12 col-xs-12 descriptionwrap">
+                                    <div class="row">
+                                        <div class="hous-rols">
+                                          <p><%= @hotels_detail.house_rules %></p>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% end %>
+                            <% if @hotels_detail.cancellation_policy.present? %>
+                            <div class="amenitieswrap clearfix">
+                                <div class="col-md-3 col-sm-12 col-xs-12 ame-txt">Cancellation Policy</div>
+                                <div class="col-md-9 col-sm-12 col-xs-12 descriptionwrap">
+                                    <div class="row">
+                                        <div class="hous-rols">
+                                            <p><%= @hotels_detail.cancellation_policy %></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% end %>
+                            <div class="photowrap clearfix" id="photos">
+                                <h2>Photos</h2>
+                                <div class="slider photobooking">
+                                  <div><a class="example-image-link" href="/assets/hotel-slide.jpg" data-lightbox="example-1"><img src="/assets/photo.jpg" class="img-responsive" alt="Photo"></a></div>
+                                  <div><a class="example-image-link" href="/assets/hotel-slide1.jpg" data-lightbox="example-1"><img src="/assets/photo1.jpg" class="img-responsive" alt="Photo"></a></div>
+                                  <div><a class="example-image-link" href="/assets/hotel-slide2.jpg" data-lightbox="example-1"><img src="/assets/photo2.jpg" class="img-responsive" alt="Photo"></a></div>
+                                  <div><a class="example-image-link" href="/assets/hotel-slide3.jpg" data-lightbox="example-1"><img src="/assets/photo3.jpg" class="img-responsive" alt="Photo"></a></div>
+                                  <div><a class="example-image-link" href="/assets/hotel-slide.jpg" data-lightbox="example-1"><img src="/assets/photo.jpg" class="img-responsive" alt="Photo"></a></div>
+                                  <div><a class="example-image-link" href="/assets/hotel-slide1.jpg" data-lightbox="example-1"><img src="/assets/photo1.jpg" class="img-responsive" alt="Photo"></a></div>
+                                  <div><a class="example-image-link" href="/assets/hotel-slide2.jpg" data-lightbox="example-1"><img src="/assets/photo2.jpg" class="img-responsive" alt="Photo"></a></div>
+                                  <div><a class="example-image-link" href="/assets/hotel-slide3.jpg" data-lightbox="example-1"><img src="/assets/photo3.jpg" class="img-responsive" alt="Photo"></a></div>
+                                </div>
+                            </div>
+              
+                            <div class="clearfix reviewwrap" id="Reviews">
+                                <h2>Review</h2>
+                                <div class="reivewpost clearfix">
+                                    <div class="reviewleft">
+                                        <img src="/assets/profile.jpg" class="img-responsive img-circle" alt="Profile">
+                                    </div>
+                                    <div class="reviewright clearfix">
+                                        <div class="comment-txt">12.10.15</div>
+                                        <div class="comment-title"><span>Greg Byrov</span> <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-half-o" aria-hidden="true"></i> </div>
+                                        <div class="comment-indent">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                                          natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</div>
+                                        <div class="comment-help"> <a href="#" class="report"><i class="fa fa-mail-reply-all" aria-hidden="true"></i> Report</a> <a href="#" class="help"><i class="fa fa-file-image-o" aria-hidden="true"></i> Helpful</a> </div>
+                                    </div>
+                                </div>
+                                <div class="reivewpost clearfix">
+                                    <div class="reviewleft">
+                                        <img src="/assets/profile.jpg" class="img-responsive img-circle" alt="Profile">
+                                    </div>
+                                    <div class="reviewright clearfix">
+                                        <div class="comment-txt">12.10.15</div>
+                                        <div class="comment-title"><span>Greg Byrov</span></div>
+                                        <div class="comment-indent">
+                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                                            natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                                        </div>
+                                        <div class="comment-help"> 
+                                            <a href="#" class="report"><i class="fa fa-mail-reply-all" aria-hidden="true"></i> Report</a> <a href="#" class="help"><i class="fa fa-file-image-o" aria-hidden="true"></i> Helpful</a> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="load-btn" type="button">Load more <i class="fa fa-plus" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-sm-12 col-xs-12 pernight detail-pernight booking-right new-booking-right">
+                        <div class="panel panel-default nobg">
+                            <div class="panel-body">
+                                <div class="book-search-block clearfix"> 
+                                    <b class="close-search"><img width="35" alt="" src="/assets/search-close.png"></b> 
+                                </div>
+                                <div class="clearfix check-wrap">
+                                    <div class="row">
+                                        <div class=" clearcheck-in bor-righ">
+                                            <label>Check -in</label>
+                                            <div class="date-pic-cal input-group date datetimepicker1" data-date="d M yyyy" data-date-format="d M yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                <input type='text' class="form-control" placeholder="01 Jan 2017"/>
+                                                <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> 
+                                            </div>
+                                        </div>
+                                        <div class=" clearcheck-in bor-righ">
+                                            <label>Check -out</label>
+                                            <div class="date-pic-cal input-group date datetimepicker1" data-date="d M yyyy" data-date-format="d M yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                <input type='text' class="form-control" placeholder="05 Jan 2017" />
+                                                <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> 
+                                            </div>
+                                        </div>
+                                        <div class=" clearcheck-in guest-">
+                                            <label>Rooms</label>
+                                            <select>
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                                <option value="5">05</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                
+                                <div class="room-booking-sec">
+                                    <div class="rook-booking-drop">
+                                        <div class="room-guest-">
+                                            <center><img width="35px" src="/assets/guest-1.png" alt=""></center>
+                                            <p>2 GUESTS</p>
+                                        </div>
+                                    <div class="room-guest-">
+                                        <center><img width="35px" src="/assets/guest-2.png" alt=""></center>
+                                        <p>1 ROOMS</p>
+                                    </div>
+                                    <div class="room-guest-">
+                                        <span>
+                                            <i class="fa fa-fw" aria-hidden="true" title="Copy to use rupee"></i>
+                                            <em>600</em>
+                                        </span>
+                                        <b>per night</b>
+                                    </div>
+                                </div>                
+                                <div class="field-open-sec" style="display:none;">
+                                    <div class="form-add-sec">
+                                        <div class="room-guest-">
+                                            <b class="padt">ROOM 1</b>
+                                        </div>
+                                        <div class="room-guest-">
+                                            <div class=" clearcheck-in guest-">
+                                                <label>Guests</label>
+                                                <select>
+                                                  <option value="1">01</option>
+                                                  <option value="2">02</option>
+                                                  <option value="3">03</option>
+                                                  <option value="4">04</option>
+                                                  <option value="5">05</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="room-guest-">
+                                            <span>
+                                                <i class="fa fa-fw" aria-hidden="true" title="Copy to use rupee"></i>
+                                                <em>600</em>
+                                            </span>
+                                            <b>per night</b>
+                                        </div>
+                                    </div>
+                
+                                    <div class="add-delete-form">                
+                                        <a href="#">ADD ROOM</a>
+                                        <a href="#">DELETE ROOM</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix total-payment nopad">
+                                <h4>Optional</h4>
+                                <div class="row">
+                                    <div class="col-md-7 col-sm-6 col-xs-8">
+                                        <input type="text" class="form-control" placeholder="Promo Code Here">
+                                    </div>
+                                    <div class="col-md-5 col-sm-6 col-xs-4">
+                                        <button class="apply-btn blue" type="button">Apply</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix BookingDetails">
+                                <h4>Booking Details</h4>
+                                <div class="bookingindent clearfix">
+                                    <div class="row">
+                                      <div class="col-md-7  col-sm-7 col-xs-7 marginb25">Booking Price</div>
+                                      <div class="col-md-5 text-right col-sm-5 col-xs-5 marginb25"><i class="fa fa-inr" aria-hidden="true"></i>900</div>
+                                      <div class="col-md-7  col-sm-7 col-xs-7 marginb25">Discount</div>
+                                      <div class="col-md-5 text-right col-sm-5 col-xs-5 marginb25">- <i class="fa fa-inr" aria-hidden="true"></i>100</div>
+                                      <div class="col-md-7  col-sm-7 col-xs-7 marginb25 total-txt">Total
+                                        <div class="taxes-txt">(Inclusive of Taxes)</div>
+                                      </div>
+                                      <div class="col-md-5 text-right col-sm-5 col-xs-5 marginb25 total-txt"><i class="fa fa-inr" aria-hidden="true"></i>800</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix paynowwrap">
+                          <input id="4" class="magic-checkbox" type="checkbox" value="option1">
+                          <label for="4"> Pay 50% Now <img src="/assets/faq-icon.jpg" alt="Faq"></label>
+                        </div>
+                        <div class="agreebox clearfix">
+                            <div class="form-group clearfix">
+                                <input id="5" class="magic-checkbox" type="checkbox">
+                                <label for="5"> I’m male</label>
+                            </div>
+                            <div class="form-group clearfix">
+                                <input id="6" class="magic-checkbox" type="checkbox">
+                                <label for="6"> I here by agree to <a href="#"><u>Terms</u></a> and <a href="#"><u>Conditions</U></a>.</label>
+                            </div>
+                            <div class="gues-main-title hidden-lg hidden-md hidden-sm">
+                                <h5>Guest Info</h5>
+                                <div class="giest-inforn">
+                                    <i>Full Name</i>
+                                    <b>Mr. Jonas</b>
+                                </div>
+                                <div class="giest-inforn">
+                                    <i>Mobile Number</i>
+                                    <p>+91 879 4789 122</p>
+                                </div>
+                                <div class="giest-inforn">
+                                    <i>Email</i>
+                                    <b>Jbreslin@email.com</b>
+                                </div>
+                  
+                                <div class="mob-butons">
+                                    <div class="pricing-sec-gues">
+                                      <i>INR 1,098</i> <b>INR 765</b>
+                                      <p>PER / NIGHT</p>
+                                    </div>
+                                    <div class="bok-no-gues">
+                                        <a href="#"><img src="/assets/buy-now.png" alt=""><p>Book Now</p></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="blue-btn hidden-xs">BOOK NOW</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="sharebox clearfix">
+                    <button class="favourite-btn" type="button"><i class="fa fa-heart" aria-hidden="true"></i> Add to Favourites</button>
+                    <h4>Share On</h4>
+                    <div class="clearfix shareon text-center"> 
+                        <a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="#" class="googleplus"><i class="fa fa-google-plus" aria-hidden="true"></i></a> <a href="#" class="tumblr"><i class="fa fa-tumblr" aria-hidden="true"></i></a> 
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location Map Start -->
+        <section class="clearfix locationwrap detail-map" id="map">
+            <div class="container pos-rel">
+                <div class="row">
+                    <div class="col-md-12 nearby-txt">Nearby Places</div>
+                    <div class="clearfix maprestwrap">
+                        <ul class="scroll">
+                          <li><a href="#" class="active">Restaurants</a></li>
+                          <li><a href="#">Metro</a></li>
+                          <li><a href="#">Bus Stop</a></li>
+                          <li><a href="#">Airport</a></li>
+                          <li><a href="#">Railway Station</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-12"> 
+                        <img src="/assets/map-detail.png" class="img-responsive img-thumbnail" alt="Google Map"> 
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+    </div>
+</div>
+
+<script>
+//Date picker
+$(function () {
+$('.datetimepicker1').datetimepicker({
+weekStart: 1,
+todayBtn:  1,
+autoclose: 1,
+todayHighlight: 1,
+startView: 2,
+minView: 2,
+forceParse: 0
+});
+$('.top-main-slider').slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: true,
+  fade: true,
+  asNavFor: '.top-thumb-slider'
+});
+$('.top-thumb-slider').slick({
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  asNavFor: '.top-main-slider',
+  dots: false,
+  arrows: false,
+  centerMode: true,
+  focusOnSelect: true
+});
+$('.photobooking').slick({
+  dots: false,
+  infinite: true,
+  speed: 300,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: false
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1
+      }
+    }
+  ]
+});
+});
+// Booking Page Header Fix
+ function init() {
+        window.addEventListener('scroll', function(e){
+            var distanceY = window.pageYOffset || document.documentElement.scrollTop,
+                shrinkOn = 250,
+                header = document.querySelector(".detail-mor-menus");
+            if (distanceY > shrinkOn) {
+                classie.add(header,"book-header");
+            } else {
+                if (classie.has(header,"book-header")) {
+                    classie.remove(header,"book-header");
+                }
+            }
+        });
+    }
+window.onload = init();
+
+</script>
+

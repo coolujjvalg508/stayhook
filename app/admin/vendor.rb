@@ -1,7 +1,7 @@
 ActiveAdmin.register Vendor do
 
   menu label: 'Vendor', parent: 'Manage Vendor'
-  permit_params :first_name, :last_name, :image, :email, :phone_number, :address, :city_id, :status, :password, :password_confirmation, :images_attributes => [:id,:image,:caption,:imageable_id,:imageable_type, :_destroy,:tmp_image,:image_cache]
+  permit_params :first_name, :last_name, :image, :email, :phone_number, :address, :city_id, :status, :password, :password_confirmation
 
   filter :email
   filter :first_name
@@ -12,6 +12,11 @@ ActiveAdmin.register Vendor do
 
    index do
     selectable_column
+    column :image do |cat|
+      unless !cat.image.present?
+        image_tag(cat.try(:image).try(:url, :thumb), width: '50')
+      end
+    end
     column :email
     column :first_name
     column :last_name
@@ -38,18 +43,11 @@ ActiveAdmin.register Vendor do
       row :created_at
       row :updated_at
 
-      row 'Images' do
-        ul class: "image-blk" do
-          if vendor.images.present?
-            vendor.images.each do |img|
-            span do
-              image_tag(img.try(:image).try(:thumb).try(:url), class: "show-img")
-            end
-            end
-          end
+      row :image do |cat|
+        unless !cat.image.present?
+          image_tag(cat.try(:image).try(:url, :thumb))
         end
       end
-      
     end
   end
 
@@ -81,52 +79,11 @@ ActiveAdmin.register Vendor do
       f.input :password_confirmation
     end
 
-    f.inputs 'Images' do
-      f.has_many :images, allow_destroy: true, new_record: true do |ff|
-        ff.input :image, label: "Image", hint: ff.template.image_tag(ff.object.image.try(:url,:thumb))
-        ff.input :image_cache, :as => :hidden
-        ff.input :caption
-      end 
+    f.inputs "Profile Image" do
+      f.input :image, :hint => image_tag(f.object.try(:image).try(:url, :thumb))
     end
 
     f.actions
   end
   
-  controller do
-    def create
-     
-      if (params[:vendor].present? && params[:vendor][:images_attributes].present?)
-          params[:vendor][:images_attributes].each do |index,img|
-              unless params[:vendor][:images_attributes][index][:image].present?
-              params[:vendor][:images_attributes][index][:image] = params[:vendor][:images_attributes][index][:image_cache]
-              params[:vendor][:images_attributes][index][:caption] = params[:vendor][:images_attributes][index][:caption]
-              end
-          end
-        super
-      
-      else
-        super
-      end
-    end
-
-    def update
-
-      if (params[:vendor].present? && params[:vendor][:images_attributes].present?)
-          params[:vendor][:images_attributes].each do |index,img|
-              unless params[:vendor][:images_attributes][index][:image].present?
-              params[:vendor][:images_attributes][index][:image]  = params[:vendor][:images_attributes][index][:image_cache]
-              end
-          params[:vendor][:images_attributes][index][:caption]  = params[:vendor][:images_attributes][index][:caption]
-        end
-      super
-    
-     else
-        super
-      end
-      
-    end
-      
-  end
-
-
 end
