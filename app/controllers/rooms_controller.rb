@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
 
 	layout 'application1', :only => [:search_listing]
-
+    before_action :authenticate_user!, :only => [:save_like]
 	def search_listing
 		#abort(params[:filter][:city].to_json)
 
@@ -48,7 +48,9 @@ class RoomsController < ApplicationController
 
 	def hotels_detail
 		@hotels_detail = Room.find_by(id: params[:id])
-		#abort(@hotels_detail.amenities.to_json)
+		@similar_stays = Room.where.not(id: @hotels_detail.id).where(room_for: @hotels_detail.room_for).limit(3)
+
+		#abort(@similar_stays.to_json)
 		#@hotels_detail.amenities.each do |amenity| 
 
 			#@amenity_detail = Amenity.find_by(id: amenity.amenities)
@@ -64,9 +66,50 @@ class RoomsController < ApplicationController
 	        amenities_list.reject!{|a| a==""}
 	        @amenities_data = Amenity.where("id IN (?)", amenities_list);
 	    end
+	    if current_user.present?
+        	@user_id = current_user.id
+    	else
+           @user_id = ""
+    	end
 
-		#abort(@hotels_detail.images.to_json);
+		#abort(@user_id.to_json);
 		#abort(@hotels_detail.room.to_json);
 		#abort(@hotels_detail.images.to_json);
 	end
+
+	def save_like
+          room_id     = params[:room_id]
+          user_id      = params[:user_id]
+          is_like_exist  = Favourite.where(user_id: user_id, room_id: room_id).first
+          result        = ''
+          activity_type = ''
+          if is_like_exist.present?
+                activity_type = 'disliked'
+                Favourite.where(user_id: user_id, room_id: room_id).delete_all 
+
+                result  = {'res' => 0, 'message' => 'Post has disliked'}
+          else
+                activity_type = 'liked'
+                Favourite.create(user_id: user_id, room_id: room_id)  
+ 
+                result  = {'res' => 1, 'message' => 'Post has liked'}
+
+          end 
+
+          render json: result, status: 200       
+    end  
+
+     def check_save_like
+          room_id     = params[:room_id]
+          user_id        = params[:user_id]
+          is_like_exist  = Favourite.where(user_id: user_id, room_id: room_id).first
+          result = ''
+          if is_like_exist.present?
+                result  = {'res' => 1, 'message' => 'Post has already liked'}
+          else
+                result  = {'res' => 0, 'message' => 'Post has not liked'}
+          end 
+         
+          render json: result, status: 200       
+    end  
 end

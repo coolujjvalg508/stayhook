@@ -1,0 +1,22 @@
+<div class="col-md-3">
+    <div class="left-muns">
+	    <%= form_for(@user, url: update_profile_path, html: { method: :post , :id => "edit_profile_pic_form"}) do |f| %>
+	        <div class="user-pics"> 
+	            <span class="user-img">
+	                <% if current_user.image.present? %>
+	                    <img onclick="document.getElementById('user_profile').click()" src="<%= current_user.image.small.url %>" width="120px" class="img-circle img-responsive" alt="">
+	                <% else %>
+	                    <img onclick="myFunction()" src="/assets/dashboard-user.jpg" width="120px" class="img-circle img-responsive" alt="">
+	                <% end %>
+	                <%= f.file_field(:image,class: "required", title: " ", onchange: "this.form.submit()", id: "user_profile", style: 'display: none;')%>
+	            </span>  <b><%= current_user.first_name %> <%= current_user.last_name %></b> 
+	        </div>
+	    <% end %>
+        <ul>
+            <li><a href="booking-history">Booking</a></li>
+            <li><a href="account-setting">Profile</a></li>
+            <li><%= link_to('Sign Out', destroy_user_session_path, :method => :get) %></li>
+        </ul>
+    </div>
+</div>
+

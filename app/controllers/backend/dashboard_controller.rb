@@ -1,4 +1,6 @@
 class Backend::DashboardController < Backend::BaseController
+	before_action :authenticate_vendor!
+
 	layout 'backend'
 	
 	def index

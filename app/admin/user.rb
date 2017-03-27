@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
 	
    menu label: 'Manage Users'
-   permit_params :first_name, :last_name, :image, :email, :phone_number, :password, :password_confirmation, :status
+   permit_params :first_name, :last_name, :image, :email, :phone_number, :gender, :password, :password_confirmation, :status
   
 
   filter :email
@@ -35,6 +35,7 @@ ActiveAdmin.register User do
       row :first_name
       row :last_name
       row :phone_number
+      row :gender
       row "Status" do |ee|
         (ee.status == true) ? "Active" : "Inactive"
       end
@@ -62,6 +63,7 @@ ActiveAdmin.register User do
       f.input :email
       f.input :first_name
       f.input :last_name
+      f.input :gender, as: :select, collection: User::GENDER, include_blank: 'Select Gender'
       f.input :phone_number
       f.input :status, label: 'Is Active'
     end

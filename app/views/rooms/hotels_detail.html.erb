@@ -166,19 +166,16 @@
                                 </div>
                             </div>
                             <% end %>
+                            <% if @hotels_detail.images.present? %>
                             <div class="photowrap clearfix" id="photos">
                                 <h2>Photos</h2>
                                 <div class="slider photobooking">
-                                  <div><a class="example-image-link" href="/assets/hotel-slide.jpg" data-lightbox="example-1"><img src="/assets/photo.jpg" class="img-responsive" alt="Photo"></a></div>
-                                  <div><a class="example-image-link" href="/assets/hotel-slide1.jpg" data-lightbox="example-1"><img src="/assets/photo1.jpg" class="img-responsive" alt="Photo"></a></div>
-                                  <div><a class="example-image-link" href="/assets/hotel-slide2.jpg" data-lightbox="example-1"><img src="/assets/photo2.jpg" class="img-responsive" alt="Photo"></a></div>
-                                  <div><a class="example-image-link" href="/assets/hotel-slide3.jpg" data-lightbox="example-1"><img src="/assets/photo3.jpg" class="img-responsive" alt="Photo"></a></div>
-                                  <div><a class="example-image-link" href="/assets/hotel-slide.jpg" data-lightbox="example-1"><img src="/assets/photo.jpg" class="img-responsive" alt="Photo"></a></div>
-                                  <div><a class="example-image-link" href="/assets/hotel-slide1.jpg" data-lightbox="example-1"><img src="/assets/photo1.jpg" class="img-responsive" alt="Photo"></a></div>
-                                  <div><a class="example-image-link" href="/assets/hotel-slide2.jpg" data-lightbox="example-1"><img src="/assets/photo2.jpg" class="img-responsive" alt="Photo"></a></div>
-                                  <div><a class="example-image-link" href="/assets/hotel-slide3.jpg" data-lightbox="example-1"><img src="/assets/photo3.jpg" class="img-responsive" alt="Photo"></a></div>
+                                <% @hotels_detail.images.each do |img| %>
+                                  <div><a class="example-image-link" href="<%= img.image.small.url %>" data-lightbox="example-1"><img src="<%= img.image.list_similar.url %>" class="img-responsive" alt="Photo"></a></div>
+                                  <% end %> 
                                 </div>
                             </div>
+                            <% end %>
               
                             <div class="clearfix reviewwrap" id="Reviews">
                                 <h2>Review</h2>
@@ -367,8 +364,28 @@
                         </div>
                     </div>
                 </div>
+
+                    <script>
+                      $(document).ready(function(){
+                               $.ajax({
+                                    type: "post",
+                                    url: "<%= check_save_like_path %>" ,
+                                    data: {'room_id': '<%= @hotels_detail.id %>','user_id': '<%= @user_id %>'},
+                                   success: function(data){
+                                     if(data.res == 1) {
+                                          $('#post_fav_button_'+<%= @hotels_detail.id %>+'_'+<%= @user_id %>).addClass('hidden');
+                                          $('#post_disfav_button_'+<%= @hotels_detail.id %>+'_'+<%= @user_id %>).removeClass('hidden');
+                                      }else{
+                                           $('#post_fav_button_'+<%= @hotels_detail.id %>+'_'+<%= @user_id %>).removeClass('hidden');
+                                           $('#post_disfav_button_'+<%= @hotels_detail.id %>+'_'+<%= @user_id %>).addClass('hidden');
+                                      }
+                                    }
+                                });
+                         });
+                    </script>
                 <div class="sharebox clearfix">
-                    <button class="favourite-btn" type="button"><i class="fa fa-heart" aria-hidden="true"></i> Add to Favourites</button>
+                    <button  id='post_fav_button_<%= @hotels_detail.id %>_<%= @user_id %>' class="favourite-btn" type="button"><i class="fa fa-heart" aria-hidden="true"></i> Add to Favourites</button>
+                    <button id='post_disfav_button_<%= @hotels_detail.id %>_<%= @user_id %>' class="favourite-btn hidden" type="button"><i class="fa fa-heart" aria-hidden="true"></i> Remove from Favourites</button>
                     <h4>Share On</h4>
                     <div class="clearfix shareon text-center"> 
                         <a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a> <a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a> <a href="#" class="googleplus"><i class="fa fa-google-plus" aria-hidden="true"></i></a> <a href="#" class="tumblr"><i class="fa fa-tumblr" aria-hidden="true"></i></a> 
@@ -397,11 +414,81 @@
                 </div>
             </div>
         </section>
-
-        
+        <section class="similer-stays ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                      <h5 class="maint-ti">Similiar Stays</h5>
+                    </div>
+                    <% @similar_stays.each do |similar_stays| %>
+                    <div class="portfolio recent" data-cat="recent">
+                    <div class="col-sm-4">
+                    <div class="product-with-slider">
+                        <% if similar_stays.images.present? %>
+                            <div class="search-list slider">
+                            <% similar_stays.images.each do |img| %>
+                                <div class="fir-prod-img">
+                                  <a href="<%= similar_stays.id %>">
+                                    <%= image_tag img.image.list.url, class: 'img-responsive' %>
+                                    </a>
+                                </div>
+                            <% end %>
+                            </div>
+                        <% end %>
+                        <div class="product-detail-spec">
+                                <div class="pull-left price-fast"> 
+                                  <% if similar_stays.price? %>
+                                    <b><i class="fa fa-fw" aria-hidden="true" title="Copy to use rupee"></i> <%= similar_stays.price %> <%= similar_stays.price_charge_type %></b> 
+                                  <% end %>
+                                    <span class="feeling-fast"> <i class="fa fa-fw" aria-hidden="true" title="Copy to use clock-o"></i> <em>Filling Fast</em> <b>2 Rooms Left</b> </span> 
+                                </div>
+                                <div class="pull-right revi-rat-loc">
+                                    <div class="review-ratongs"> 
+                                        <em>2 Reviews</em> <span> <i class="fa fa-fw" aria-hidden="true" title="Copy to use star"></i> <i class="fa fa-fw" aria-hidden="true" title="Copy to use star"></i> <i class="fa fa-fw" aria-hidden="true" title="Copy to use star"></i> <i class="fa fa-fw" aria-hidden="true" title="Copy to use star-half-o"></i> <i class="fa fa-fw" aria-hidden="true" title="Copy to use star-o"></i> </span> 
+                                    </div>
+                                    <div class="prid-name-"> 
+                                        <b>StayHook <%= similar_stays.room_for %></b> <em><%= similar_stays.vendor.address %>, <%= similar_stays.vendor.try(:city).try(:name) %></em> 
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    </div>
+                    </div>
+                    
+                    <% end %>
+                </div>
+            </div>
+        </section>
     </div>
 </div>
+<script type='text/javascript'>
+  $(document).ready(function(){
 
+      $('[id^= post_fav_button_],[id^= post_disfav_button_]').on('click',function(){
+        
+            room_id_and_user_id  = $(this).attr('id').replace('post_fav_button_','');
+            room_id_and_user_id  = room_id_and_user_id.replace('post_disfav_button_','');
+            
+ 
+            var res = room_id_and_user_id.split("_"); 
+            $.ajax({
+                type: "post",
+                url: "<%= save_like_path %>" ,
+                data: {'room_id': res[0],'user_id': res[1]},
+                success: function(data){
+                    //alert(data.res)
+                    if(data.res == 1) {
+                        $('#post_fav_button_'+room_id_and_user_id).addClass('hidden');
+                        $('#post_disfav_button_'+room_id_and_user_id).removeClass('hidden');
+                    }else{
+                        $('#post_fav_button_'+room_id_and_user_id).removeClass('hidden');
+                        $('#post_disfav_button_'+room_id_and_user_id).addClass('hidden');
+                    }
+                }
+            });
+      });
+    })
+</script>
 <script>
 //Date picker
 $(function () {
@@ -465,6 +552,7 @@ $('.photobooking').slick({
   ]
 });
 });
+$('.search-list').slick();
 // Booking Page Header Fix
  function init() {
         window.addEventListener('scroll', function(e){
@@ -481,6 +569,7 @@ $('.photobooking').slick({
         });
     }
 window.onload = init();
+
 
 </script>
 

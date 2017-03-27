@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>Stayhook</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
+		<% if flash[:alert] %>
+			<div class="alert alert-danger col-md-12 col-xs-12">
+				<div><%= flash[:alert].html_safe %></div>
+				<% flash.discard(:alert) %>
+			</div>
+		<% end %>
+		<% if flash[:notice] %>
+			<div class="alert alert-success col-md-12 col-xs-12">
+				<div class="notice"><%= flash[:notice].html_safe %></div>
+				<% flash.discard(:notice) %>
+			</div>
+		<% end %>
+		<% if flash[:error] %>
+			<div class="alert alert-danger col-md-12 col-xs-12">
+				<div class="error"><%= flash[:error].html_safe %></div>
+				<% flash.discard(:error) %>
+			</div>
+		<% end %>
+		<% flash.discard %>
+		<div class="dashbord-sec">
+			<div class="lower-section">
+    			<div class="container">
+        			<div class="row"> 
+            			<%= render "elements/header2" %>
+            			<%= render "elements/left_nav_profileuser" %>
+
+						<%= yield %>
+					</div>
+				</div>
+			</div>
+			<%= render "elements/footer" %>
+		</div>
+	</body>
+</html>

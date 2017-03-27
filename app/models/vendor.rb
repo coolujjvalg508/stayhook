@@ -11,13 +11,13 @@ class Vendor < ActiveRecord::Base
 
     scope :active, -> { where(status: true) }
 	
-	validates :first_name, presence: true
-	validates :city_id, presence: true
-	validates :address, presence: true
+	validates :first_name, presence: {message: "First name can't be blank"}
+	validates :city_id, presence: {message: "Please select city"}
+	validates :address, presence: {message: "Address can't be blank"}
 	validates :email, presence: {message: "Email can't be blank"}
 	validates :email, confirmation: true
 	validates :email, uniqueness: {message: 'Email is already registered'}
-	validates :phone_number, presence: true
+	validates :phone_number, presence: {message: "Phone number can't be blank"}
 	validates :phone_number, uniqueness: {message: 'Phone number is already registered'}
 	validates :password, confirmation: true
 	validates :password, presence: {message: "Password can't be blank"}, on: :create

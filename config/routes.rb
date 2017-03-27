@@ -20,7 +20,10 @@ Rails.application.routes.draw do
   get 'hotel-detail/:id' => 'rooms#hotels_detail', as: "hotels_detail"
   get 'search-listing' => 'rooms#search_listing', as: "search_listing"
   get 'account-setting' => 'users#account_setting', as: "account_setting"
+  post 'account-setting' => 'users#update_profile', as: "update_profile"
   get 'booking-history' => 'users#booking_history', as: "booking_history"
+  post 'save_like'               => 'rooms#save_like', as: 'save_like' 
+  post 'check_save_like'         => 'rooms#check_save_like', as: 'check_save_like' 
  
 
   namespace :backend do
