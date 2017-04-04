@@ -1,4 +1,7 @@
+<script type="text/javascript">
 
+$.fn.raty.defaults.path = '<%= root_url+'assets' %>';
+</script>
 <div class="pos-rel"> 
     <div class="main-section" id="top-scroll-head"> 
 
@@ -62,23 +65,27 @@
                             </div>
                             <div class="type-room text-center" id="Features1">
                                 <ul>
+                                <% if @hotels_detail.no_of_bed==1  %>
                                     <li>
                                         <center>
                                           <img src="/assets/single-icon.png" alt="Single Bed">
                                         </center>
                                         <div class="marginT10">Single Bed</div>
                                     </li>
-                                    <li>
-                                        <center>
-                                          <img src="/assets/private-icon1.png" alt="Private Room">
-                                        </center>
-                                        <div class="marginT10">Private Room</div>
-                                    </li>
+                                <% end %>
+                                
+                                <li>
+                                    <center>
+                                      <img src="/assets/private-icon1.png" alt="Private Room">
+                                    </center>
+                                    <div class="marginT10"><%= @sub_cat.name %> Room</div>
+                                </li>
+                                
                                     <li>
                                         <center>
                                           <img src="/assets/tworoom-icon.png" alt="Two Guests">
                                         </center>
-                                        <div class="marginT10">Two Guests</div>
+                                        <div class="marginT10"><%= @hotels_detail.accommodate %> Guests</div>
                                     </li>
                                 </ul>
                             </div>
@@ -180,208 +187,291 @@
                             <div class="clearfix reviewwrap" id="Reviews">
                                 <h2>Review</h2>
                                 <div class="reivewpost clearfix">
-                                    <div class="reviewleft">
-                                        <img src="/assets/profile.jpg" class="img-responsive img-circle" alt="Profile">
-                                    </div>
-                                    <div class="reviewright clearfix">
-                                        <div class="comment-txt">12.10.15</div>
-                                        <div class="comment-title"><span>Greg Byrov</span> <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-half-o" aria-hidden="true"></i> </div>
-                                        <div class="comment-indent">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-                                          natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</div>
-                                        <div class="comment-help"> <a href="#" class="report"><i class="fa fa-mail-reply-all" aria-hidden="true"></i> Report</a> <a href="#" class="help"><i class="fa fa-file-image-o" aria-hidden="true"></i> Helpful</a> </div>
-                                    </div>
-                                </div>
-                                <div class="reivewpost clearfix">
-                                    <div class="reviewleft">
-                                        <img src="/assets/profile.jpg" class="img-responsive img-circle" alt="Profile">
-                                    </div>
-                                    <div class="reviewright clearfix">
-                                        <div class="comment-txt">12.10.15</div>
-                                        <div class="comment-title"><span>Greg Byrov</span></div>
-                                        <div class="comment-indent">
-                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-                                            natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                                    <% if current_user.present? %>
+                                        <div class="reviewleft">
+                                            <img src="<%= current_user.image %>" class="img-responsive img-circle" alt="Profile">
                                         </div>
-                                        <div class="comment-help"> 
-                                            <a href="#" class="report"><i class="fa fa-mail-reply-all" aria-hidden="true"></i> Report</a> <a href="#" class="help"><i class="fa fa-file-image-o" aria-hidden="true"></i> Helpful</a> 
+                                    <% end %>
+                                   
+
+                                        <div class="reviewright clearfix">
+                                            
+                                            <div class="form-group">
+                                            <input type="text" name="name" placeholder="Name" id="name" class="form-control reviewinput">
+                                            <input type="hidden" name="room_id" id="room_id" value="<%= @hotels_detail.id %>">
+                                            
+                                            <input type="hidden" name="user_id" id="user_id" value="<%= @user_id %>">
+                                            <input type="hidden" name="rating" id="ratingvalue" >
+                                                
+                                            </div>
+                                            <div class="form-group">
+                                            <textarea class="form-control comment-area" name"review" id="review" placeholder="Write your comment..."></textarea>
+                                               
+                                                <div class="reviewpost clearfix">
+                                                    <div class="pull-left reivew-txt">
+                                                        Rating 
+                                                        
+                                                        <div class="rating" id='show_user_rating_star'></div>
+                                                    </div>
+                                                    <div class="pull-right">
+                                                        <button type="submit" id="review_submit" class="blue-btn">Submit <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                   
                                 </div>
-                                <button class="load-btn" type="button">Load more <i class="fa fa-plus" aria-hidden="true"></i></button>
+                                <div class="demo" id="normal">
+                                    <% if @review_data.present? %>
+
+                                        <% @review_data.each do |review_data| %>
+                                        <div class="reivewpost clearfix">
+                                            
+                                            <div class="reviewleft">
+                                                <img src="<%= review_data.user.image %>" class="img-responsive img-circle" alt="Profile">
+                                            </div>
+                                            <div class="reviewright clearfix">
+                                                <div class="comment-txt"><%= review_data.created_at.to_date %></div>
+                                                <div class="comment-title">
+                                                    <span><%= review_data.name %></span>
+                                                    <input type="hidden" name="rating" class="ratingval" value="<%= review_data.rating %>"> 
+                                                    <div class="rating user_rating_star" id="user_rating_star_<%= review_data.id %>"></div>
+                                                    <script type="text/javascript">
+                                                    $('#user_rating_star_<%= review_data.id %>').raty({ score: <%= review_data.rating %> , readOnly: true});
+                                                    </script>
+                                                </div>
+                                                <div class="comment-indent">
+                                                    <%= review_data.review %>    
+                                                </div>
+                                                <div class="comment-help"> 
+                                                    <a href="#" class="report"><i class="fa fa-mail-reply-all" aria-hidden="true"></i> Report</a> <a href="#" class="help"><i class="fa fa-file-image-o" aria-hidden="true"></i> Helpful</a> 
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <% end %>
+
+                                        <% if @r_data.count>3 %>
+                                            <button class="load-btn" id="load_more" type="button">Load more <i class="fa fa-plus" aria-hidden="true"></i></button>
+                                        <% end %>
+                                    <% end %>
+                                </div>
+                                <div class="test hidden" id="more">
+                                    <% @review_data1.each do |review_data| %>
+                                    <div class="reivewpost clearfix" >
+                                        
+                                        <div class="reviewleft">
+                                            <img src="<%= review_data.user.image %>" class="img-responsive img-circle" alt="Profile">
+                                        </div>
+                                        <div class="reviewright clearfix">
+                                            <div class="comment-txt"><%= review_data.created_at.to_date %></div>
+                                            <div class="comment-title">
+                                                <span><%= review_data.name %></span> 
+                                                <input type="hidden" name="rating" class="ratingval" value="<%= review_data.rating %>"> 
+                                                <div class="rating user_rating_star" id="user_rating_star1_<%= review_data.id %>"></div>
+                                                <script type="text/javascript">
+                                                $('#user_rating_star1_<%= review_data.id %>').raty({ score: <%= review_data.rating %> , readOnly: true});
+                                                </script>
+                                            </div>
+                                            
+                                            <div class="comment-indent">
+                                                <%= review_data.review %>    
+                                            </div>
+                                            <div class="comment-help"> 
+                                                <a href="#" class="report"><i class="fa fa-mail-reply-all" aria-hidden="true"></i> Report</a> <a href="#" class="help"><i class="fa fa-file-image-o" aria-hidden="true"></i> Helpful</a> 
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <% end %> 
+                                    <button class="load-btn" id="view_less" type="button">View Less <i class="fa fa-minus" aria-hidden="true"></i></button>
+                                </div>
                             </div>
+                                
                         </div>
+
                     </div>
-                    <div class="col-md-5 col-sm-12 col-xs-12 pernight detail-pernight booking-right new-booking-right">
-                        <div class="panel panel-default nobg">
-                            <div class="panel-body">
-                                <div class="book-search-block clearfix"> 
-                                    <b class="close-search"><img width="35" alt="" src="/assets/search-close.png"></b> 
-                                </div>
-                                <div class="clearfix check-wrap">
-                                    <div class="row">
-                                        <div class=" clearcheck-in bor-righ">
-                                            <label>Check -in</label>
-                                            <div class="date-pic-cal input-group date datetimepicker1" data-date="d M yyyy" data-date-format="d M yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                <input type='text' class="form-control" placeholder="01 Jan 2017"/>
-                                                <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> 
+
+                            <div class="col-md-5 col-sm-12 col-xs-12 pernight detail-pernight booking-right new-booking-right">
+                                <div class="panel panel-default nobg">
+                                    <div class="panel-body">
+                                        <div class="book-search-block clearfix"> 
+                                            <b class="close-search"><img width="35" alt="" src="/assets/search-close.png"></b> 
+                                        </div>
+                                        <div class="clearfix check-wrap">
+                                            <div class="row">
+                                                <div class=" clearcheck-in bor-righ">
+                                                    <label>Check -in</label>
+                                                    <div class="date-pic-cal input-group date datetimepicker1" data-date="d M yyyy" data-date-format="d M yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                        <input type='text' class="form-control" placeholder="01 Jan 2017"/>
+                                                        <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> 
+                                                    </div>
+                                                </div>
+                                                <div class=" clearcheck-in bor-righ">
+                                                    <label>Check -out</label>
+                                                    <div class="date-pic-cal input-group date datetimepicker2" data-date="d M yyyy" data-date-format="d M yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                        <input type='text' class="form-control" placeholder="05 Jan 2017" />
+                                                        <span class="input-group-addon"> 
+                                                            <span class="glyphicon glyphicon-calendar"></span> 
+                                                        </span> 
+                                                    </div>
+                                                </div>
+                                                <div class=" clearcheck-in guest-">
+                                                    <label>Rooms</label>
+                                                    <select>
+                                                        <option value="1">01</option>
+                                                        <option value="2">02</option>
+                                                        <option value="3">03</option>
+                                                        <option value="4">04</option>
+                                                        <option value="5">05</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class=" clearcheck-in bor-righ">
-                                            <label>Check -out</label>
-                                            <div class="date-pic-cal input-group date datetimepicker1" data-date="d M yyyy" data-date-format="d M yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                <input type='text' class="form-control" placeholder="05 Jan 2017" />
-                                                <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> 
+                                        <div class="room-booking-sec">
+                                            <div class="rook-booking-drop">
+                                                <div class="room-guest-">
+                                                <center><img width="35px" src="/assets/guest-1.png" alt=""></center>
+                                                <p><%= @hotels_detail.accommodate %> GUESTS</p>
                                             </div>
-                                        </div>
-                                        <div class=" clearcheck-in guest-">
-                                            <label>Rooms</label>
-                                            <select>
-                                                <option value="1">01</option>
-                                                <option value="2">02</option>
-                                                <option value="3">03</option>
-                                                <option value="4">04</option>
-                                                <option value="5">05</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                
-                                <div class="room-booking-sec">
-                                    <div class="rook-booking-drop">
-                                        <div class="room-guest-">
-                                            <center><img width="35px" src="/assets/guest-1.png" alt=""></center>
-                                            <p>2 GUESTS</p>
-                                        </div>
-                                    <div class="room-guest-">
-                                        <center><img width="35px" src="/assets/guest-2.png" alt=""></center>
-                                        <p>1 ROOMS</p>
-                                    </div>
-                                    <div class="room-guest-">
-                                        <span>
-                                            <i class="fa fa-fw" aria-hidden="true" title="Copy to use rupee"></i>
-                                            <em>600</em>
-                                        </span>
-                                        <b>per night</b>
-                                    </div>
-                                </div>                
-                                <div class="field-open-sec" style="display:none;">
-                                    <div class="form-add-sec">
-                                        <div class="room-guest-">
-                                            <b class="padt">ROOM 1</b>
-                                        </div>
-                                        <div class="room-guest-">
-                                            <div class=" clearcheck-in guest-">
-                                                <label>Guests</label>
-                                                <select>
-                                                  <option value="1">01</option>
-                                                  <option value="2">02</option>
-                                                  <option value="3">03</option>
-                                                  <option value="4">04</option>
-                                                  <option value="5">05</option>
-                                                </select>
+                                            <div class="room-guest-">
+                                                <center><img width="35px" src="/assets/guest-2.png" alt=""></center>
+                                                <p><%= @hotels_detail.no_of_bedroom %> ROOMS</p>
                                             </div>
-                                        </div>
-                                        <div class="room-guest-">
+                                            <div class="room-guest-">
                                             <span>
                                                 <i class="fa fa-fw" aria-hidden="true" title="Copy to use rupee"></i>
-                                                <em>600</em>
+                                                <em><%= @hotels_detail.price %></em>
                                             </span>
-                                            <b>per night</b>
+                                            <b><%= @hotels_detail.price_charge_type %></b>
+                                        </div>
+                                    </div>                
+                                    <div class="field-open-sec" style="display:none;">
+                                        <div class="form-add-sec">
+                                            <div class="room-guest-">
+                                                <b class="padt">ROOM 1</b>
+                                            </div>
+                                            <div class="room-guest-">
+                                                <div class=" clearcheck-in guest-">
+                                                    <label>Guests</label>
+                                                    <select>
+                                                      <option value="1">01</option>
+                                                      <option value="2">02</option>
+                                                      <option value="3">03</option>
+                                                      <option value="4">04</option>
+                                                      <option value="5">05</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="room-guest-">
+                                                <span>
+                                                    <i class="fa fa-fw" aria-hidden="true" title="Copy to use rupee"></i>
+                                                    <em><%= @hotels_detail.price %></em>
+                                                </span>
+                                                <b><%= @hotels_detail.price_charge_type %></b>
+                                            </div>
+                                        </div>
+                                        <div class="add-delete-form">                
+                                            <a href="#">ADD ROOM</a>
+                                            <a href="#">DELETE ROOM</a>
                                         </div>
                                     </div>
-                
-                                    <div class="add-delete-form">                
-                                        <a href="#">ADD ROOM</a>
-                                        <a href="#">DELETE ROOM</a>
-                                    </div>
                                 </div>
-                            </div>
-                            <div class="clearfix total-payment nopad">
-                                <h4>Optional</h4>
-                                <div class="row">
-                                    <div class="col-md-7 col-sm-6 col-xs-8">
-                                        <input type="text" class="form-control" placeholder="Promo Code Here">
-                                    </div>
-                                    <div class="col-md-5 col-sm-6 col-xs-4">
-                                        <button class="apply-btn blue" type="button">Apply</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clearfix BookingDetails">
-                                <h4>Booking Details</h4>
-                                <div class="bookingindent clearfix">
+                                <div class="clearfix total-payment nopad">
+                                    <h4>Optional</h4>
                                     <div class="row">
-                                      <div class="col-md-7  col-sm-7 col-xs-7 marginb25">Booking Price</div>
-                                      <div class="col-md-5 text-right col-sm-5 col-xs-5 marginb25"><i class="fa fa-inr" aria-hidden="true"></i>900</div>
-                                      <div class="col-md-7  col-sm-7 col-xs-7 marginb25">Discount</div>
-                                      <div class="col-md-5 text-right col-sm-5 col-xs-5 marginb25">- <i class="fa fa-inr" aria-hidden="true"></i>100</div>
-                                      <div class="col-md-7  col-sm-7 col-xs-7 marginb25 total-txt">Total
-                                        <div class="taxes-txt">(Inclusive of Taxes)</div>
-                                      </div>
-                                      <div class="col-md-5 text-right col-sm-5 col-xs-5 marginb25 total-txt"><i class="fa fa-inr" aria-hidden="true"></i>800</div>
+                                        <div class="col-md-7 col-sm-6 col-xs-8">
+                                            <input type="text" class="form-control" id="coupon_code" placeholder="Promo Code Here">
+                                            <input type="hidden" value="@user_id" class="form-control" id="user_id">
+                                        </div>
+                                        <div class="col-md-5 col-sm-6 col-xs-4">
+                                            <button class="apply-btn blue" id="apply" type="button">Apply</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="clearfix paynowwrap">
-                          <input id="4" class="magic-checkbox" type="checkbox" value="option1">
-                          <label for="4"> Pay 50% Now <img src="/assets/faq-icon.jpg" alt="Faq"></label>
-                        </div>
-                        <div class="agreebox clearfix">
-                            <div class="form-group clearfix">
-                                <input id="5" class="magic-checkbox" type="checkbox">
-                                <label for="5"> I’m male</label>
-                            </div>
-                            <div class="form-group clearfix">
-                                <input id="6" class="magic-checkbox" type="checkbox">
-                                <label for="6"> I here by agree to <a href="#"><u>Terms</u></a> and <a href="#"><u>Conditions</U></a>.</label>
-                            </div>
-                            <div class="gues-main-title hidden-lg hidden-md hidden-sm">
-                                <h5>Guest Info</h5>
-                                <div class="giest-inforn">
-                                    <i>Full Name</i>
-                                    <b>Mr. Jonas</b>
+                                <div class="clearfix BookingDetails">
+                                    <h4>Booking Details</h4>
+                                    <div class="bookingindent clearfix">
+                                        <div class="row">
+                                            <div class="col-md-7  col-sm-7 col-xs-7 marginb25">Booking Price</div>
+                                            <div class="col-md-5 text-right col-sm-5 col-xs-5 marginb25"><i class="fa fa-inr" aria-hidden="true"></i><%= @hotels_detail.price %></div>
+                                            <div class="col-md-7  col-sm-7 col-xs-7 marginb25" id="coupondata" >Discount</div>
+                                            <div class="col-md-5 text-right col-sm-5 col-xs-5 marginb25">- <i class="fa fa-inr" aria-hidden="true"></i>0</div>
+                                            <div class="col-md-7  col-sm-7 col-xs-7 marginb25 total-txt">Total
+                                                <div class="taxes-txt">(Inclusive of Taxes)</div>
+                                            </div>
+                                            <div class="col-md-5 text-right col-sm-5 col-xs-5 marginb25 total-txt"><i class="fa fa-inr" aria-hidden="true"></i><%= @hotels_detail.price %></div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="giest-inforn">
-                                    <i>Mobile Number</i>
-                                    <p>+91 879 4789 122</p>
+                                <div class="clearfix paynowwrap">
+                                  <input id="4" class="magic-checkbox" type="checkbox" value="option1">
+                                  <label for="4"> Pay 50% Now <img src="/assets/faq-icon.jpg" alt="Faq"></label>
                                 </div>
-                                <div class="giest-inforn">
-                                    <i>Email</i>
-                                    <b>Jbreslin@email.com</b>
-                                </div>
+                                <div class="agreebox clearfix">
+                                    <% if @hotels_detail.room_for=="King" %>
+                                        <div class="form-group clearfix">
+                                            <input id="5" class="magic-checkbox" type="checkbox">
+                                            <label for="5"> I’m male</label>
+                                        </div>
+                                    <% end %>
+                                    <% if @hotels_detail.room_for=="Queen" %>
+                                        <div class="form-group clearfix">
+                                            <input id="5" class="magic-checkbox" type="checkbox">
+                                            <label for="5"> I’m female</label>
+                                        </div>
+                                    <% end %>
+                                    <div class="form-group clearfix">
+                                        <input id="6" class="magic-checkbox" type="checkbox">
+                                        <label for="6"> I here by agree to <a href="#"><u>Terms</u></a> and <a href="#"><u>Conditions</U></a>.</label>
+                                    </div>
+                                    <div class="gues-main-title hidden-lg hidden-md hidden-sm">
+                                        <h5>Guest Info</h5>
+                                        <div class="giest-inforn">
+                                            <i>Full Name</i>
+                                            <b>Mr. Jonas</b>
+                                        </div>
+                                        <div class="giest-inforn">
+                                            <i>Mobile Number</i>
+                                            <p>+91 879 4789 122</p>
+                                        </div>
+                                        <div class="giest-inforn">
+                                            <i>Email</i>
+                                            <b>Jbreslin@email.com</b>
+                                        </div>
                   
-                                <div class="mob-butons">
-                                    <div class="pricing-sec-gues">
-                                      <i>INR 1,098</i> <b>INR 765</b>
-                                      <p>PER / NIGHT</p>
+                                        <div class="mob-butons">
+                                            <div class="pricing-sec-gues">
+                                              <i>INR 1,098</i> <b>INR 765</b>
+                                              <p>PER / NIGHT</p>
+                                            </div>
+                                            <div class="bok-no-gues">
+                                                <a href="#"><img src="/assets/buy-now.png" alt=""><p>Book Now</p></a>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="bok-no-gues">
-                                        <a href="#"><img src="/assets/buy-now.png" alt=""><p>Book Now</p></a>
-                                    </div>
+                                    <button type="button" class="blue-btn hidden-xs">BOOK NOW</button>
                                 </div>
                             </div>
-                            <button type="button" class="blue-btn hidden-xs">BOOK NOW</button>
                         </div>
-                    </div>
-                </div>
 
                     <script>
-                      $(document).ready(function(){
-                               $.ajax({
-                                    type: "post",
-                                    url: "<%= check_save_like_path %>" ,
-                                    data: {'room_id': '<%= @hotels_detail.id %>','user_id': '<%= @user_id %>'},
-                                   success: function(data){
-                                     if(data.res == 1) {
-                                          $('#post_fav_button_'+<%= @hotels_detail.id %>+'_'+<%= @user_id %>).addClass('hidden');
-                                          $('#post_disfav_button_'+<%= @hotels_detail.id %>+'_'+<%= @user_id %>).removeClass('hidden');
-                                      }else{
-                                           $('#post_fav_button_'+<%= @hotels_detail.id %>+'_'+<%= @user_id %>).removeClass('hidden');
-                                           $('#post_disfav_button_'+<%= @hotels_detail.id %>+'_'+<%= @user_id %>).addClass('hidden');
-                                      }
-                                    }
-                                });
-                         });
+                        $(document).ready(function(){
+                           $.ajax({
+                                type: "post",
+                                url: "<%= check_save_like_path %>" ,
+                                data: {'room_id': '<%= @hotels_detail.id %>','user_id': '<%= @user_id %>'},
+                               success: function(data){
+                                 if(data.res == 1) {
+                                      $('#post_fav_button_'+<%= @hotels_detail.id %>+'_'+<%= @user_id %>).addClass('hidden');
+                                      $('#post_disfav_button_'+<%= @hotels_detail.id %>+'_'+<%= @user_id %>).removeClass('hidden');
+                                  }else{
+                                       $('#post_fav_button_'+<%= @hotels_detail.id %>+'_'+<%= @user_id %>).removeClass('hidden');
+                                       $('#post_disfav_button_'+<%= @hotels_detail.id %>+'_'+<%= @user_id %>).addClass('hidden');
+                                  }
+                                }
+                            });
+                        });
                     </script>
                 <div class="sharebox clearfix">
                     <button  id='post_fav_button_<%= @hotels_detail.id %>_<%= @user_id %>' class="favourite-btn" type="button"><i class="fa fa-heart" aria-hidden="true"></i> Add to Favourites</button>
@@ -435,7 +525,7 @@
                             <% end %>
                             </div>
                         <% end %>
-                        <div class="product-detail-spec">
+                            <div class="product-detail-spec">
                                 <div class="pull-left price-fast"> 
                                   <% if similar_stays.price? %>
                                     <b><i class="fa fa-fw" aria-hidden="true" title="Copy to use rupee"></i> <%= similar_stays.price %> <%= similar_stays.price_charge_type %></b> 
@@ -464,13 +554,17 @@
 <script type='text/javascript'>
   $(document).ready(function(){
 
-      $('[id^= post_fav_button_],[id^= post_disfav_button_]').on('click',function(){
+        $('[id^= post_fav_button_],[id^= post_disfav_button_]').on('click',function(){
         
             room_id_and_user_id  = $(this).attr('id').replace('post_fav_button_','');
             room_id_and_user_id  = room_id_and_user_id.replace('post_disfav_button_','');
             
  
             var res = room_id_and_user_id.split("_"); 
+            if(res[1]==""){
+                 alert("Please Sign in to make Favourite");    
+            }
+            
             $.ajax({
                 type: "post",
                 url: "<%= save_like_path %>" ,
@@ -486,21 +580,118 @@
                     }
                 }
             });
-      });
+        });
+
+        $('[id^= review_submit]').on('click',function(){
+            
+            var name  = $('#name').val();
+            var room_id  = $('#room_id').val();
+            var review  = $('#review').val();
+            var user_id  = $('#user_id').val();
+            var rating  = $('#ratingvalue').val();
+            
+            
+            if(user_id==""){
+                 alert("Please Signin to give review");    
+            }
+            else if(name==""){
+                 alert("Please enter the name");    
+            }
+            else if(review==""){
+                 alert("Please enter the review");    
+            }
+            else{
+                $.ajax({
+                    type: "post",
+                    url: "<%= review_submit_path %>" ,
+                    data: {'name': name,'review': review,'room_id': room_id,'user_id': user_id,'rating': rating},
+                    success: function(data){
+                        
+                        location.reload(); 
+                        
+                    }
+                });
+            }
+        });
+
+        $('[id^= load_more]').on('click',function(){
+            
+            $('#normal').addClass('hidden');
+            $('#more').removeClass('hidden');
+            
+        });
+        $('[id^= view_less]').on('click',function(){
+            
+            $('#more').addClass('hidden');
+            $('#normal').removeClass('hidden');
+            
+        });
+        $('[id^= apply]').on('click',function(){
+            
+            var coupon_code  = $('#coupon_code').val();
+            var user_id  = $('#user_id').val();
+            if(user_id==""){
+                 alert("Please Signin to apply offers");    
+            }
+            else if(coupon_code==""){
+                 alert("Please enter coupon code");    
+            }
+            
+            else{
+                $.ajax({
+                    type: "post",
+                    url: "<%= discount_offers_path %>" ,
+                    data: {'coupon_code': coupon_code},
+                    success: function(data){
+                        
+                        alert(data.message);
+                        
+                    }
+                });
+            }
+        });
+
     })
 </script>
 <script>
 //Date picker
+
 $(function () {
-$('.datetimepicker1').datetimepicker({
-weekStart: 1,
-todayBtn:  1,
-autoclose: 1,
-todayHighlight: 1,
-startView: 2,
-minView: 2,
-forceParse: 0
-});
+  
+    $('#show_user_rating_star').raty({ score: 0, click: function(score, evt) {
+        $('#ratingvalue').val(score);
+    } });
+
+    
+
+    $('.datetimepicker1').datetimepicker({
+    startDate: '-0d',
+    weekStart: 1,
+    todayBtn:  1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 2,
+    minView: 2,
+    forceParse: 0,
+    dateFormat: 'mm-dd-yy', 
+    changeMonth: true,
+    changeYear: true,
+    yearRange: '-70:+10',
+    });
+    $('.datetimepicker2').datetimepicker({
+    startDate: '-0d',
+    weekStart: 1,
+    todayBtn:  1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 2,
+    minView: 2,
+    forceParse: 0,
+    dateFormat: 'mm-dd-yy', 
+    changeMonth: true,
+    changeYear: true,
+    yearRange: '-70:+10',
+    });
 $('.top-main-slider').slick({
   slidesToShow: 1,
   slidesToScroll: 1,
@@ -569,6 +760,7 @@ $('.search-list').slick();
         });
     }
 window.onload = init();
+
 
 
 </script>

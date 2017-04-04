@@ -12,6 +12,7 @@
 //
 //= require jquery.min
 //= require jquery_ujs
+//= require jquery.raty
 //= require bootstrap
 //= require bootstrap-datetimepicker
 //= require addSlider

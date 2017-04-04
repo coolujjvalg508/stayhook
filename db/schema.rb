@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170324115016) do
+ActiveRecord::Schema.define(version: 20170404094319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,33 @@ ActiveRecord::Schema.define(version: 20170324115016) do
     t.string   "image"
   end
 
+  create_table "booking_details", force: :cascade do |t|
+    t.integer  "room_id"
+    t.integer  "booking_id"
+    t.string   "room_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "phone_no"
+    t.string   "email"
+    t.string   "coupon_code"
+    t.string   "discount_value"
+    t.string   "discount_type"
+    t.string   "discount"
+    t.string   "net_amount"
+    t.string   "check_in_date"
+    t.string   "check_out_date"
+    t.integer  "no_of_rooms"
+    t.integer  "no_of_guests"
+    t.string   "status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.integer  "parent_id"
@@ -70,6 +97,17 @@ ActiveRecord::Schema.define(version: 20170324115016) do
     t.boolean  "status",     default: true, null: false
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "coupons", force: :cascade do |t|
+    t.string   "coupon_code",    limit: 20
+    t.integer  "discount_value"
+    t.string   "discount_type"
+    t.date     "valid_from"
+    t.date     "valid_till"
+    t.boolean  "status",                    default: true, null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   create_table "facilities", force: :cascade do |t|
@@ -98,6 +136,16 @@ ActiveRecord::Schema.define(version: 20170324115016) do
 
   add_index "images", ["imageable_id"], name: "index_images_on_imageable_id", using: :btree
   add_index "images", ["imageable_type"], name: "index_images_on_imageable_type", using: :btree
+
+  create_table "reviews", force: :cascade do |t|
+    t.string   "name"
+    t.text     "review"
+    t.integer  "room_id"
+    t.integer  "user_id"
+    t.integer  "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "rooms", force: :cascade do |t|
     t.string   "room_number"

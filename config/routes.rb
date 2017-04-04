@@ -2,12 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   
-  #ActiveAdmin.routes(self)
-  begin
-    ActiveAdmin.routes(self)
-  rescue Exception => e
-    puts "ActiveAdmin: #{e.class}: #{e}"
-  end
+  ActiveAdmin.routes(self)
+  
 
   devise_for :users, controllers: {registrations: 'users/registrations', sessions: 'users/sessions'}
   devise_for :vendors, controllers: {sessions: 'vendors/sessions'}
@@ -22,8 +18,12 @@ Rails.application.routes.draw do
   get 'account-setting' => 'users#account_setting', as: "account_setting"
   post 'account-setting' => 'users#update_profile', as: "update_profile"
   get 'booking-history' => 'users#booking_history', as: "booking_history"
+  get 'confirm-booking' => 'rooms#confirm_booking', as: "confirm_booking"
   post 'save_like'               => 'rooms#save_like', as: 'save_like' 
   post 'check_save_like'         => 'rooms#check_save_like', as: 'check_save_like' 
+  post 'review_submit'         => 'rooms#review_submit', as: 'review_submit' 
+  post 'discount_offers'         => 'rooms#discount_offers', as: 'discount_offers' 
+   
  
 
   namespace :backend do
@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     get 'booking' => 'dashboard#booking', as: "booking"
     get 'check-in' => 'dashboard#check_in', as: "check_in"
     get 'check-out' => 'dashboard#check_out', as: "check_out"
+    get 'room-list' => 'dashboard#roomlist', as: "roomlist"
   end
 
   namespace :user do

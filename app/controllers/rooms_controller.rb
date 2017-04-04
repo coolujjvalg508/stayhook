@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
 
 	layout 'application1', :only => [:search_listing]
-    before_action :authenticate_user!, :only => [:save_like]
+    before_action :authenticate_user!, :only => [:save_like, :review_submit]
 	def search_listing
 		#abort(params[:filter][:city].to_json)
 
@@ -49,15 +49,14 @@ class RoomsController < ApplicationController
 	def hotels_detail
 		@hotels_detail = Room.find_by(id: params[:id])
 		@similar_stays = Room.where.not(id: @hotels_detail.id).where(room_for: @hotels_detail.room_for).limit(3)
-
-		#abort(@similar_stays.to_json)
+		@review_data1 = Review.where(room_id: params[:id]).order('id DESC')
+        @review_data = Review.where(room_id: params[:id]).order('id DESC').limit(3)
+        @r_data = Review.where(room_id: params[:id])
+		#abort(@review_data.to_json)
 		#@hotels_detail.amenities.each do |amenity| 
 
-			#@amenity_detail = Amenity.find_by(id: amenity.amenities)
-		#end
-		
-          #abort(amenity.to_json)
-		
+		@sub_cat = Category.find_by(id: @hotels_detail.sub_category_id)
+		#abort(@sub_cat.name.to_json)
 		if !@hotels_detail.	present?
 			redirect_to root_path, notice: 'Invalid access!'
 		end
@@ -78,38 +77,74 @@ class RoomsController < ApplicationController
 	end
 
 	def save_like
-          room_id     = params[:room_id]
-          user_id      = params[:user_id]
-          is_like_exist  = Favourite.where(user_id: user_id, room_id: room_id).first
-          result        = ''
-          activity_type = ''
-          if is_like_exist.present?
-                activity_type = 'disliked'
-                Favourite.where(user_id: user_id, room_id: room_id).delete_all 
+        room_id     = params[:room_id]
+        user_id      = params[:user_id]
+        is_like_exist  = Favourite.where(user_id: user_id, room_id: room_id).first
+        result        = ''
+        activity_type = ''
+        if is_like_exist.present?
+            activity_type = 'disliked'
+            Favourite.where(user_id: user_id, room_id: room_id).delete_all 
 
-                result  = {'res' => 0, 'message' => 'Post has disliked'}
-          else
-                activity_type = 'liked'
-                Favourite.create(user_id: user_id, room_id: room_id)  
+            result  = {'res' => 0, 'message' => 'Post has disliked'}
+        else
+            activity_type = 'liked'
+            Favourite.create(user_id: user_id, room_id: room_id)  
  
-                result  = {'res' => 1, 'message' => 'Post has liked'}
+            result  = {'res' => 1, 'message' => 'Post has liked'}
 
-          end 
+        end 
 
-          render json: result, status: 200       
+        render json: result, status: 200       
     end  
 
-     def check_save_like
-          room_id     = params[:room_id]
-          user_id        = params[:user_id]
-          is_like_exist  = Favourite.where(user_id: user_id, room_id: room_id).first
-          result = ''
-          if is_like_exist.present?
-                result  = {'res' => 1, 'message' => 'Post has already liked'}
-          else
-                result  = {'res' => 0, 'message' => 'Post has not liked'}
-          end 
-         
-          render json: result, status: 200       
-    end  
+    def check_save_like
+	    room_id     = params[:room_id]
+	    user_id        = params[:user_id]
+	    is_like_exist  = Favourite.where(user_id: user_id, room_id: room_id).first
+	    result = ''
+	    if is_like_exist.present?
+	        result  = {'res' => 1, 'message' => 'Post has already liked'}
+	    else
+	        result  = {'res' => 0, 'message' => 'Post has not liked'}
+	    end  
+	    render json: result, status: 200       
+    end 
+
+    def review_submit
+    	
+    	name     = params[:name]
+	    review        = params[:review]
+	    room_id     = params[:room_id]
+	    user_id        = params[:user_id]
+	    rating        = params[:rating]
+      	if (review!="")  
+            Review.create(name: name, review: review, user_id: user_id, room_id: room_id, rating: rating) 
+            result  = {'res' => 1, 'message' => 'Reviewed Successfully'}
+        end 
+        render json: result, status: 200 
+     	
+    end
+
+    def discount_offers
+    	
+    	coupon_code     = params[:coupon_code]
+	    
+      	if (coupon_code!="")  
+            @coupondata = Coupon.find_by(coupon_code: coupon_code)
+            #abort(@coupondata.to_json) 
+            if(@coupondata.present?)
+
+            	result  = {'res' => 1, 'message' => 'Coupon Successfully Applied', 'data' => @coupondata}
+        	else
+        		result  = {'res' => 0, 'message' => 'Invalid Coupon'}
+        	end
+        end 
+        render json: result, status: 200 
+     	
+    end
+    def confirm_booking
+    	
+    end
+    
 end

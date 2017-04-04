@@ -24,4 +24,8 @@ class Backend::DashboardController < Backend::BaseController
 		
 				
 	end
+	def roomlist
+		
+				
+	end
 end
