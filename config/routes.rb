@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post 'check_save_like'         => 'rooms#check_save_like', as: 'check_save_like' 
   post 'review_submit'         => 'rooms#review_submit', as: 'review_submit' 
   post 'discount_offers'         => 'rooms#discount_offers', as: 'discount_offers' 
+  post 'booking'         => 'rooms#booking', as: 'booking' 
    
  
 

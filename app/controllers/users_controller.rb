@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 		
 	end
 	def booking_history
-		
+		@user = current_user
 	end
 	def update_profile
 		

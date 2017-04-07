@@ -9,7 +9,7 @@
                     </ul>
                     <div class="tab-content">
                         <div id="edit-prof" class="tab-pane <%= (@open_tab == '') ? 'active' : ''  %>"">
-<%= form_for(@user, url: update_profile_path, html: { method: :post , :id => "edit_profile_form"}) do |f| %>
+                        <%= form_for(@user, url: update_profile_path, html: { method: :post , :id => "edit_profile_form"}) do |f| %>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -47,7 +47,7 @@
                                     </div>
                                 </div>
                             </div>
-<% end %>
+                        <% end %>
                         </div>
 
                         <div id="change-pass" class="tab-pane <%= (@open_tab == 'change_password') ? 'active' : ''  %>"">

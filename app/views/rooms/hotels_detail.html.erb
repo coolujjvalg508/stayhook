@@ -28,6 +28,7 @@ $.fn.raty.defaults.path = '<%= root_url+'assets' %>';
             <div class="clearfix booking-head-star">
                 <h5>StayHook <%= @hotels_detail.room_for %> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i> <i class="fa fa-star" aria-hidden="true"></i></h5>
                 <p><img src="/assets/locationicon.png" width="26" height="25" alt="Location"> <%= @hotels_detail.vendor.address %>, <%= @hotels_detail.vendor.try(:city).try(:name) %>, India</p>
+                <h5><%= @hotels_detail.room_number %></h5>
             </div>
             <div class="booking-price"> 
                 <i class="fa fa-inr" aria-hidden="true"></i><%= @hotels_detail.price %> <span>From / <%= @hotels_detail.price_charge_type %></span>
@@ -73,20 +74,22 @@ $.fn.raty.defaults.path = '<%= root_url+'assets' %>';
                                         <div class="marginT10">Single Bed</div>
                                     </li>
                                 <% end %>
-                                
+                                <% if @sub_cat.present?  %>
                                 <li>
                                     <center>
                                       <img src="/assets/private-icon1.png" alt="Private Room">
                                     </center>
                                     <div class="marginT10"><%= @sub_cat.name %> Room</div>
                                 </li>
-                                
+                                <% end %>
+                                <% if @hotels_detail.accommodate.present?  %>
                                     <li>
                                         <center>
                                           <img src="/assets/tworoom-icon.png" alt="Two Guests">
                                         </center>
                                         <div class="marginT10"><%= @hotels_detail.accommodate %> Guests</div>
                                     </li>
+                                <% end %>
                                 </ul>
                             </div>
                             <div class="amenitieswrap clearfix">
@@ -291,7 +294,7 @@ $.fn.raty.defaults.path = '<%= root_url+'assets' %>';
                         </div>
 
                     </div>
-
+                        <%= form_tag booking_path, method: :post, :id => "booking_form" do %>
                             <div class="col-md-5 col-sm-12 col-xs-12 pernight detail-pernight booking-right new-booking-right">
                                 <div class="panel panel-default nobg">
                                     <div class="panel-body">
@@ -302,30 +305,46 @@ $.fn.raty.defaults.path = '<%= root_url+'assets' %>';
                                             <div class="row">
                                                 <div class=" clearcheck-in bor-righ">
                                                     <label>Check -in</label>
-                                                    <div class="date-pic-cal input-group date datetimepicker1" data-date="d M yyyy" data-date-format="d M yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                        <input type='text' class="form-control" placeholder="01 Jan 2017"/>
-                                                        <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> 
+                                                    <div class='input-group date' id='datetimepicker1'>
+                                                        <input type='text' name="check_in" class="form-control"  id='datetimepicker1_input'/>
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                        <span class="error"><%= @msg %></span>
                                                     </div>
+                                                    <!-- <div class="date-pic-cal input-group date" id="datetimepicker1" data-date="d M yyyy" data-date-format="d M yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                        <input type='text' id="check_indate" class="form-control" placeholder="01 Jan 2017"/>
+                                                        <span class="input-group-addon"> <span class="glyphicon glyphicon-calendar"></span> </span> 
+                                                    </div> -->
                                                 </div>
                                                 <div class=" clearcheck-in bor-righ">
                                                     <label>Check -out</label>
-                                                    <div class="date-pic-cal input-group date datetimepicker2" data-date="d M yyyy" data-date-format="d M yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                    <div class='input-group date' id='datetimepicker2'>
+                                                        <input type='text' class="form-control" name="check_out" id='datetimepicker2_input'/>
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                    <!-- <div class="date-pic-cal input-group date" id="datetimepicker2" data-date="d M yyyy" data-date-format="d M yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                                                         <input type='text' class="form-control" placeholder="05 Jan 2017" />
                                                         <span class="input-group-addon"> 
                                                             <span class="glyphicon glyphicon-calendar"></span> 
                                                         </span> 
-                                                    </div>
+                                                    </div> -->
                                                 </div>
+                                                <% if @cat.name != "Long Term" %>
                                                 <div class=" clearcheck-in guest-">
                                                     <label>Rooms</label>
-                                                    <select>
+                                                    <select name="room">
                                                         <option value="1">01</option>
                                                         <option value="2">02</option>
                                                         <option value="3">03</option>
                                                         <option value="4">04</option>
                                                         <option value="5">05</option>
                                                     </select>
+
                                                 </div>
+                                                <% end %>
                                             </div>
                                         </div>
                                         <div class="room-booking-sec">
@@ -340,42 +359,45 @@ $.fn.raty.defaults.path = '<%= root_url+'assets' %>';
                                             </div>
                                             <div class="room-guest-">
                                             <span>
+                                               
                                                 <i class="fa fa-fw" aria-hidden="true" title="Copy to use rupee"></i>
                                                 <em><%= @hotels_detail.price %></em>
                                             </span>
                                             <b><%= @hotels_detail.price_charge_type %></b>
                                         </div>
-                                    </div>                
-                                    <div class="field-open-sec" style="display:none;">
-                                        <div class="form-add-sec">
-                                            <div class="room-guest-">
-                                                <b class="padt">ROOM 1</b>
-                                            </div>
-                                            <div class="room-guest-">
-                                                <div class=" clearcheck-in guest-">
-                                                    <label>Guests</label>
-                                                    <select>
-                                                      <option value="1">01</option>
-                                                      <option value="2">02</option>
-                                                      <option value="3">03</option>
-                                                      <option value="4">04</option>
-                                                      <option value="5">05</option>
-                                                    </select>
+                                    </div> 
+                                    <% if @cat.name != "Long Term" %>               
+                                        <div class="field-open-sec" style="display:none;">
+                                            <div class="form-add-sec">
+                                                <div class="room-guest-">
+                                                    <b class="padt">ROOM 1</b>
+                                                </div>
+                                                <div class="room-guest-">
+                                                    <div class=" clearcheck-in guest-">
+                                                        <label>Guests</label>
+                                                        <select name="accommodate">
+                                                          <option value="1">01</option>
+                                                          <option value="2">02</option>
+                                                          <option value="3">03</option>
+                                                          <option value="4">04</option>
+                                                          <option value="5">05</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="room-guest-">
+                                                    <span>
+                                                        <i class="fa fa-fw" aria-hidden="true" title="Copy to use rupee"></i>
+                                                        <em><%= @hotels_detail.price %></em>
+                                                    </span>
+                                                    <b><%= @hotels_detail.price_charge_type %></b>
                                                 </div>
                                             </div>
-                                            <div class="room-guest-">
-                                                <span>
-                                                    <i class="fa fa-fw" aria-hidden="true" title="Copy to use rupee"></i>
-                                                    <em><%= @hotels_detail.price %></em>
-                                                </span>
-                                                <b><%= @hotels_detail.price_charge_type %></b>
+                                            <div class="add-delete-form">                
+                                                <a href="#">ADD ROOM</a>
+                                                <a href="#">DELETE ROOM</a>
                                             </div>
                                         </div>
-                                        <div class="add-delete-form">                
-                                            <a href="#">ADD ROOM</a>
-                                            <a href="#">DELETE ROOM</a>
-                                        </div>
-                                    </div>
+                                    <% end %>
                                 </div>
                                 <div class="clearfix total-payment nopad">
                                     <h4>Optional</h4>
@@ -389,25 +411,46 @@ $.fn.raty.defaults.path = '<%= root_url+'assets' %>';
                                         </div>
                                     </div>
                                 </div>
+                                 <input type="hidden" class="form-control" name="discount_price" id="discount_price">
+                                 <input type="hidden" class="form-control" name="coupon_code" id="coupon_data">
+                                 <input type="hidden" class="form-control" value="<%= @hotels_detail.no_of_bedroom %>" name="no_of_rooms" id="no_of_rooms">
+                                 <input type="hidden" class="form-control" value="<%= @hotels_detail.accommodate %>" name="no_of_guests" id="no_of_guests">
+                                 <input type="hidden" class="form-control" value="<%= @hotels_detail.id %>" name="room_id" id="room_id">
+                                 
+
+
                                 <div class="clearfix BookingDetails">
                                     <h4>Booking Details</h4>
                                     <div class="bookingindent clearfix">
                                         <div class="row">
                                             <div class="col-md-7  col-sm-7 col-xs-7 marginb25">Booking Price</div>
+                                            <input type="hidden" value="<%= @hotels_detail.price %>" class="form-control" name="price" id="price">
                                             <div class="col-md-5 text-right col-sm-5 col-xs-5 marginb25"><i class="fa fa-inr" aria-hidden="true"></i><%= @hotels_detail.price %></div>
+                                            <input type="hidden" name="discount_value" class="form-control" id="discount_value">
+                                            <input type="hidden" name="discount_type" class="form-control" id="discount_type">
                                             <div class="col-md-7  col-sm-7 col-xs-7 marginb25" id="coupondata" >Discount</div>
-                                            <div class="col-md-5 text-right col-sm-5 col-xs-5 marginb25">- <i class="fa fa-inr" aria-hidden="true"></i>0</div>
+                                            <div class="col-md-5 text-right col-sm-5 col-xs-5 marginb25">- <i class="fa fa-inr" aria-hidden="true"></i><span id="discount-val-span">0</span></div>
+                                            <input type="hidden" value="<%= @hotels_detail.price %>" name="total_price" class="form-control" id="total_price">
+
                                             <div class="col-md-7  col-sm-7 col-xs-7 marginb25 total-txt">Total
                                                 <div class="taxes-txt">(Inclusive of Taxes)</div>
                                             </div>
-                                            <div class="col-md-5 text-right col-sm-5 col-xs-5 marginb25 total-txt"><i class="fa fa-inr" aria-hidden="true"></i><%= @hotels_detail.price %></div>
+                                            <div class="col-md-5 text-right col-sm-5 col-xs-5 marginb25 total-txt"><i class="fa fa-inr" aria-hidden="true"></i><span id="total-val-span"><%= @hotels_detail.price %></span></div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="clearfix paynowwrap">
-                                  <input id="4" class="magic-checkbox" type="checkbox" value="option1">
-                                  <label for="4"> Pay 50% Now <img src="/assets/faq-icon.jpg" alt="Faq"></label>
-                                </div>
+                                <% if @cat.name != "Long Term" %>
+                                    <div class="clearfix paynowwrap">
+                                      <input id="4" class="magic-checkbox" name="amount_paid" type="checkbox" value="50">
+                                      <label for="4"> Pay 50% Now <img src="/assets/faq-icon.jpg" alt="Faq"></label>
+                                    </div>
+                                <% end %>
+                                <% if @cat.name == "Long Term" %>
+                                    <div class="clearfix paynowwrap">
+                                      <input id="4" class="magic-checkbox" name="amount_paid" type="checkbox" value="10">
+                                      <label for="4"> Pay 10% Now <img src="/assets/faq-icon.jpg" alt="Faq"></label>
+                                    </div>
+                                <% end %>
                                 <div class="agreebox clearfix">
                                     <% if @hotels_detail.room_for=="King" %>
                                         <div class="form-group clearfix">
@@ -450,9 +493,10 @@ $.fn.raty.defaults.path = '<%= root_url+'assets' %>';
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" class="blue-btn hidden-xs">BOOK NOW</button>
+                                    <button type="submit" class="blue-btn hidden-xs">BOOK NOW</button>
                                 </div>
                             </div>
+                        <% end %>
                         </div>
 
                     <script>
@@ -474,6 +518,7 @@ $.fn.raty.defaults.path = '<%= root_url+'assets' %>';
                         });
                     </script>
                 <div class="sharebox clearfix">
+                    <button class="favourite-btn" type="button"> REQUEST A VISIT</button>
                     <button  id='post_fav_button_<%= @hotels_detail.id %>_<%= @user_id %>' class="favourite-btn" type="button"><i class="fa fa-heart" aria-hidden="true"></i> Add to Favourites</button>
                     <button id='post_disfav_button_<%= @hotels_detail.id %>_<%= @user_id %>' class="favourite-btn hidden" type="button"><i class="fa fa-heart" aria-hidden="true"></i> Remove from Favourites</button>
                     <h4>Share On</h4>
@@ -645,11 +690,61 @@ $.fn.raty.defaults.path = '<%= root_url+'assets' %>';
                     success: function(data){
                         
                         alert(data.message);
+
+                        $("#discount_value").val(data.data.discount_value);
                         
+                        $("#discount_type").val(data.data.discount_type);
+
+                        $("#coupon_data").val(data.data.coupon_code);
+                        var price = $('#price').val();
+                        var discount = $('#discount_value').val();
+                        var discount_type = $('#discount_type').val();
+                        //alert(discount_type);
+                        
+                        if(discount_type=='Amount'){
+                            var total_price = price - discount;
+                            //alert(total_price);
+                            
+                            if(price>=discount){
+                                $("#total_price").val(total_price);
+                                $("#total-val-span").html(total_price);
+                                $("#discount-val-span").html(discount);
+                                $("#discount_price").val(discount);
+                            }else{
+                                var total_price = 0;
+                                $("#total_price").val(total_price);
+                                $("#total-val-span").html(total_price);
+                                $("#discount-val-span").html(price);
+                                $("#discount_price").val(discount);
+                            }
+                           
+                            
+                        }
+                        if(discount_type=='Percent'){
+                            var discount_amount = discount/100*price;
+
+                            var total_price = price - discount_amount;
+                            //alert(total_price);
+                            
+                            if(price>=discount_amount){
+                                $("#discount_price").val(discount_amount);
+                                $("#total-val-span").html(total_price);
+                                $("#discount-val-span").html(discount_amount);
+                                $("#total_price").val(total_price);
+                            }else{
+                                var total_price = 0;
+                                $("#discount_price").val(discount_amount);
+                                $("#total-val-span").html(total_price);
+                                $("#discount-val-span").html(price);
+                                $("#total_price").val(total_price);
+                            }
+                            
+                        }
                     }
                 });
             }
         });
+        
 
     })
 </script>
@@ -662,9 +757,29 @@ $(function () {
         $('#ratingvalue').val(score);
     } });
 
-    
+        $('#datetimepicker1').datetimepicker({
 
-    $('.datetimepicker1').datetimepicker({
+            startDate:  new Date()
+        });
+        $('#datetimepicker2').datetimepicker({ 
+             //startDate:  $('#datetimepicker1_input').val()
+        });
+
+     
+
+
+
+       /* $("#datetimepicker1").on("change", function (e) {
+
+            //console.log(e);
+            $('#datetimepicker2').data("DateTimePicker").minDate($("#datetimepicker2_input").val());
+        });
+        $("#datetimepicker2").on("change", function (e) {
+          //  alert($("#datetimepicker1_input").val());
+            $('#datetimepicker1').data("DateTimePicker").maxDate($("#datetimepicker1_input").val());
+        });*/
+
+    /*$('#datetimepicker1').datetimepicker({
     startDate: '-0d',
     weekStart: 1,
     todayBtn:  1,
@@ -678,8 +793,25 @@ $(function () {
     changeYear: true,
     yearRange: '-70:+10',
     });
-    $('.datetimepicker2').datetimepicker({
-    startDate: '-0d',
+
+    
+   
+    $("#datetimepicker1").on("change", function (e) {
+        alert(e);
+        $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+    });
+    $("#datetimepicker2").on("change", function (e) {
+        $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
+    });
+
+   
+
+    //var check_in = $('#check_indate').val();
+    var check_in = '-0d';
+    
+    $('#datetimepicker2').datetimepicker({
+    
+    startDate: check_in,
     weekStart: 1,
     todayBtn:  1,
     autoclose: 1,
@@ -691,7 +823,8 @@ $(function () {
     changeMonth: true,
     changeYear: true,
     yearRange: '-70:+10',
-    });
+    });*/
+    
 $('.top-main-slider').slick({
   slidesToShow: 1,
   slidesToScroll: 1,
@@ -763,5 +896,37 @@ window.onload = init();
 
 
 
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+       
+    var validator = $("#booking_form").validate({
+      ignore: ':hidden:not(select)',
+      errorElement: 'span',
+      errorClass: 'error',
+      rules: {
+        "user[check_in]": {
+          required: true,
+          
+        },
+        "user[check_out]": {
+          required: true
+        },
+      },
+      messages: {
+        "user[check_in]": {
+          required: "Email can't be blank",
+          
+        },
+        "user[check_out]": {
+          required: "First name can't be blank"
+        },  
+      },
+      errorPlacement: function(error, element) {
+        error.insertAfter(element);
+      }
+    });
+  });
 </script>
 

@@ -1,5 +1,9 @@
 class Coupon < ActiveRecord::Base
 
+	scope :active, -> { where(status: true) }
+
+	scope :available, -> { where("valid_from <= CURRENT_DATE AND valid_till >= CURRENT_DATE") }
+
 	DISCOUNT_TYPE = ['Percent', 'Amount']
     
 

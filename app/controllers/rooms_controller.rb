@@ -1,7 +1,9 @@
 class RoomsController < ApplicationController
 
 	layout 'application1', :only => [:search_listing]
-    before_action :authenticate_user!, :only => [:save_like, :review_submit]
+	
+
+    before_action :authenticate_user!, :only => [:save_like, :review_submit, :booking, :confirm_booking]
 	def search_listing
 		#abort(params[:filter][:city].to_json)
 
@@ -45,17 +47,21 @@ class RoomsController < ApplicationController
 		#end
 		    
 	end
-
+    
 	def hotels_detail
 		@hotels_detail = Room.find_by(id: params[:id])
-		@similar_stays = Room.where.not(id: @hotels_detail.id).where(room_for: @hotels_detail.room_for).limit(3)
+		if @hotels_detail.present?
+			@similar_stays = Room.where.not(id: @hotels_detail.id).where(room_for: @hotels_detail.room_for).limit(3)
+			@sub_cat = Category.find_by(id: @hotels_detail.sub_category_id)
+			@cat = Category.find_by(id: @hotels_detail.category_id)
+		end
 		@review_data1 = Review.where(room_id: params[:id]).order('id DESC')
         @review_data = Review.where(room_id: params[:id]).order('id DESC').limit(3)
         @r_data = Review.where(room_id: params[:id])
 		#abort(@review_data.to_json)
 		#@hotels_detail.amenities.each do |amenity| 
 
-		@sub_cat = Category.find_by(id: @hotels_detail.sub_category_id)
+		
 		#abort(@sub_cat.name.to_json)
 		if !@hotels_detail.	present?
 			redirect_to root_path, notice: 'Invalid access!'
@@ -131,7 +137,7 @@ class RoomsController < ApplicationController
     	coupon_code     = params[:coupon_code]
 	    
       	if (coupon_code!="")  
-            @coupondata = Coupon.find_by(coupon_code: coupon_code)
+            @coupondata = Coupon.active.available.find_by(coupon_code: coupon_code)
             #abort(@coupondata.to_json) 
             if(@coupondata.present?)
 
@@ -142,6 +148,28 @@ class RoomsController < ApplicationController
         end 
         render json: result, status: 200 
      	
+    end
+    def booking
+    	check_in     = params[:check_in]
+	    check_out        = params[:check_out]
+	    discount     = params[:discount_price]
+	    coupon_code     = params[:coupon_code]
+	    no_of_rooms     = params[:no_of_rooms]
+	    no_of_guests     = params[:no_of_guests]
+	    room_id     = params[:room_id]
+	    price     = params[:price]
+	    discount_value     = params[:discount_value]
+	    discount_type     = params[:discount_type]
+	    total_price        = params[:total_price]
+	    amount_paid        = params[:amount_paidamount_paid]
+	    status        = 'Booked'
+    	booking_data = Booking.create(user_id: current_user.id , name: current_user.first_name, phone_no: current_user.phone_number, email: current_user.email, coupon_code: coupon_code, discount_value: discount_value,
+    		discount_type: discount_type, discount: discount, net_amount: total_price, check_in_date: check_in, check_out_date: check_out,
+    		no_of_rooms: no_of_rooms, no_of_guests: no_of_guests, status: status)
+  		
+  		booking_detail = BookingDetail.create(room_id: room_id, booking_id: booking_data.id, room_price: price) 
+    	
+    	abort(booking_detail.to_json)
     end
     def confirm_booking
     	

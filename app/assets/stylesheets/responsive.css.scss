@@ -753,3 +753,22 @@ h5.ref-ti { font-size: 18px; margin: 0 0 40px; }
 .book-search-block { margin-bottom: 15px; }
 .detail-mor-menus li a { font-size: 16px; padding: 2px 8px; }
 }
+
+
+/*New pages css*/
+@media screen and (max-width:990px) {
+.qr_img{ width:100%; float:left; display:table-cell; text-align:center;}
+.booking_cmplt .qr_panel .booking_id{ margin:auto;}	
+.bk_dt p, h1{ text-align:center !important; width:100%; float:left;}
+.map_pnl{ float:right !important; width:100%;}
+.map_info{ width:100%;}
+.map_info h1{ text-align:left !important;}
+.bc_dt{ background:image-url("calender.png") center 30px no-repeat; padding:110px 0 20px 0; font-size:28px; }
+.map_row{ margin-top:30px; margin-bottom:30px;}
+.btc{ max-width:320px; margin:auto;   }
+.booking_id{ margin-top:30px !important;  margin-bottom:30px !important; padding: 10px 0px !important;}
+
+
+
+
+}

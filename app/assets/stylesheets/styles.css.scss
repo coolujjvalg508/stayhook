@@ -1035,3 +1035,44 @@ h5.ref-ti { color: rgb(43, 43, 43); font-size: 23px; font-weight: 300; margin: 0
 .facility-txt .icon-img{
 	width: 23px;
 }
+
+
+/*============booking confirmation page css start==================*/
+.booking_cmplt{}
+.booking_cmplt .img{ width:100%; float:left; text-align:center; display:table-cell;}
+.booking_cmplt h2{ width:100%; font-size:34px; text-align:center; font-weight:normal; float:left; margin: 30px 0 7px 0;}
+.booking_cmplt h1{ width:100%; font-size:31px; text-align:center; padding:10px 0; float:left; font-weight:bold;}
+.booking_cmplt p{ font-size:27px; text-align:center; line-height:44px; padding:10px 0;}
+.booking_cmplt .qr_panel{ max-width:600px; margin:auto; margin-top:30px;}
+.booking_cmplt .qr_panel img{ margin-top:30px;}
+.booking_cmplt .qr_panel .booking_id{ max-width:290px; float:right; border:2px dotted #464646; padding:10px 35px; box-sizing:border-box; background-color:#e1e1e1; border-radius:5px;	margin-top:30px;}
+.booking_cmplt .qr_panel .booking_id h2{ width:100%; text-align:center; font-size:25px; font-weight:bold; color:#464646; margin:0px; padding:10px 0; }
+.booking_cmplt .qr_panel .booking_id h1{ width:100%; text-align:center; font-size:44px; color:#464646; font-family: 'Montserrat', sans-serif; font-weight:normal;}
+
+.bk_dt{ text-align:left; margin-top:30px;}
+.bk_dt p{ font-size:23px; font-weight:normal; text-align:left; padding:3px; width:100%; float:left;}
+.bk_dt p strong{ font-weight:600}
+.bk_dt h1{ font-size:24px; font-weight:bold; text-align:left; padding:0px;}
+.pmt_d_box{ width:100%; float:left; border-radius:5px; border:1px solid#464646; box-sizing:border-box; padding:20px; min-height:650px; margin-bottom:50px;}
+.pmt_d_box h1{ text-align:center; font-size:23px; font-weight:bold;}
+
+.view_cancel_bt{ width:100%; float:left; border-radius:5px; border:1px solid#00aeef; font-size:22px; font-weight:bold; color:#00aeef; 
+	height:110px; line-height:110px; padding: 0 20px; text-align:center;}/*
+*/
+.bc_dt{ width:100%; float:left; border:1px solid#555555; border-radius:5px; background:image-url("calender.png") left center no-repeat; background-position:40px 37px;  font-size:38px; color:#464646; padding:30px 40px 30px 100px; line-height:44px; text-align:center; font-weight:bold; margin-top:40px; box-sizing:border-box; font-weight:600; }
+.bc_dt span{ font-weight:700;}
+	
+.map_row{ margin-top:100px;}
+
+
+.map_pnl{ width:55%; float:right;}
+.map_info{ width:45%; float:left; background-color:#ebebeb; box-sizing: border-box; padding:25px; min-height:500px; }
+.map_info h1{ font-size:19px; color:#464646; text-transform:uppercase; margin:0px; padding-bottom:10px; font-weight:bold;}
+.map_info h1:first-child{ padding-bottom:30px;}
+
+
+.map_info p{ font-size:20px; color:#464646; margin:0px; padding-bottom:10px; line-height:27px; padding-left:50px; box-sizing:border-box;}
+.map_info p{ padding-bottom:30px;}
+.ct_info{ width:100%; float:left; box-sizing:border-box;  line-height:27px; font-size:20px; border-top:1px solid#727272; border-bottom:1px solid#727272; background:image-url("call_icon.png") no-repeat; background-position:10px 33px; padding: 20px 0 40px 50px; margin:10px 0 15px 0;}
+.map_pnl img{ width:100%; max-height:500px;}
+.qr_img{ width:auto; float:left;}

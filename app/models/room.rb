@@ -7,7 +7,7 @@ class Room < ActiveRecord::Base
 	has_many :images, as: :imageable, dependent: :destroy
  	has_many :caption
 	
-	ROOM_FOR = ['King', 'Queen', 'Couple']
+	ROOM_FOR = ['King', 'Queen', 'Family']
 	NO_OF_BED = ['1', '2', '3', '4']
 	PRICE_CHARGE_TYPE = ['Per Night', 'Per Month']
 
