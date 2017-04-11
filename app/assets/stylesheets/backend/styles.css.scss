@@ -15,7 +15,7 @@ nav,
 section,
 summary,
 title { display: block }
-body { font-family: 'Lato', sans-serif; font-weight: normal; font-style: normal; font-size: 14px; line-height: 18px; -webkit-font-smoothing: antialiased; margin: 0; padding: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+body { font-family: 'Lato', sans-serif; font-weight: normal; font-style: normal; font-size: 18px; line-height: 28px; -webkit-font-smoothing: antialiased; margin: 0; padding: 0; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 dl,
 dt,
 dd,
@@ -363,4 +363,38 @@ body { height: 100%; }
 .paumen-amo { border-bottom: 1px solid rgb(176, 176, 176); margin: 0 0 20px; padding: 0 0 10px; }
 .mobile-payment { display: none; }
 
+ /****************account setting****************/
+.account_form_blk{ padding:0px 15px;} 
+.form_top_blk{ margin:30px 0px 15px;}
+.form_top_blk label, .form_bottom_blk label{ font-size:16px; color:#444444; font-weight:normal; padding-top:10px;}
+.form_top_blk .form-control{ background:#eaeaea; border:none; box-shadow:none; height:44px; font-size:16px; color:#444444;}
+.form_top_blk ul li, .form_bottom_blk ul li{ width:100%; display: inline-block; margin-bottom:10px;}
+.form-group { margin-bottom: 20px; width:100%; display:inline-block;}
+.form_bottom_blk{ margin-top:30px;}
+.form_bottom_blk .form-control{ background:#fff; border:1px solid #00ff00; box-shadow:none; height:44px; font-size:16px; color:#444444;}
+.bdr_blk{  width:100%; display: inline-block; background:#acacac; height:1px; margin:10px 0px 10px;}
+.update_btn{ width:100%; text-align:center;}
+.update_btn input{ background:#00aeef; padding:12px 30px; color:#fff; font-size:16px; border:none; border-radius:5px; text-transform:uppercase; cursor:pointer; transition:all 0.3s ease-in-out;}
+.update_btn input:hover{ background:#02a0db;}
  
+ 
+ /****************login****************/
+#main_container{ width:100%; display: inline-block; height:100%; min-height:100%; background:#2e303a;}
+.admin_login_section{ width:600px; margin:10% auto;}
+.admin_login_blk{ width:100%; background:#333746; text-align:center; padding:50px 120px 40px; border-radius:5px;}
+.logo_img{ margin-bottom:50px;}
+.logo_img img{ width:100%;}
+.admin_login_blk .form_content{ width:100%; display:inline-block; position:relative;}
+.admin_login_blk .form-control{ background:#5c5f6b; font-size:18px; color:#fff; padding-left:50px; border-radius:10px; border:none; height:52px;}
+.admin_login_blk .form-control::placeholder{ color:#fff;}
+.admin_login_blk .fa{ position:absolute; top:15px; left:20px; color:#fff; font-size:22px;}
+.admin_login_blk .form-control:focus{ box-shadow:none;}
+.admin_login_blk .form-group a{ color:#fff; font-size:18px;}
+.admin_login_blk .form-group a span{ text-decoration:underline;}
+.admin_login_blk input[type="submit"]{ background:#1f5dea; padding:12px 40px; color:#fff; font-weight:600; font-size:16px; border:none; border-radius:10px; text-transform:uppercase; cursor:pointer; transition:all 0.3s ease-in-out; height:52px;}
+.admin_login_blk input[type="submit"]:hover{ background:#1751d5;}
+.admin_login_blk label{ float:left; color:#fff; font-size:18px; font-weight:normal; text-align:left; margin-bottom:10px;}
+.admin_login_blk label strong{ font-size:15px;}
+.otp_txt{ font-size:13px; color:#5c5f6b; text-transform:uppercase; font-weight:bold;}
+.bdr_img{ position:relative; margin: 10px 0px 35px;}
+.bdr_img img { position:absolute; top:0px; left:-65px;}

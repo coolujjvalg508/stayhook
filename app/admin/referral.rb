@@ -1,10 +1,14 @@
-ActiveAdmin.register Coupon do
-	menu label: 'Manage Coupons'
-	permit_params :coupon_code, :discount_value, :discount_type, :valid_from, :valid_till, :status
+ActiveAdmin.register Referral do
+
+menu label: 'Manage Referrals'
+
+permit_params :referral_code, :discount_value, :discount_type, :valid_from, :valid_till, :status, :from, :to
 
 
 	
-	filter :coupon_code
+	filter :to
+	filter :from
+	filter :referral_code
   	filter :discount_value
   	filter :valid_from
   	filter :valid_till
@@ -13,22 +17,23 @@ ActiveAdmin.register Coupon do
 	  index do
 	    selectable_column
 	    
-	    column :coupon_code
-	    column :discount_value
+	    column :from
+	    column :to
+	    column :referral_code
+	    column :discount_value	
 	    column :discount_type
-	    column :valid_from
-	    column :valid_till
 	    column "Status" do |ee|
 	      (ee.status == true) ? "Active" : "Inactive"
 	    end
-	    column :created_at
 	    actions
 	  end
 
 	form multipart: true do |f|
 
-	    f.inputs "Coupon Details" do
-	      f.input :coupon_code
+	    f.inputs "Referral Details" do
+	      f.input :from
+	      f.input :to
+	      f.input :referral_code
 	      f.input :discount_value
 	      f.input :discount_type, as: :select, collection: Coupon::DISCOUNT_TYPE, include_blank: 'Select Discount Type'
 	      f.input :valid_from
@@ -40,7 +45,9 @@ ActiveAdmin.register Coupon do
 
   	show do
 	    attributes_table do
-	      row :coupon_code
+	      row :from
+	      row :to
+	      row :referral_code
 	      row :discount_value
 	      row :discount_type
 	      row :valid_from
@@ -52,5 +59,4 @@ ActiveAdmin.register Coupon do
 	      row :updated_at
 	    end
   	end
-
 end

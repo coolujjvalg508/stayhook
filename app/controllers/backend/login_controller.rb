@@ -1,7 +1,13 @@
 class Backend::LoginController < Backend::BaseController
 
-    layout 'application2'
+    layout 'backend_login'
 	def login
+        
+	end
+	def otp
+        
+	end
+	def forgot_password
         
 	end
 	

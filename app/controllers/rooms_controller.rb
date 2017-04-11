@@ -117,6 +117,24 @@ class RoomsController < ApplicationController
 	    render json: result, status: 200       
     end 
 
+    def check_availability
+
+    	check_in     = params[:check_in]
+	    check_out       = params[:check_out]
+	    room_id     = params[:room_id]
+	   
+	    @booking_avail = BookingDetail.find_by(room_id: room_id)
+	    @booking_date = Booking.find_by(id: @booking_avail.booking_id)
+	    #abort(@booking_date.to_json)
+      	if (check_in>=@booking_date.check_in_date && check_in<=@booking_date.check_out_date)
+
+             
+            result  = {'res' => 1, 'message' => 'Room Not Available'}
+        end 
+        render json: result, status: 200 
+
+    end
+
     def review_submit
     	
     	name     = params[:name]
@@ -161,18 +179,43 @@ class RoomsController < ApplicationController
 	    discount_value     = params[:discount_value]
 	    discount_type     = params[:discount_type]
 	    total_price        = params[:total_price]
-	    amount_paid        = params[:amount_paidamount_paid]
+	    
 	    status        = 'Booked'
-    	booking_data = Booking.create(user_id: current_user.id , name: current_user.first_name, phone_no: current_user.phone_number, email: current_user.email, coupon_code: coupon_code, discount_value: discount_value,
-    		discount_type: discount_type, discount: discount, net_amount: total_price, check_in_date: check_in, check_out_date: check_out,
-    		no_of_rooms: no_of_rooms, no_of_guests: no_of_guests, status: status)
-  		
-  		booking_detail = BookingDetail.create(room_id: room_id, booking_id: booking_data.id, room_price: price) 
-    	
-    	abort(booking_detail.to_json)
+	    if params[:amount_paid]!=""
+	    	#abort(params[:total_price])
+	    	pay_value = params[:amount_paid].to_i
+	    	total_price1        = params[:total_price].to_i
+	    	amount_paid = pay_value * total_price1 /100
+	    	amount_due 		   = total_price1-amount_paid
+	    	#abort(amount_paid.to_s)
+	    end
+	    if amount_paid==0
+
+	    	amount_paid        = params[:total_price].to_i
+	    	amount_due		   = 0
+	    	#abort(amount_paid.to_s)
+	    end
+	    if (check_in!="" && check_out!="")
+	
+	    	booking_data = Booking.create(user_id: current_user.id , name: current_user.first_name, phone_no: current_user.phone_number, email: current_user.email, coupon_code: coupon_code, discount_value: discount_value,
+	    		discount_type: discount_type, discount: discount, net_amount: total_price, check_in_date: check_in, check_out_date: check_out,
+	    		no_of_rooms: no_of_rooms, no_of_guests: no_of_guests, status: status, amount_paid: amount_paid, amount_due: amount_due)
+	  		
+	  		booking_detail = BookingDetail.create(room_id: room_id, booking_id: booking_data.id, room_price: price) 
+    		abort(booking_detail.to_json)
+    	end
     end
     def confirm_booking
-    	
+    	@booking_detail = Booking.find_by(id: params[:id])
+    	@room_data = BookingDetail.find_by(booking_id: params[:id])
+    	if @room_data.present?
+    		@hotel_data = Vendor.find_by(id: @room_data.room.vendor_id)
+    	end
+    	if !@booking_detail.	present?
+			redirect_to root_path, notice: 'Invalid access!'
+		end
+    	#abort(@hotel_data.to_json)
+    	#@room_detail = BookingDetail.find_by(booking_id: params[:id])
     end
     
 end

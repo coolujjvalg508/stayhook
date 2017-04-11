@@ -18,12 +18,13 @@ Rails.application.routes.draw do
   get 'account-setting' => 'users#account_setting', as: "account_setting"
   post 'account-setting' => 'users#update_profile', as: "update_profile"
   get 'booking-history' => 'users#booking_history', as: "booking_history"
-  get 'confirm-booking' => 'rooms#confirm_booking', as: "confirm_booking"
+  get 'confirm-booking/:id' => 'rooms#confirm_booking', as: "confirm_booking"
   post 'save_like'               => 'rooms#save_like', as: 'save_like' 
   post 'check_save_like'         => 'rooms#check_save_like', as: 'check_save_like' 
   post 'review_submit'         => 'rooms#review_submit', as: 'review_submit' 
   post 'discount_offers'         => 'rooms#discount_offers', as: 'discount_offers' 
   post 'booking'         => 'rooms#booking', as: 'booking' 
+  post 'check_availability'         => 'rooms#check_availability', as: 'check_availability' 
    
  
 
@@ -35,6 +36,9 @@ Rails.application.routes.draw do
     get 'check-in' => 'dashboard#check_in', as: "check_in"
     get 'check-out' => 'dashboard#check_out', as: "check_out"
     get 'room-list' => 'dashboard#roomlist', as: "roomlist"
+    get 'account-setting' => 'dashboard#account_setting', as: "account_setting"
+    get 'forgot-password' => 'login#forgot_password', as: "forgot_password"
+    get 'otp' => 'login#otp', as: "otp"
   end
 
   namespace :user do

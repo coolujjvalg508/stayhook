@@ -202,6 +202,7 @@ $.fn.raty.defaults.path = '<%= root_url+'assets' %>';
                                             <div class="form-group">
                                             <input type="text" name="name" placeholder="Name" id="name" class="form-control reviewinput">
                                             <input type="hidden" name="room_id" id="room_id" value="<%= @hotels_detail.id %>">
+                                           
                                             
                                             <input type="hidden" name="user_id" id="user_id" value="<%= @user_id %>">
                                             <input type="hidden" name="rating" id="ratingvalue" >
@@ -493,7 +494,7 @@ $.fn.raty.defaults.path = '<%= root_url+'assets' %>';
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="blue-btn hidden-xs">BOOK NOW</button>
+                                    <button type="submit" class="blue-btn hidden-xs" id="check_available">BOOK NOW</button>
                                 </div>
                             </div>
                         <% end %>
@@ -744,8 +745,60 @@ $.fn.raty.defaults.path = '<%= root_url+'assets' %>';
                 });
             }
         });
+        $(document).on('submit', '#booking_form', function(e) {
         
+        //do stuff here
+            var check_in  = $('#datetimepicker1_input').val();
+            var check_out  = $('#datetimepicker2_input').val();
+            var room_id  = $('#room_id').val();
+            
+            
+            
+            if(check_in==""){
+                 alert("Please enter checkin date");
+                 return false;
 
+            }
+            if(check_out==""){
+                 alert("Please enter checkout date");  
+                 return false;  
+            }
+            else{
+                $.ajax({
+                    type: "post",
+                    url: "<%= check_availability_path %>" ,
+                    data: {'check_in': check_in,'check_out': check_out,'room_id': room_id},
+                    success: function(data){
+                        if(data.res==1){
+                            alert("Room Not Available in this period");
+                            return false;    
+                        }
+                        else{
+                            return true;
+                        }
+                    }
+                });
+            }
+
+
+        });
+        /*$('[id^= check_available]').on('click',function(){
+            
+            var check_in  = $('#datetimepicker1_input').val();
+            var check_out  = $('#datetimepicker2_input').val();
+            
+            
+            
+            if(check_in==""){
+                 alert("Please enter checkin date");
+
+            }
+            if(check_out==""){
+                 alert("Please enter checkout date");    
+            }
+
+            
+        });*/
     })
 </script>
 <script>

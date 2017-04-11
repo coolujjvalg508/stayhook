@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404094319) do
+ActiveRecord::Schema.define(version: 20170411092036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,8 @@ ActiveRecord::Schema.define(version: 20170404094319) do
     t.string   "status"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "amount_paid"
+    t.integer  "amount_due"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -136,6 +138,20 @@ ActiveRecord::Schema.define(version: 20170404094319) do
 
   add_index "images", ["imageable_id"], name: "index_images_on_imageable_id", using: :btree
   add_index "images", ["imageable_type"], name: "index_images_on_imageable_type", using: :btree
+
+  create_table "referrals", force: :cascade do |t|
+    t.string   "from"
+    t.string   "to"
+    t.string   "message"
+    t.string   "referral_code",  limit: 20
+    t.integer  "discount_value"
+    t.string   "discount_type"
+    t.date     "valid_from"
+    t.date     "valid_till"
+    t.boolean  "status",                    default: true, null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
 
   create_table "reviews", force: :cascade do |t|
     t.string   "name"

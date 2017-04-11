@@ -28,4 +28,9 @@ class Backend::DashboardController < Backend::BaseController
 		
 				
 	end
+	def account_setting
+		
+				
+	end
+	
 end
