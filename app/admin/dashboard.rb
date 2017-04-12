@@ -6,44 +6,44 @@ ActiveAdmin.register_page "Dashboard" do
     
     columns do
         column do
-            panel "Admin Section" do
+            panel "User Section" do
                 ul do
                     li do
                         span class: 'dash_left' do
                             'Admin Users'
                         end
                         span class: 'dash_right' do
-                           1
+                           link_to(AdminUser.count, 'admin_users')
+                        end
+                    end
+                    li do
+                        span class: 'dash_left' do
+                            'Front Users'
+                        end
+                        span class: 'dash_right' do
+                           link_to(User.count, 'users')
                         end
                     end
                 end
             end
         end
         column do
-            panel "User Section" do
+            panel "Vendor Section" do
                 ul do
                     li do
                         span class: 'dash_left' do
-                            'Front Users'
+                            'Total vendors'
                         end
                         span class: 'dash_right' do
-                           4
+                           link_to(Vendor.count, 'vendors')
                         end
                     end
                     li do
                         span class: 'dash_left' do
-                            'Active Users'
+                            'Vendor Requests'
                         end
                         span class: 'dash_right' do
-                            1
-                        end
-                    end
-                    li do
-                        span class: 'dash_left' do
-                            'InActive Users'
-                        end
-                        span class: 'dash_right' do
-                            1
+                            link_to(VendorRequest.count, 'vendor_requests')
                         end
                     end
                 end
@@ -57,126 +57,49 @@ ActiveAdmin.register_page "Dashboard" do
                             'Total Amenities'
                         end
                         span class: 'dash_right' do
-                           4
-                        end
-                    end
-                    li do
-                        span class: 'dash_left' do
-                            'Active Amenities'
-                        end
-                        span class: 'dash_right' do
-                            4
+                           link_to(Amenity.count, 'amenities')
                         end
                     end
                 end
             end
         end
         column do
-            panel "Vendor Request Section" do
+            panel "Rooms Section" do
                 ul do
                     li do
                         span class: 'dash_left' do
-                            'Pending Requests'
+                            'Total Rooms'
                         end
                         span class: 'dash_right' do
-                           12
+                           link_to(Room.count, 'rooms')
                         end
                     end
                     li do
                         span class: 'dash_left' do
-                            'Accepted Requests'
+                            'Total Bookings'
                         end
                         span class: 'dash_right' do
-                            4
+                           link_to(Booking.count, 'booking_details')
                         end
                     end
                 end
             end
-        end
+        end  
     end
     columns do
         column do
-            panel "Booking Section" do
+            panel "City Section" do
                 ul do
                     li do
                         span class: 'dash_left' do
                             'Total Bookings'
                         end
                         span class: 'dash_right' do
-                           10
-                        end
-                    end
-                    li do
-                        span class: 'dash_left' do
-                            'Confirm Bookings'
-                        end
-                        span class: 'dash_right' do
-                            5
-                        end
-                    end
-                    li do
-                        span class: 'dash_left' do
-                            'Cancelled bookings'
-                        end
-                        span class: 'dash_right' do
-                            4
+                           link_to(City.count, 'cities')
                         end
                     end
                 end
             end
-        end
-        column do
-            panel "User Section" do
-                ul do
-                    li do
-                        span class: 'dash_left' do
-                            'Cities'
-                        end
-                        span class: 'dash_right' do
-                           5
-                        end
-                    end
-                    li do
-                        span class: 'dash_left' do
-                            'Active Cities'
-                        end
-                        span class: 'dash_right' do
-                            3
-                        end
-                    end
-                end
-            end
-        end
-        column do
-            panel "Vendor Section" do
-                ul do
-                    li do
-                        span class: 'dash_left' do
-                            'Vendors'
-                        end
-                        span class: 'dash_right' do
-                           10
-                        end
-                    end
-                    li do
-                        span class: 'dash_left' do
-                            'Active Vendors'
-                        end
-                        span class: 'dash_right' do
-                            6
-                        end
-                    end
-                    li do
-                        span class: 'dash_left' do
-                            'InActive Vendor'
-                        end
-                        span class: 'dash_right' do
-                            1
-                        end
-                    end
-                end
-            end
-
         end
         column do
             panel "Category Section" do
@@ -186,20 +109,47 @@ ActiveAdmin.register_page "Dashboard" do
                             'Total Categories'
                         end
                         span class: 'dash_right' do
-                           4
-                        end
-                    end
-                    li do
-                        span class: 'dash_left' do
-                            'Active Categories'
-                        end
-                        span class: 'dash_right' do
-                            3
+                           link_to(Category.count, 'categories')
                         end
                     end
                 end
             end
-            
+        end
+        column do
+            panel "Coupon/Referral Section" do
+                ul do
+                    li do
+                        span class: 'dash_left' do
+                            'Coupons'
+                        end
+                        span class: 'dash_right' do
+                           link_to(Coupon.count, 'coupons')
+                        end
+                    end
+                    li do
+                        span class: 'dash_left' do
+                            'Referrals'
+                        end
+                        span class: 'dash_right' do
+                           link_to(Referral.count, 'referrals')
+                        end
+                    end
+                end
+            end
+        end
+        column do
+            panel "Review Section" do
+                ul do
+                    li do
+                        span class: 'dash_left' do
+                            'Total Reviews'
+                        end
+                        span class: 'dash_right' do
+                           link_to(Review.count, 'reviews')
+                        end
+                    end
+                end
+            end  
         end
     end
     
